@@ -23,8 +23,8 @@
                             <h3 class="card-title">Lupa Password</h3>
                         </div>
 
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-striped table-valign-middle">
+                        <div class="card-body table-responsive p-3">
+                            <table class="table table-striped table-valign-middle" id="example1">
                                 <thead>
                                     <tr>
                                         <th>NIP</th>

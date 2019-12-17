@@ -30,6 +30,22 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?= site_url('admin/master_eq') ?>" class="nav-link <?php if($active == 4) { echo "active"; } ?>">
+                                <i class="nav-icon fas fa-utensil-spoon"></i>
+                                <p>
+                                    Master Equipment
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('admin/master_to') ?>" class="nav-link <?php if($active == 5) { echo "active"; } ?>">
+                                <i class="nav-icon fas fa-toolbox"></i>
+                                <p>
+                                    Master Tools
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= site_url('admin/jab_unit') ?>" class="nav-link <?php if($active == 2) { echo "active"; } ?>">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>

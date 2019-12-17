@@ -56,6 +56,14 @@ class Admin extends MY_Controller {
         $this->load->view('admin/template/template', $this->data);
     }
 
+    public function master_eq()
+    {
+        $this->data['active'] = 4;
+        $this->data['content'] = 'master_eq';
+        $this->data['title'] = 'Admin | ';
+        $this->load->view('admin/template/template', $this->data);
+    }
+
     public function edit()
     {
         $data = [

@@ -8,7 +8,7 @@ class Data_personil_m extends MY_Model {
     {
         parent::__construct();
         $this->data['table_name'] = 'data_personil';
-        $this->data['primary_key'] = 'id_pegawai';
+        $this->data['primary_key'] = 'nip';
     }
     
 

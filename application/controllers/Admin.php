@@ -56,6 +56,23 @@ class Admin extends MY_Controller {
         $this->load->view('admin/template/template', $this->data);
     }
 
+    public function edit()
+    {
+        $data = [
+            'nip' => $this->POST('nip'),
+            'nama' => $this->POST('nama'),
+            'jabatan' => $this->POST('jabatan'),
+            'unit' => $this->POST('unit'),
+            'no' => $this->POST('no'),
+            'email' => $this->POST('email'),
+        ];
+
+        $this->data_personil_m->update($this->POST('nip'), $data);
+        $this->flashmsg('Data berhasil disimpan');
+        redirect('admin');
+        exit;
+    }
+
     public function delete($nip)
     {
         $this->user_m->delete($nip);
@@ -72,6 +89,22 @@ class Admin extends MY_Controller {
         $this->data['content'] = 'jab_unit';
         $this->data['title'] = 'Admin | ';
         $this->load->view('admin/template/template', $this->data);
+    }
+
+    public function jab_del($id)
+    {
+        $this->jabatan_m->delete($id);
+        $this->flashmsg('Data berhasil dihapus');
+        redirect('admin');
+        exit;
+    }
+
+    public function unit_del($id)
+    {
+        $this->unit_m->delete($id);
+        $this->flashmsg('Data berhasil dihapus');
+        redirect('admin');
+        exit;
     }
 
     public function lupa()

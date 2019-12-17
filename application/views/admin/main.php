@@ -173,7 +173,7 @@
                                             <div class="modal fade" id="modal-<?= $k->nip ?>">
                                                 <div class="modal-dialog">
 
-                                                    <?= form_open("admin") ?>
+                                                    <?= form_open("admin/edit") ?>
 
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -189,15 +189,7 @@
                                                                         <i class="fas fa-pen"></i>
                                                                     </span>
                                                                 </div>
-                                                                <input type="text" name="nip" class="form-control" placeholder="NIP">
-                                                            </div>
-                                                            <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text">
-                                                                        <i class="fas fa-lock"></i>
-                                                                    </span>
-                                                                </div>
-                                                                <input type="password" name="password" class="form-control" placeholder="Password">
+                                                                <input type="text" name="nip" class="form-control" value="<?= $k->nip ?>">
                                                             </div>
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
@@ -205,7 +197,7 @@
                                                                         <i class="fas fa-user"></i>
                                                                     </span>
                                                                 </div>
-                                                                <input type="text" name="nama" class="form-control" placeholder="Nama">
+                                                                <input type="text" name="nama" class="form-control" value="<?= $k->nama ?>">
                                                             </div>
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
@@ -214,9 +206,8 @@
                                                                     </span>
                                                                 </div>
                                                                 <select name="jabatan" id="" class="custom-select">
-                                                                    <option selected disabled>Pilih Jabatan</option>
-                                                                    <?php foreach ($jab as $k) { ?>
-                                                                        <option value="<?= $k->id_jabatan ?>"><?= $k->nama_jabatan ?></option>
+                                                                    <?php foreach ($jab as $c) { ?>
+                                                                        <option <?php if($k->jabatan == $c->id_jabatan) { echo "selected"; } ?> value="<?= $c->id_jabatan ?>"><?= $c->nama_jabatan ?></option>
                                                                     <?php } ?>
                                                                 </select>
                                                             </div>
@@ -228,8 +219,8 @@
                                                                 </div>
                                                                 <select name="unit" id="" class="custom-select">
                                                                     <option selected disabled>Pilih unit</option>
-                                                                    <?php foreach ($unit as $k) { ?>
-                                                                        <option value="<?= $k->id_unit ?>"><?= $k->nama_unit ?></option>
+                                                                    <?php foreach ($unit as $d) { ?>
+                                                                        <option <?php if($k->unit == $d->id_unit) { echo "selected"; } ?> value="<?= $d->id_unit ?>"><?= $d->nama_unit ?></option>
                                                                     <?php } ?>
                                                                 </select>
                                                             </div>
@@ -239,7 +230,7 @@
                                                                         <i class="fas fa-phone"></i>
                                                                     </span>
                                                                 </div>
-                                                                <input type="text" name="no" class="form-control" placeholder="Nomor HP">
+                                                                <input type="text" name="no" class="form-control" value="<?= $k->no ?>">
                                                             </div>
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
@@ -247,7 +238,7 @@
                                                                         <i class="fas fa-envelope"></i>
                                                                     </span>
                                                                 </div>
-                                                                <input type="email" name="email" class="form-control" placeholder="Email">
+                                                                <input type="email" name="email" class="form-control" value="<?= $k->email ?>">
                                                             </div>
 
                                                             <div class="input-group mb-3">
@@ -257,9 +248,8 @@
                                                                     </span>
                                                                 </div>
                                                                 <select name="role" class="custom-select">
-                                                                    <option disabled selected>Pilih Role</option>
-                                                                    <?php foreach ($role as $k) { ?>
-                                                                        <option value="<?= $k->id_role ?>"><?= $k->nama_role ?></option>
+                                                                    <?php foreach ($role as $e) { ?>
+                                                                        <option <?php if($k->id_role == $e->id_role) { echo "selected"; } ?> value="<?= $e->id_role ?>"><?= $e->nama_role ?></option>
                                                                     <?php } ?>
                                                                 </select>
                                                             </div>
@@ -267,7 +257,7 @@
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            <input type="submit" class="btn btn-primary" value="Tambah Pegawai" name="simpan">
+                                                            <input type="submit" class="btn btn-primary" value="Simpan Perubahan" name="simpan">
                                                         </div>
                                                     </div>
 

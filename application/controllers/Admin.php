@@ -63,14 +63,24 @@ class Admin extends MY_Controller {
             $data = [
                 'asset_id' => $this->POST('asset_id'),
                 'kks_number' => $this->POST('kks_number'),
-                'desk' => $this->POST('desk')
+                'desk' => $this->POST('desk'),
+                'unit' => $this->POST('unit')
             ];
             $this->data_barang_m->insert($data);
             $this->flashmsg('Data berhasil ditambah');
         }
+        $this->data['unit'] = $this->unit_m->get();
         $this->data['equipment'] = $this->data_barang_m->getDataJoin(['unit'], ['data_barang.unit = unit.id_unit']);
         $this->data['active'] = 4;
         $this->data['content'] = 'master_eq';
+        $this->data['title'] = 'Admin | ';
+        $this->load->view('admin/template/template', $this->data);
+    }
+
+    public function master_to()
+    {
+        $this->data['active'] = 5;
+        $this->data['content'] = 'master_to';
         $this->data['title'] = 'Admin | ';
         $this->load->view('admin/template/template', $this->data);
     }

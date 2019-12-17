@@ -27,6 +27,7 @@ class Admin extends MY_Controller {
         $this->load->model('role_m');
         $this->load->model('jabatan_m');
         $this->load->model('unit_m');
+        $this->load->model('data_barang_m');
     }
     
 
@@ -58,6 +59,16 @@ class Admin extends MY_Controller {
 
     public function master_eq()
     {
+        if($this->POST('simpan')) {
+            $data = [
+                'asset_id' => $this->POST('asset_id'),
+                'kks_number' => $this->POST('kks_number'),
+                'desk' => $this->POST('desk')
+            ];
+            $this->data_barang_m->insert($data);
+            $this->flashmsg('Data berhasil ditambah');
+        }
+        $this->data['equipment'] = $this->data_barang_m->getDataJoin(['unit'], ['data_barang.unit = unit.id_unit']);
         $this->data['active'] = 4;
         $this->data['content'] = 'master_eq';
         $this->data['title'] = 'Admin | ';

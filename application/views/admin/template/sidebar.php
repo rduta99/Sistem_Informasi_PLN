@@ -2,9 +2,9 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             
             <a href="index3.html" class="brand-link">
-            <img src="<?= base_url('assets/') ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            <img src="<?= base_url('assets/') ?>dist/img/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                 style="opacity: .8">
-            <span class="brand-text font-weight-light">AdminLTE 3</span>
+            <span class="brand-text font-weight-light">PT PLN Persero</span>
             </a>
 
             <div class="sidebar">
@@ -14,7 +14,7 @@
                         <img src="<?= base_url('assets/') ?>dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="<?= site_url('admin') ?>" class="d-block">Admin</a>
+                        <a href="<?= site_url('admin') ?>" class="d-block"><?= $this->data['username'] ?></a>
                     </div>
                 </div>
 
@@ -42,6 +42,14 @@
                                 <i class="nav-icon fas fa-toolbox"></i>
                                 <p>
                                     Master Tools
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('admin/his_pengukuran') ?>" class="nav-link <?php if($active == 6) { echo "active"; } ?>">
+                                <i class="nav-icon fas fa-thermometer-quarter"></i>
+                                <p>
+                                    Histori Pengukuran
                                 </p>
                             </a>
                         </li>

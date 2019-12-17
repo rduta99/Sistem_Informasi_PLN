@@ -77,6 +77,27 @@ class Admin extends MY_Controller {
         $this->load->view('admin/template/template', $this->data);
     }
 
+    public function master_eq_edit()
+    {
+        $data = [
+            'asset_id' => $this->POST('asset_id'),
+            'kks_number' => $this->POST('kks_number'),
+            'desk' => $this->POST('desk'),
+            'unit' => $this->POST('unit')
+        ];
+        $this->data_barang_m->update($this->POST('asset_id'), $data);
+        $this->flashmsg('Data berhasil diubah');
+        redirect('admin/master_eq');
+    }
+
+    public function del_eq($id)
+    {
+        $this->data_barang_m->delete($id);
+        $this->flashmsg('Data berhasil dihapus');
+        redirect('admin/master_eq');
+        exit;
+    }
+
     public function master_to()
     {
         $this->data['active'] = 5;

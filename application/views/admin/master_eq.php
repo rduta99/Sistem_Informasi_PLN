@@ -125,7 +125,7 @@
                                             <div class="modal fade" id="modal-<?= $k->asset_id ?>">
                                                 <div class="modal-dialog">
 
-                                                    <?= form_open("admin/master_eq") ?>
+                                                    <?= form_open("admin/master_eq_edit") ?>
 
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -166,7 +166,7 @@
                                                                         <i class="fas fa-envelope"></i>
                                                                     </span>
                                                                 </div>
-                                                                <select name="role" class="custom-select">
+                                                                <select name="unit" class="custom-select">
                                                                     <option disabled selected>Pilih Unit</option>
                                                                     <?php foreach ($unit as $c) { ?>
                                                                         <option <?php if($k->unit == $c->id_unit) echo "selected" ?> value="<?= $c->id_unit ?>"><?= $c->nama_unit ?></option>
@@ -184,7 +184,7 @@
 
                                                 </div>
                                             </div>
-                                            <a href="<?= site_url('admin/del_eq') ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                                            <a href="<?= site_url('admin/del_eq/'.$k->asset_id) ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     <?php } ?>

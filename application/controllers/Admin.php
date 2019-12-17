@@ -67,6 +67,7 @@ class Admin extends MY_Controller {
             'email' => $this->POST('email'),
         ];
 
+        $this->user_m->update($this->POST('nip'), ['id_role' => $this->POST('role')]);
         $this->data_personil_m->update($this->POST('nip'), $data);
         $this->flashmsg('Data berhasil disimpan');
         redirect('admin');
@@ -83,6 +84,31 @@ class Admin extends MY_Controller {
 
     public function jab_unit()
     {
+        if($this->POST('jabatan')) {
+            $data = [
+                'id_jabatan' => $this->POST('id_jabatan'),
+                'nama_jabatan' => $this->POST('nama_jabatan'),
+            ];
+            $cek = $this->jabatan_m->get_row(['id_jabatan' => $this->POST('id_jabatan')]);
+            if($cek == null) {
+                $this->flashmsg('Data berhasil ditambah');
+                $this->jabatan_m->insert($data);
+            } else {
+                $this->flashmsg('Data sudah ada', 'warning');
+            }
+        } else if($this->POST('unit')) {
+            $data = [
+                'id_unit' => $this->POST('id_unit'),
+                'nama_unit' => $this->POST('nama_unit'),
+            ];
+            $cek = $this->unit_m->get_row(['id_unit' => $this->POST('id_unit')]);
+            if($cek == null) {
+                $this->flashmsg('Data berhasil ditambah');
+                $this->unit_m->insert($data);
+            } else {
+                $this->flashmsg('Data sudah ada', 'warning');
+            }
+        }
         $this->data['active'] = 2;
         $this->data['jabatan'] = $this->jabatan_m->get();
         $this->data['unit'] = $this->unit_m->get();
@@ -91,19 +117,41 @@ class Admin extends MY_Controller {
         $this->load->view('admin/template/template', $this->data);
     }
 
+    public function jab_edit()
+    {
+        $data = [
+            'id_jabatan' => $this->POST('id_jabatan'),
+            'nama_jabatan' => $this->POST('nama_jabatan')
+        ];
+        $this->jabatan_m->update($this->POST('id_jabatan'), $data);
+        $this->flashmsg('Data berhasil diubah');
+        redirect('admin/jab_unit');
+    }
+
     public function jab_del($id)
     {
         $this->jabatan_m->delete($id);
         $this->flashmsg('Data berhasil dihapus');
-        redirect('admin');
+        redirect('jab_unit');
         exit;
+    }
+
+    public function unit_edit()
+    {
+        $data = [
+            'id_unit' => $this->POST('id_unit'),
+            'nama_unit' => $this->POST('nama_unit')
+        ];
+        $this->unit_m->update($this->POST('id_unit'), $data);
+        $this->flashmsg('Data berhasil diubah');
+        redirect('admin/jab_unit');
     }
 
     public function unit_del($id)
     {
         $this->unit_m->delete($id);
         $this->flashmsg('Data berhasil dihapus');
-        redirect('admin');
+        redirect('admin/jab_unit');
         exit;
     }
 

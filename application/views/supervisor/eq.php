@@ -63,10 +63,15 @@
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
-                                                    <i class="fas fa-pen"></i>
+                                                    <i class="fas fa-envelope"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" name="unit" class="form-control" placeholder="ID Unit">
+                                            <select name="unit" class="custom-select">
+                                                <option disabled selected>Pilih Unit</option>
+                                                <?php foreach ($unit as $k) { ?>
+                                                    <option value="<?= $k->id_unit ?>"><?= $k->nama_unit ?></option>
+                                                <?php } ?>
+                                            </select>
                                         </div>
 
                                         <div class="input-group mb-3">

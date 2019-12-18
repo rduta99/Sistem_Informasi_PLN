@@ -93,7 +93,12 @@
                                                     <i class="fas fa-users"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" name="unit" class="form-control" placeholder="Unit">
+                                            <select name="unit" class="custom-select">
+                                                <option disabled selected>Pilih unit</option>
+                                                <?php foreach ($unit as $k) { ?>
+                                                    <option value="<?= $k->id_unit ?>"><?= $k->nama_unit ?></option>
+                                                <?php } ?>
+                                            </select>
                                         </div>
 
                                         <div class="input-group mb-3">

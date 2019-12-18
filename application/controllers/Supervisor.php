@@ -12,6 +12,7 @@ class Supervisor extends MY_Controller {
         $this->load->model('data_barang_m');
         $this->load->model('tools_m');
         $this->load->model('teknologi_m');
+        $this->load->model('unit_m');
     }
     
     public function index()
@@ -53,6 +54,7 @@ class Supervisor extends MY_Controller {
         }
 
         $this->data['teknologi'] = $this->teknologi_m->get();
+        $this->data['unit'] = $this->unit_m->get();
         $this->data['tools'] = $this->tools_m->get();
         $this->data['data_barang'] = $this->data_barang_m->get();
         $this->data['content'] = 'tool';

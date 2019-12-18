@@ -61,12 +61,46 @@ class Supervisor extends MY_Controller {
 
     }
 
-    public function delete($id_tools)
+    public function delete_tools($id_tools)
     {
         $this->tools_m->delete($id_tools);
         $this->flashmsg('Data berhasil dihapus');
+        redirect('supervisor/tools');
+        exit;
+    }
+
+    public function delete_eq($asset_id)
+    {
+        $this->data_barang_m->delete($asset_id);
+        $this->flashmsg('Data berhasil dihapus');
         redirect('supervisor');
         exit;
+    }
+
+    public function eq_edit()
+    {
+        $data = [
+            'asset_id' => $this->POST('asset_id'),
+            'kks_number' => $this->POST('kks_number'),
+            'desk' => $this->POST('desk'),
+            'unit' => $this->POST('unit')
+        ];
+        $this->data_barang_m->update($this->POST('asset_id'), $data);
+        $this->flashmsg('Data berhasil diubah');
+        redirect('supervisor');
+    }
+
+    public function eq_edit()
+    {
+        $data = [
+            'asset_id' => $this->POST('asset_id'),
+            'kks_number' => $this->POST('kks_number'),
+            'desk' => $this->POST('desk'),
+            'unit' => $this->POST('unit')
+        ];
+        $this->data_barang_m->update($this->POST('asset_id'), $data);
+        $this->flashmsg('Data berhasil diubah');
+        redirect('supervisor');
     }
 
 }

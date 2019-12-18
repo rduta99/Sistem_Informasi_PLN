@@ -55,8 +55,7 @@ class Supervisor extends MY_Controller {
 
         $this->data['teknologi'] = $this->teknologi_m->get();
         $this->data['unit'] = $this->unit_m->get();
-        $this->data['tools'] = $this->tools_m->get();
-        $this->data['data_barang'] = $this->data_barang_m->get();
+        $this->data['tools'] = $this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']);
         $this->data['content'] = 'tool';
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);

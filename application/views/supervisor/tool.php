@@ -93,7 +93,12 @@
                                                     <i class="fas fa-users"></i>
                                                 </span>
                                             </div>
-                                            <input type="text" name="unit" class="form-control" placeholder="Unit">
+                                            <select name="unit" class="custom-select">
+                                                <option disabled selected>Pilih unit</option>
+                                                <?php foreach ($unit as $k) { ?>
+                                                    <option value="<?= $k->id_unit ?>"><?= $k->nama_unit ?></option>
+                                                <?php } ?>
+                                            </select>
                                         </div>
 
                                         <div class="input-group mb-3">
@@ -134,7 +139,6 @@
                                     <?php foreach ($tools as $k) { ?>
                                     <tr>
                                         <td>
-                                            <img src="<?= base_url('assets/') ?>dist/img/avatar3.png" alt="Product 1" class="img-circle img-size-32 mr-2">
                                             <?= $k->id_tools ?>
                                         </td>
                                         <td>
@@ -144,10 +148,10 @@
                                             <?= $k->merk ?>
                                         </td>
                                         <td>
-                                            <?= $k->unit ?>
+                                            <?= $k->nama_unit ?>
                                         </td>
                                         <td>
-                                            <?= $k->teknologi ?>
+                                            <?= $k->nama_teknologi ?>
                                         </td>
                                         <td>
                                             <?= $k->tgl_kalibrasi ?>

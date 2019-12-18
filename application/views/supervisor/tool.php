@@ -156,9 +156,9 @@
                                             <button class="btn btn-sm btn-warning text-white">
                                                 <i class="fas fa-pen"></i>
                                             </button>
-                                            <button class="btn btn-sm btn-danger text-white">
+                                            <a href="<?= site_url('supervisor/delete_tools/'.$k->id_tools) ?>"class="btn btn-sm btn-danger text-white">
                                                 <i class="fas fa-trash"></i>
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                     <?php } ?>

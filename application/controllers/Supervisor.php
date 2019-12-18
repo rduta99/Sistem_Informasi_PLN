@@ -9,13 +9,11 @@ class Supervisor extends MY_Controller {
         $this->data['username'] = $this->session->userdata('username');
         $this->data['id_role'] = $this->session->userdata('id_role');
 
-
         $this->load->model('data_barang_m');
         $this->load->model('tools_m');
         $this->load->model('teknologi_m');
     }
     
-
     public function index()
     {
         if($this->POST('simpan')) {
@@ -63,9 +61,46 @@ class Supervisor extends MY_Controller {
 
     }
 
-    public function FunctionName($value='')
+    public function delete_tools($id_tools)
     {
-        # code...
+        $this->tools_m->delete($id_tools);
+        $this->flashmsg('Data berhasil dihapus');
+        redirect('supervisor/tools');
+        exit;
+    }
+
+    public function delete_eq($asset_id)
+    {
+        $this->data_barang_m->delete($asset_id);
+        $this->flashmsg('Data berhasil dihapus');
+        redirect('supervisor');
+        exit;
+    }
+
+    public function eq_edit()
+    {
+        $data = [
+            'asset_id' => $this->POST('asset_id'),
+            'kks_number' => $this->POST('kks_number'),
+            'desk' => $this->POST('desk'),
+            'unit' => $this->POST('unit')
+        ];
+        $this->data_barang_m->update($this->POST('asset_id'), $data);
+        $this->flashmsg('Data berhasil diubah');
+        redirect('supervisor');
+    }
+
+    public function eq_edit()
+    {
+        $data = [
+            'asset_id' => $this->POST('asset_id'),
+            'kks_number' => $this->POST('kks_number'),
+            'desk' => $this->POST('desk'),
+            'unit' => $this->POST('unit')
+        ];
+        $this->data_barang_m->update($this->POST('asset_id'), $data);
+        $this->flashmsg('Data berhasil diubah');
+        redirect('supervisor');
     }
 
 }

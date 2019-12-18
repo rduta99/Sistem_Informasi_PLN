@@ -21,7 +21,7 @@ class Supervisor extends MY_Controller {
             $data = [
                 'asset_id' => $this->POST('asset_id'),
                 'kks_number' => $this->POST('kks_number'),
-                'id_unit' => $this->POST('id_unit'),
+                'unit' => $this->POST('unit'),
                 'desk' => $this->POST('desk'),
                 
             ];
@@ -87,6 +87,21 @@ class Supervisor extends MY_Controller {
             'unit' => $this->POST('unit')
         ];
         $this->data_barang_m->update($this->POST('asset_id'), $data);
+        $this->flashmsg('Data berhasil diubah');
+        redirect('supervisor');
+    }
+
+    public function tools_edit()
+    {
+        $data = [
+            'id_tools' => $this->POST('id_tools'),
+            'type' => $this->POST('type'),
+            'merk' => $this->POST('merk'),
+            'unit' => $this->POST('unit'),
+            'teknologi' => $this->POST('teknologi'),
+            'tgl_kalibrasi' => $this->POST('tgl_kalibrasi'),
+        ];
+        $this->tools_m->update($this->POST('id_tools'), $data);
         $this->flashmsg('Data berhasil diubah');
         redirect('supervisor');
     }

@@ -88,7 +88,9 @@
                                 <?= form_close() ?>
 
                             </div>
-                        </div>                        
+                        </div>
+
+                        
 
                         <div class="card-body table-responsive p-0">
                             <table class="table table-striped table-valign-middle">
@@ -96,8 +98,9 @@
                                     <tr>
                                         <th>Asset ID</th>
                                         <th>KKS Number</th>
-                                        <th>ID Unit</th>
+                                        <th>Unit</th>
                                         <th>Description</th>
+                                        
                                     </tr>
                                 </thead>
 
@@ -112,7 +115,7 @@
                                             <?= $k->kks_number ?>
                                         </td>
                                         <td>
-                                            <?= $k->id_unit ?>
+                                            <?= $k->nama_unit ?>
                                         </td>
                                         <td>
                                             <?= $k->desk ?>
@@ -121,9 +124,9 @@
                                             <button class="btn btn-sm btn-warning text-white">
                                                 <i class="fas fa-pen"></i>
                                             </button>
-                                            <a href="<?= site_url('supervisor/delete_eq/'.$k->asset_id) ?>" class="btn btn-sm btn-danger text-white">
+                                            <button class="btn btn-sm btn-danger text-white">
                                                 <i class="fas fa-trash"></i>
-                                            </a>
+                                            </button>
                                         </td>
                                     </tr>
                                     <?php } ?>

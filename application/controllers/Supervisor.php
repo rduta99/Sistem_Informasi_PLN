@@ -29,7 +29,7 @@ class Supervisor extends MY_Controller {
             $this->flashmsg('Data berhasil ditambahkan');
         }
         //$this->data['pegawai'] = $this->user_m->getDataJoin(['role', 'data_personil'], ['user.id_role = role.id_role', 'user.nip = data_personil.nip']);
-        $this->data['data_barang'] = $this->data_barang_m->get();
+        $this->data['data_barang'] = $this->data_barang_m->getDataJoin(['unit'], ['data_barang.unit = unit.id_unit']);
         $this->data['teknologi'] = $this->teknologi_m->get();
         $this->data['content'] = 'eq';
         $this->data['title'] = 'Supervisor | ';
@@ -75,19 +75,6 @@ class Supervisor extends MY_Controller {
         $this->flashmsg('Data berhasil dihapus');
         redirect('supervisor');
         exit;
-    }
-
-    public function eq_edit()
-    {
-        $data = [
-            'asset_id' => $this->POST('asset_id'),
-            'kks_number' => $this->POST('kks_number'),
-            'desk' => $this->POST('desk'),
-            'unit' => $this->POST('unit')
-        ];
-        $this->data_barang_m->update($this->POST('asset_id'), $data);
-        $this->flashmsg('Data berhasil diubah');
-        redirect('supervisor');
     }
 
     public function eq_edit()

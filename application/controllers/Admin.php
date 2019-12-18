@@ -132,6 +132,14 @@ class Admin extends MY_Controller {
         exit;
     }
 
+    public function his_pengukuran()
+    {
+        $this->data['active'] = 6;
+        $this->data['content'] = 'histori_me';
+        $this->data['title'] = 'Admin | ';
+        $this->load->view('admin/template/template', $this->data);
+    }
+
     public function jab_unit()
     {
         if($this->POST('jabatan')) {

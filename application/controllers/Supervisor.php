@@ -9,13 +9,11 @@ class Supervisor extends MY_Controller {
         $this->data['username'] = $this->session->userdata('username');
         $this->data['id_role'] = $this->session->userdata('id_role');
 
-
         $this->load->model('data_barang_m');
         $this->load->model('tools_m');
         $this->load->model('teknologi_m');
     }
     
-
     public function index()
     {
         if($this->POST('simpan')) {
@@ -63,9 +61,12 @@ class Supervisor extends MY_Controller {
 
     }
 
-    public function FunctionName($value='')
+    public function delete($id_tools)
     {
-        # code...
+        $this->tools_m->delete($id_tools);
+        $this->flashmsg('Data berhasil dihapus');
+        redirect('supervisor');
+        exit;
     }
 
 }

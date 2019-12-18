@@ -8,7 +8,20 @@ class Supervisor extends MY_Controller {
         parent::__construct();
         $this->data['username'] = $this->session->userdata('username');
         $this->data['id_role'] = $this->session->userdata('id_role');
-
+        if(isset($this->data['username'], $this->data['id_role'])) {
+            if($this->data['id_role'] != 2) {
+                $this->session->unset_userdata('username');
+                $this->session->unset_userdata('id_role');
+                $this->flashmsg('Kamu Harus Login Dulu', 'warning');
+                redirect('login');
+                exit;
+            }
+        } else {
+            $this->flashmsg('Kamu Harus Login Dulu', 'warning');
+            redirect('login');
+            exit;
+        }
+        
         $this->load->model('data_barang_m');
         $this->load->model('tools_m');
         $this->load->model('teknologi_m');

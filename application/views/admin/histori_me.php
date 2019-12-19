@@ -26,8 +26,25 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="card-body" id="eq_content">
-                            
+                        <div class="card-body table-responsive p-3">
+                            <table class="table table-striped table-valign-middle" id="example1">
+                                <thead>
+                                    <tr>
+                                        <td>No</td>
+                                        <td>Equipment</td>
+                                        <td>Taggal Pengukuran</td>
+                                        <td>Opsi</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

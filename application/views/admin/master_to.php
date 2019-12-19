@@ -31,7 +31,7 @@
                         <div class="modal fade" id="modal-default">
                             <div class="modal-dialog">
 
-                                <?= form_open("admin/master_eq") ?>
+                                <?= form_open("admin/master_to") ?>
 
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -85,17 +85,25 @@
                                                     <i class="fas fa-envelope"></i>
                                                 </span>
                                             </div>
-                                            <select name="unit" class="custom-select">
+                                            <select name="teknologi" class="custom-select">
                                                 <option disabled selected>Pilih Teknologi</option>
                                                 <?php foreach ($teknologi as $d) { ?>
                                                     <option value="<?= $d->id_teknologi ?>"><?= $d->nama_teknologi ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-calendar"></i>
+                                                </span>
+                                            </div>
+                                            <input type="date" name="tgl_kalibrasi" class="form-control">
+                                        </div>
                                     </div>
                                     <div class="modal-footer justify-content-between">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <input type="submit" class="btn btn-primary" value="Tambah Equipment" name="simpan">
+                                        <input type="submit" class="btn btn-primary" value="Tambah Equipment" name="simpan_tool">
                                     </div>
                                 </div>
 

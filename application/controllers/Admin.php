@@ -102,6 +102,20 @@ class Admin extends MY_Controller {
 
     public function master_to()
     {
+        if($this->POST('simpan_tool')) {
+            $data = [
+                'id_tools' => $this->POST('id_tools'),
+                'type' => $this->POST('type'),
+                'merk' => $this->POST('merk'),
+                'unit' => $this->POST('unit'),
+                'teknologi' => $this->POST('teknologi'),
+                'tgl_kalibrasi' => $this->POST('tgl_kalibrasi'),
+            ];
+
+            $this->tools_m->insert($data);
+            $this->flashmsg('Data berhasil ditambahkan');
+            
+        }
         $this->data['unit'] = $this->unit_m->get();
         $this->data['teknologi'] = $this->teknologi_m->get();
         $this->data['equipment'] = $this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']);

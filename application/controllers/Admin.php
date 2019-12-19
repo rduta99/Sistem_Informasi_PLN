@@ -230,6 +230,10 @@ class Admin extends MY_Controller {
 
     public function lupa()
     {
+        if($this->POST('simpan')) {
+            $this->user_m->update($this->POST('nip'), ['password' => md5($this->POST('pass_baru'))]);
+            $this->flashmsg('Password berhasil diubah');
+        }
         $this->data['active'] = 3;
         $this->data['pengguna'] = $this->user_m->getDataJoin(['data_personil'], ['user.nip = data_personil.nip']);
         $this->data['unit'] = $this->unit_m->get();

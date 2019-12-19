@@ -44,9 +44,42 @@
                                             <?= $k->nama ?>
                                         </td>
                                         <td>
-                                            <a href="<?= site_url('admin/edit/'.$k->nip) ?>" class="btn btn-sm btn-warning text-white">
+                                            <button type="button" data-toggle="modal" data-target="#modal-<?= $k->nip ?>" class="btn btn-sm btn-warning text-white">
                                                 <i class="fas fa-pen"></i>
-                                            </a>
+                                            </button>
+                                            <div class="modal fade" id="modal-<?= $k->nip ?>">
+                                                <div class="modal-dialog">
+
+                                                    <?= form_open("admin/lupa") ?>
+
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Ubah Password</h4>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-lock"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="text" name="pass_baru" class="form-control" placeholder="Password Baru">
+                                                            </div>
+                                                            <input type="hidden" name="nip" class="form-control" value="<?= $k->nip ?>">
+                                                        </div>
+                                                        <div class="modal-footer justify-content-between">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            <input type="submit" class="btn btn-primary" value="Ubah Password" name="simpan">
+                                                        </div>
+                                                    </div>
+
+                                                    <?= form_close() ?>
+
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     <?php } ?>

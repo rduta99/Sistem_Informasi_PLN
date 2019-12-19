@@ -25,7 +25,7 @@
                             <a href="<?= site_url('admin') ?>" class="nav-link <?php if($active == 1) { echo "active"; } ?>">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Dashboard
+                                    Daftar Pengguna
                                 </p>
                             </a>
                         </li>

@@ -25,6 +25,8 @@
 
     <script src="<?= base_url('assets/') ?>plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <script src="<?= base_url('assets/') ?>plugins/select2/js/select2.full.min.js"></script>
+
     <script src="<?= base_url('assets/') ?>plugins/chart.js/Chart.min.js"></script>
     <script src="<?= base_url('assets/') ?>plugins/datatables/jquery.dataTables.js"></script>
     <script src="<?= base_url('assets/') ?>plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
@@ -64,8 +66,10 @@
         });
 
         function add_eq() {
-            $('#tools').append('<div class="col-md-6"><div class="card"><div class="card-body"></div></div></div>');
+            $('#tools').append('<div class="col-md-4"><div class="card"><div class="card-body"></div></div></div>');
         }
+
+        $('.select2').select2();
     </script>
 </body>
 </html>

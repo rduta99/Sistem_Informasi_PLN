@@ -136,7 +136,7 @@ class Admin extends MY_Controller {
         redirect('admin');
         exit;
     }
-
+    
     public function his_pengukuran()
     {
         $this->data['active'] = 6;

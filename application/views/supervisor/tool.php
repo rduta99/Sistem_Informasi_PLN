@@ -181,6 +181,21 @@
                                                                 </div>
                                                                 <input type="text" name="id_tools" class="form-control" value="<?= $k->id_tools ?>">
                                                             </div>
+
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-envelope"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <select name="unit" class="custom-select">
+                                                                    <option disabled selected>Jenis Teknologi</option>
+                                                                    <?php foreach ($teknologi as $z) { ?>
+                                                                        <option <?php if($k->teknologi == $z->id_teknologi) echo "selected" ?> value="<?= $z->id_teknologi ?>"><?= $z->nama_teknologi ?></option>
+                                                                    <?php } ?>
+                                                                </select>
+                                                            </div>
+                                                            
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
@@ -218,23 +233,14 @@
                                                                         <i class="fas fa-toolbox"></i>
                                                                     </span>
                                                                 </div>
-                                                                <input type="text" name="teknologi" class="form-control" value="<?= $k->teknologi ?>">
-                                                            </div>
-
-                                                            <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text">
-                                                                        <i class="fas fa-toolbox"></i>
-                                                                    </span>
-                                                                </div>
-                                                                <input type="text" name="tgl_kalibrasi" class="form-control" value="<?= $k->tgl_kalibrasi ?>">
+                                                                <input type="date" name="tgl_kalibrasi" class="form-control" value="<?= $k->tgl_kalibrasi ?>">
                                                             </div>
 
 
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                            <input type="submit" class="btn btn-primary" value="Simpan Perubahan" name="simpan">
+                                                            <input type="submit" class="btn btn-primary" value="Simpan Perubahan" name="simpan_tool">
                                                         </div>
                                                     </div>
 

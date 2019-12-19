@@ -52,6 +52,7 @@ class Supervisor extends MY_Controller {
 
             $this->tools_m->insert($data);
             $this->flashmsg('Data berhasil ditambahkan');
+            
         }
 
         $this->data['teknologi'] = $this->teknologi_m->get();
@@ -104,7 +105,7 @@ class Supervisor extends MY_Controller {
         ];
         $this->tools_m->update($this->POST('id_tools'), $data);
         $this->flashmsg('Data berhasil diubah');
-        redirect('supervisor');
+        redirect('supervisor/tools');
     }
 
 }

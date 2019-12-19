@@ -28,6 +28,8 @@ class Admin extends MY_Controller {
         $this->load->model('jabatan_m');
         $this->load->model('unit_m');
         $this->load->model('data_barang_m');
+        $this->load->model('tools_m');
+        $this->load->model('teknologi_m');
     }
     
 
@@ -100,6 +102,9 @@ class Admin extends MY_Controller {
 
     public function master_to()
     {
+        $this->data['unit'] = $this->unit_m->get();
+        $this->data['teknologi'] = $this->teknologi_m->get();
+        $this->data['equipment'] = $this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']);
         $this->data['active'] = 5;
         $this->data['content'] = 'master_to';
         $this->data['title'] = 'Admin | ';
@@ -136,6 +141,16 @@ class Admin extends MY_Controller {
     {
         $this->data['active'] = 6;
         $this->data['content'] = 'histori_me';
+        $this->data['title'] = 'Admin | ';
+        $this->load->view('admin/template/template', $this->data);
+    }
+
+    public function ukur_eq()
+    {
+        $this->data['equipment'] = $this->data_barang_m->getDataJoin(['unit'], ['data_barang.unit = unit.id_unit']);
+        $this->data['tools'] = $this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']);
+        $this->data['active'] = 6;
+        $this->data['content'] = 'ukur_eq';
         $this->data['title'] = 'Admin | ';
         $this->load->view('admin/template/template', $this->data);
     }

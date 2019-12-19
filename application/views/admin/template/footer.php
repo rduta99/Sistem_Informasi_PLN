@@ -62,6 +62,10 @@
                 "autoWidth": false,
             });
         });
+
+        function add_eq() {
+            $('#tools').append('<div class="col-md-6"><div class="card"><div class="card-body"></div></div></div>');
+        }
     </script>
 </body>
 </html>

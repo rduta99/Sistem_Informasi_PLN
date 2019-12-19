@@ -14,3 +14,21 @@
                     </div>
                 </div>
             </div>
+
+            <sectio class="content">
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">Histori Pengukuran</h3>
+                            <div class="card-tools">
+                                <a href="<?= site_url('admin/ukur_eq') ?>" class="btn btn-tool btn-sm">
+                                    <i class="fas fa-plus"></i> Ukur Equipment
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body" id="eq_content">
+                            
+                        </div>
+                    </div>
+                </div>
+            </sectio>

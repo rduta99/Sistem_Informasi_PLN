@@ -26,6 +26,12 @@ class Supervisor extends MY_Controller {
         $this->load->model('tools_m');
         $this->load->model('teknologi_m');
         $this->load->model('unit_m');
+        $this->load->model('data_personil_m');
+        $this->load->model('jabatan_m');
+        $this->load->model('user_m');
+        $this->load->model('role_m');
+
+
     }
     
     public function index()
@@ -119,6 +125,58 @@ class Supervisor extends MY_Controller {
         $this->tools_m->update($this->POST('id_tools'), $data);
         $this->flashmsg('Data berhasil diubah');
         redirect('supervisor/tools');
+    }
+
+    public function personel()
+    {
+        if($this->POST('simpan_personel')) {
+            $data = [
+                'nip' => $this->POST('nip'),
+                'id_pegawai' => $this->POST('id_pegawai'),
+                'nama' => $this->POST('nama'),
+                'jabatan' => $this->POST('jabatan'),
+                'unit' => $this->POST('unit'),
+                'no' => $this->POST('no'),
+                'email' => $this->POST('email')
+
+            ];
+            $this->user_m->insert(['nip' => $this->POST('nip'), 'password' => md5($this->POST('password')), 'id_role' => 3]);
+            $this->data_personil_m->insert($data);
+            $this->flashmsg('Data berhasil ditambahkan');
+            
+        }
+
+        
+        $this->data['unit'] = $this->unit_m->get();
+        $this->data['jabatan'] = $this->jabatan_m->get();
+        $this->data['personel'] = $this->data_personil_m->getDataJoin(['jabatan', 'unit'], ['data_personil.jabatan = jabatan.id_jabatan', 'data_personil.unit = unit.id_unit']);
+        $this->data['content'] = 'personel';
+        $this->data['title'] = 'Supervisor | ';
+        $this->load->view('supervisor/template/template', $this->data);
+    }
+
+    public function delete_personel($nip)
+    {
+        $this->data_personil_m->delete($nip);
+        $this->flashmsg('Data berhasil dihapus');
+        redirect('supervisor/personel');
+        exit;
+    }
+
+    public function personel_edit()
+    {
+        $data = [
+                'nip' => $this->POST('nip'),
+                'id_pegawai' => $this->POST('id_pegawai'),
+                'nama' => $this->POST('nama'),
+                'jabatan' => $this->POST('jabatan'),
+                'unit' => $this->POST('unit'),
+                'no' => $this->POST('no'),
+                'email' => $this->POST('email'),
+        ];
+        $this->data_personil_m->update($this->POST('nip'), $data);
+        $this->flashmsg('Data berhasil diubah');
+        redirect('supervisor/personel');
     }
 
 }

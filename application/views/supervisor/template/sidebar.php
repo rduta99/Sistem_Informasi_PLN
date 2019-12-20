@@ -41,6 +41,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="<?= site_url('supervisor/personel') ?>" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Daftar Personel
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="<?= site_url('logout') ?>" class="nav-link">
                             <i class="nav-icon fas fa-sign-out-alt"></i>
                             <p>

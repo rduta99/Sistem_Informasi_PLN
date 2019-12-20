@@ -39,7 +39,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= site_url('personel/setting') ?>" class="nav-link <?php if($active == 3) { echo "active"; } ?>">
+                            <a href="<?= site_url('personel/his_pengukuran') ?>" class="nav-link <?php if($active == 3) { echo "active"; } ?>">
+                                <i class="nav-icon fas fa-thermometer-quarter"></i>
+                                <p>
+                                    Histori Pengukuran
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('personel/setting') ?>" class="nav-link <?php if($active == 4) { echo "active"; } ?>">
                                 <i class="nav-icon fas fa-cog"></i>
                                 <p>
                                     Settings

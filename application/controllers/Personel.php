@@ -28,6 +28,8 @@ class Personel extends MY_Controller {
         $this->load->model('jabatan_m');
         $this->load->model('unit_m');
         $this->load->model('equipment_m');
+        $this->load->model('tools_m');
+        $this->load->model('teknologi_m');
     }
     
 
@@ -116,23 +118,81 @@ class Personel extends MY_Controller {
     public function setting()
     {
      if($this->POST('simpan')) {
-            $data = [
-                'nip' => $this->POST('nip'),
+            $config['upload_path'] = base_url().'/assets/';
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $this->upload->initialize($config);
+            $this->upload->do_upload('gambar');
+            $data = $this->upload->data();
+            $gambar = file_get_contents($data['full_path']);
+
+            $datas = [
                 'id_pegawai' => $this->POST('id_pegawai'),
                 'nama' => $this->POST('nama'),
-                'jabatan' => $this->POST('jabatan'),
                 'unit' => $this->POST('unit'),
                 'no' => $this->POST('no'),
                 'email' => $this->POST('email'),
+                'sertifikasi' => $this->POST('sertifikasi'),
+                'gambar' => $gambar
             ];
-            $this->data_personil_m->update($this->POST('nip'), $data);
+            $this->data_personil_m->update($this->POST('nip'), $datas);
+            unlink($data['full_path']);
             $this->flashmsg('Data berhasil disimpan');
         }
         $this->data['data_personil'] = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
-        $this->data['active'] = 2;
+        $this->data['active'] = 3;
         $this->data['content'] = 'setting';
         $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);   
+    }
+    public function tools(){
+
+        if($this->POST('simpan_tool')) {
+            $data = [
+                'id_tools' => $this->POST('id_tools'),
+                'type' => $this->POST('type'),
+                'merk' => $this->POST('merk'),
+                'unit' => $this->POST('unit'),
+                'teknologi' => $this->POST('teknologi'),
+                'tgl_kalibrasi' => $this->POST('tgl_kalibrasi'),
+            ];
+
+            $this->tools_m->insert($data);
+            $this->flashmsg('Data berhasil ditambahkan');
+            redirect('personel/setting');
+            
+        }
+
+        $this->data['teknologi'] = $this->teknologi_m->get();
+        $this->data['unit'] = $this->unit_m->get();
+        $this->data['tools'] = $this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']);
+        $this->data['content'] = 'tools';
+        $this->data['active'] = 2;
+        $this->data['title'] = 'Personel | ';
+        $this->load->view('personel/template/template', $this->data);
+
+    }
+
+    public function delete_tools($id_tools)
+    {
+        $this->tools_m->delete($id_tools);
+        $this->flashmsg('Data berhasil dihapus');
+        redirect('personel/tools');
+        exit;
+    }
+
+    public function tools_edit()
+    {
+        $data = [
+            'id_tools' => $this->POST('id_tools'),
+            'type' => $this->POST('type'),
+            'merk' => $this->POST('merk'),
+            'unit' => $this->POST('unit'),
+            'teknologi' => $this->POST('teknologi'),
+            'tgl_kalibrasi' => $this->POST('tgl_kalibrasi'),
+        ];
+        $this->tools_m->update($this->POST('id_tools'), $data);
+        $this->flashmsg('Data berhasil diubah');
+        redirect('personel/tools');
     }
 
 

@@ -17,11 +17,12 @@
 
             <section class="content">
                 <div class="card">
+                  <?= $this->session->flashdata('msg') ?>
                     <div class="card-body">
                         <div class="form-group">
-                          <?= form_open('personel/setting') ?>
+                          <?= form_open_multipart('personel/setting') ?>
                             <label for="">NIP</label>
-                            <input type="text" class="form-control" name="nip" disabled id="nip" value="<?= $data_personil->nip ?>">
+                            <input type="text" class="form-control" name="nip" readonly id="nip" value="<?= $data_personil->nip ?>">
                           </div>
                           <div class="form-group">
                             <label for="">ID Pegawai</label>
@@ -33,7 +34,7 @@
                           </div>
                           <div class="form-group">
                             <label for="exampleInputEmail1">Jabatan</label>
-                            <input type="text" class="form-control" name="jabatan" id="jabatan" value="<?= $data_personil->jabatan ?>">
+                            <input type="text" class="form-control" name="jabatan" readonly id="jabatan"  value="<?= $data_personil->jabatan ?>">
                           </div>
                           <div class="form-group">
                             <label for="">Unit</label>
@@ -41,16 +42,25 @@
                           </div>
                           <div class="form-group">
                             <label for="exampleInputPassword1">No.HP</label>
-                            <input type="text" class="form-control" name="nama" id="no" value="<?= $data_personil->no ?>" >
+                            <input type="text" class="form-control" name="no" id="no" value="<?= $data_personil->no ?>" >
                           </div>
                           <div class="form-group">
                             <label for="exampleInputPassword1">Email</label>
                             <input type="text" class="form-control" name="email" id="email" value="<?= $data_personil->email ?>">
                           </div>
-                    </div>
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">Attachment Sertifikat</label>
+                          <img src="#" id="blah" style="display: none">
+                          <div class="form-group">
+                              <div class="custom-file">
+                                  <input type="file" class="custom-file-input" id="foto_bukti">
+                                  <label class="custom-file-label" for="foto_bukti">Foto bukti</label>
+                              </div>
+                          </div>
+                          </div>
                           <div class="modal-footer justify-content-between">
                                  <input type="submit" class="btn btn-primary" value="Simpan Perubahan" name="simpan">
-                    </div>
+                          </div>
                     <?= form_close() ?>
                 </div>
             </section>

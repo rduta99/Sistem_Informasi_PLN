@@ -20,7 +20,7 @@ class Login extends MY_Controller {
 					break;
 
 				case 3:
-					redirect('personil');
+					redirect('personel');
 					break;
 			}
 			exit;

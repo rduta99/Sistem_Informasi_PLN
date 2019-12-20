@@ -46,5 +46,25 @@
     <script src="<?= base_url('assets/') ?>dist/js/pages/dashboard.js"></script>
 
     <script src="<?= base_url('assets/') ?>dist/js/demo.js"></script>
+
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    $('#blah').attr('src', e.target.result);
+                    $('#blah').attr('class', 'img-thumbnail mb-3');
+                    $('#blah').css('display', 'block');
+                }
+                
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#foto_bukti").change(function() {
+            readURL(this);
+        });
+    </script>
 </body>
 </html>

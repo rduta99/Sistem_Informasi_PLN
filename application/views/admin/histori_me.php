@@ -32,17 +32,30 @@
                                     <tr>
                                         <td>No</td>
                                         <td>Equipment</td>
-                                        <td>Taggal Pengukuran</td>
+                                        <td>Tanggal Pengukuran</td>
+                                        <td>Kondisi</td>
                                         <td>Opsi</td>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php 
+                                    $cond = ['', 'Good', 'Warning', 'Bad'];
+                                    $class = ['', 'bg-success', 'bg-warning text-white', 'bg-danger'];
+                                    $no = 0; foreach ($pengukuran as $k) { 
+                                    
+                                    ?>
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td><?= ++$no ?></td>
+                                        <td><?= $k->desk ?></td>
+                                        <td><?= $k->waktu ?></td>
+                                        <td>
+                                            <span class="badge <?= $class[$k->kondisi] ?>">
+                                                <?= $cond[$k->kondisi] ?>
+                                            </span>
+                                        </td>
                                         <td></td>
                                     </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

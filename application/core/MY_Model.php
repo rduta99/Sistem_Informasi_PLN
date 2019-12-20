@@ -130,6 +130,36 @@ class MY_Model extends CI_Model
 		return $this->db->get($this->data['table_name'])->result();
 	}
 
+	public function get_data_join_order($tables, $jcond, $ref, $order, $cond = '')
+	{
+		$this->db->select('*');
+		for ($i = 0; $i < count($tables); $i++)
+			$this->db->join($tables[$i], $jcond[$i]);
+
+		if (is_array($cond))
+			$this->db->where($cond);
+		if (is_string($cond) && strlen($cond) > 3)
+			$this->db->where($cond);
+
+		$this->db->order_by($ref, $order);
+		$query = $this->db->get($this->data['table_name']);
+
+		return $query->result();
+	}
+
+	// public function get_by_order($ref, $order, $cond = '')
+	// {
+	// 	if (is_array($cond))
+	// 		$this->db->where($cond);
+	// 	if (is_string($cond) && strlen($cond) > 3)
+	// 		$this->db->where($cond);
+
+	// 	$this->db->order_by($ref, $order);
+	// 	$query = $this->db->get($this->data['table_name']);
+
+	// 	return $query->result();
+	// }
+
 	public function getJSON($url)
 	{
 		$content = file_get_contents($url);

@@ -296,6 +296,14 @@ class Admin extends MY_Controller {
         $this->load->view('admin/template/template', $this->data);
     }
 
+    public function analisis_eq()
+    {
+        $this->data['active'] = 6;
+        $this->data['content'] = 'anal';
+        $this->data['title'] = 'Admin | ';
+        $this->load->view('admin/template/template', $this->data);
+    }
+
 }
 
 /* End of file Admin.php */

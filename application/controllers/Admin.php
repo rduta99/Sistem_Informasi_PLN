@@ -1,5 +1,10 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once 'dompdf/lib/html5lib/Parser.php';
+require_once 'dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
+require_once 'dompdf/lib/php-svg-lib/src/autoload.php';
+require_once 'dompdf/src/Autoloader.php';
+Dompdf\Autoloader::register();
 
 class Admin extends MY_Controller {
 
@@ -294,6 +299,40 @@ class Admin extends MY_Controller {
         $this->data['content'] = 'lupa_password';
         $this->data['title'] = 'Admin | ';
         $this->load->view('admin/template/template', $this->data);
+    }
+
+    public function analisis_eq()
+    {
+        $this->data['active'] = 6;
+        $this->data['content'] = 'anal';
+        $this->data['title'] = 'Admin | ';
+        $this->load->view('admin/template/template', $this->data);
+    }
+
+    public function laporan_analisis()
+    {
+        $dompdf = new Dompdf\Dompdf();
+        $html = $this->load->view('admin/laporan_analisis', [], true);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'potrait');
+        $options = new Dompdf\Options();
+        $options->setIsRemoteEnabled(true);
+        $dompdf->setOptions($options);
+        $dompdf->render();
+        $dompdf->stream('Laporan.pdf', array("Attachment" => 0));
+    }
+
+    public function data_pengukuran()
+    {
+        $dompdf = new Dompdf\Dompdf();
+        $html = $this->load->view('admin/data_pengukuran', [], true);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'potrait');
+        $options = new Dompdf\Options();
+        $options->setIsRemoteEnabled(true);
+        $dompdf->setOptions($options);
+        $dompdf->render();
+        $dompdf->stream('Laporan.pdf', array("Attachment" => 0));
     }
 
 }

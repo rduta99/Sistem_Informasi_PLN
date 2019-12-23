@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <sectio class="content">
+            <section class="content">
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-header border-0">
@@ -61,4 +61,4 @@
                         </div>
                     </div>
                 </div>
-            </sectio>
+            </section>

@@ -1,5 +1,10 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once 'dompdf/lib/html5lib/Parser.php';
+require_once 'dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
+require_once 'dompdf/lib/php-svg-lib/src/autoload.php';
+require_once 'dompdf/src/Autoloader.php';
+Dompdf\Autoloader::register();
 
 class Supervisor extends MY_Controller {
 
@@ -236,6 +241,19 @@ class Supervisor extends MY_Controller {
     public function tools_list()
     {
         echo json_encode($this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']));
+    }
+
+    public function laporan_analisis()
+    {
+        $dompdf = new Dompdf\Dompdf();
+        $html = $this->load->view('supervisor/laporan_analisis', [], true);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $options = new Dompdf\Options();
+        $options->setIsRemoteEnabled(true);
+        $dompdf->setOptions($options);
+        $dompdf->render();
+        $dompdf->stream('Laporan.pdf', array("Attachment" => 0));
     }
 
 }

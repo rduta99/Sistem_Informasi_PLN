@@ -24,12 +24,10 @@
     <table>
         <tr>
             <td style="width: 5%">
-                <img src="<?= base_url("assets/dist/img/Logo_PLN.png") ?>" height="50" alt="">
+                
             </td>
             <td colspan="6" style="width: 20%; padding-left: 7px;">
-                PT PLN (Persero) <br>
-                UIK Sumbagsel <br>
-                UP ...
+                
             </td>
             <td colspan="4" style="text-align: center; width: 40%;">
                 FORMULIR <br>

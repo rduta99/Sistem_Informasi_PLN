@@ -301,8 +301,10 @@ class Admin extends MY_Controller {
         $this->load->view('admin/template/template', $this->data);
     }
 
-    public function analisis_eq()
+    public function analisis_eq($id)
     {
+        $this->data['barang'] = $this->his_pengukuran_m->get_join_where(['data_barang'], ['histori_pengukuran.id_equipment = data_barang.asset_id'], ['id_pengukuran' => $id]);
+        $this->data['tools'] = $this->log_ukur_m->get_join_all_where(['tools'], ['log_ukur.id_tools = tools.id_tools'], ['id_histori' => $id]);
         $this->data['active'] = 6;
         $this->data['content'] = 'anal';
         $this->data['title'] = 'Admin | ';
@@ -311,8 +313,9 @@ class Admin extends MY_Controller {
 
     public function laporan_analisis()
     {
+        $this->data['input'] = $this->input->post();
         $dompdf = new Dompdf\Dompdf();
-        $html = $this->load->view('admin/laporan_analisis', [], true);
+        $html = $this->load->view('admin/laporan_analisis', $this->data, true);
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'potrait');
         $options = new Dompdf\Options();
@@ -333,6 +336,16 @@ class Admin extends MY_Controller {
         $dompdf->setOptions($options);
         $dompdf->render();
         $dompdf->stream('Laporan.pdf', array("Attachment" => 0));
+    }
+
+    public function detail_pengukuran($id)
+    {
+        $this->data['barang'] = $this->his_pengukuran_m->get_join_where(['data_barang'], ['histori_pengukuran.id_equipment = data_barang.asset_id'], ['id_pengukuran' => $id]);
+        $this->data['tools'] = $this->log_ukur_m->get_join_all_where(['tools'], ['log_ukur.id_tools = tools.id_tools'], ['id_histori' => $id]);
+        $this->data['active'] = 6;
+        $this->data['content'] = 'detail_pengukuran';
+        $this->data['title'] = 'Admin | ';
+        $this->load->view('admin/template/template', $this->data);
     }
 
 }

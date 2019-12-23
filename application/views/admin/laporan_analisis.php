@@ -46,13 +46,13 @@
             <td>Kepada</td>
             <td colspan="8">: Pengelola Sistem</td>
             <td>Nomor</td>
-            <td colspan="4"></td>
+            <td colspan="4">: 000.<?= date('m') ?> / TO / ENJ / UP .. / <?= date('Y') ?></td>
         </tr>
         <tr>
             <td>Dari</td>
             <td colspan="8">: Technology Owner</td>
             <td>Tanggal</td>
-            <td colspan="4"></td>
+            <td colspan="4">: <?= date('d M Y') ?></td>
         </tr>
         <tr>
             <td>Perihal</td>
@@ -67,34 +67,34 @@
         </tr>
         <tr>
             <td colspan="3">Nama Peralatan</td>
-            <td colspan="9">:</td>
+            <td colspan="9">: <?= $input['nama_peralatan'] ?></td>
             <td colspan="2" rowspan="2">
                 tes
             </td>
         </tr>
         <tr>
             <td colspan="3">No KKS</td>
-            <td colspan="9">:</td>
+            <td colspan="9">: <?= $input['kks_number'] ?></td>
         </tr>
         <tr>
             <td colspan="3">MPI</td>
-            <td colspan="9">:</td>
+            <td colspan="9">: <?= $input['mpi'] ?></td>
             <td colspan="2" rowspan="3">
                 
             </td>
         </tr>
         <tr>
             <td colspan="3">Spesifikasi A</td>
-            <td colspan="5">:</td>
+            <td colspan="5">: <?= $input['spek_a'] ?></td>
             <td>Spesifikasi C</td>
-            <td colspan="3">:</td>
+            <td colspan="3">: <?= $input['spek_c'] ?></td>
             
         </tr>
         <tr>
             <td colspan="3">Spesifikasi B</td>
-            <td colspan="5">:</td>
+            <td colspan="5">: <?= $input['spek_b'] ?></td>
             <td>Spesifikasi D</td>
-            <td colspan="3">:</td>
+            <td colspan="3">: <?= $input['spek_d'] ?></td>
         </tr>
         <tr style="text-align: center">
             <td colspan="10">GENERAL DRAWING PERALATAN & TITIK PENGUKURAN</td>

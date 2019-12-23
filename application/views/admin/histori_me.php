@@ -53,7 +53,11 @@
                                                 <?= $cond[$k->kondisi] ?>
                                             </span>
                                         </td>
-                                        <td></td>
+                                        <td>
+                                            <a href="<?= site_url('admin/detail_pengukuran/'.$k->id_pengukuran) ?>" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-cog"></i> Detail
+                                            </a>
+                                        </td>
                                     </tr>
                                     <?php } ?>
                                 </tbody>

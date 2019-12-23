@@ -130,6 +130,24 @@ class MY_Model extends CI_Model
 		return $this->db->get($this->data['table_name'])->result();
 	}
 
+	public function get_join_where($tables, $jcond, $where)
+	{
+		$this->db->select('*');
+		$this->db->where($where);
+		for ($i = 0; $i < count($tables); $i++)
+			$this->db->join($tables[$i], $jcond[$i]);
+		return $this->db->get($this->data['table_name'])->row();
+	}
+
+	public function get_join_all_where($tables, $jcond, $where)
+	{
+		$this->db->select('*');
+		$this->db->where($where);
+		for ($i = 0; $i < count($tables); $i++)
+			$this->db->join($tables[$i], $jcond[$i]);
+		return $this->db->get($this->data['table_name'])->result();
+	}
+
 	public function get_data_join_order($tables, $jcond, $ref, $order, $cond = '')
 	{
 		$this->db->select('*');
@@ -146,19 +164,6 @@ class MY_Model extends CI_Model
 
 		return $query->result();
 	}
-
-	// public function get_by_order($ref, $order, $cond = '')
-	// {
-	// 	if (is_array($cond))
-	// 		$this->db->where($cond);
-	// 	if (is_string($cond) && strlen($cond) > 3)
-	// 		$this->db->where($cond);
-
-	// 	$this->db->order_by($ref, $order);
-	// 	$query = $this->db->get($this->data['table_name']);
-
-	// 	return $query->result();
-	// }
 
 	public function getJSON($url)
 	{

@@ -1,5 +1,10 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once 'dompdf/lib/html5lib/Parser.php';
+require_once 'dompdf/lib/php-font-lib/src/FontLib/Autoloader.php';
+require_once 'dompdf/lib/php-svg-lib/src/autoload.php';
+require_once 'dompdf/src/Autoloader.php';
+Dompdf\Autoloader::register();
 
 class Personel extends MY_Controller {
 
@@ -208,7 +213,7 @@ class Personel extends MY_Controller {
         $this->load->view('personel/template/template', $this->data);
     }
 
-     public function his_pengukuran()
+        public function his_pengukuran()
     {
         if($this->POST('simpan_ukur')) {
             $config['upload_path'] = './assets/';
@@ -249,6 +254,10 @@ class Personel extends MY_Controller {
         $this->load->view('personel/template/template', $this->data);
     }
 
+    public function tools_list()
+    {
+        echo json_encode($this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']));
+    }
 
 }
 

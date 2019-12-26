@@ -3,12 +3,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Histori Pengukuran</h1>
+                            <h1 class="m-0 text-dark">List Analisis</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="<?= site_url('personel') ?>">Home</a></li>
-                                <li class="breadcrumb-item active">Histori Pengukuran</li>
+                                <li class="breadcrumb-item active">List Analisis</li>
                             </ol>
                         </div>
                     </div>
@@ -19,46 +19,35 @@
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-header border-0">
-                            <h3 class="card-title">Histori Pengukuran</h3>
-                            <div class="card-tools">
-                                <a href="<?= site_url('personel/ukur_eq') ?>" class="btn btn-tool btn-sm">
-                                    <i class="fas fa-plus"></i> Ukur Equipment
-                                </a>
-                            </div>
+                            <h3 class="card-title">
+                                List Analisis
+                            </h3>
                         </div>
                         <div class="card-body table-responsive p-3">
                             <table class="table table-striped table-valign-middle" id="example1">
                                 <thead>
                                     <tr>
                                         <td>No</td>
-                                        <td>Equipment</td>
-                                        <td>Tanggal Pengukuran</td>
-                                        <td>Kondisi</td>
+                                        <td>Nama Equipment</td>
+                                        <td>KKS Number</td>
+                                        <td>Tanggal Analisis</td>
                                         <td>Opsi</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php 
-                                    $cond = ['', 'Good', 'Warning', 'Bad'];
-                                    $class = ['', 'bg-success', 'bg-warning text-white', 'bg-danger'];
-                                    $no = 0; foreach ($pengukuran as $k) { 
+                                    
+                                    $no = 0; foreach ($analisis as $k) { 
                                     
                                     ?>
                                     <tr>
                                         <td><?= ++$no ?></td>
                                         <td><?= $k->desk ?></td>
-                                        <td><?= $k->waktu ?></td>
+                                        <td><?= $k->kks_number ?></td>
+                                        <td><?= date('d M Y', strtotime($k->waktu)) ?></td>
                                         <td>
-                                            <span class="badge <?= $class[$k->kondisi] ?>">
-                                                <?= $cond[$k->kondisi] ?>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <a href="<?= site_url('personel/detail_pengukuran/'.$k->id_pengukuran) ?>" class="btn btn-primary btn-sm">
+                                            <a href="<?= site_url('personel/laporan_analisis/'.$k->id_anal) ?>" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-cog"></i> Detail
-                                            </a>
-                                            <a href="<?= site_url('personel/analisis_eq/'.$barang->id_pengukuran) ?>" class="btn btn-tool btn-sm">
-                                                <i class="fas fa-cog"></i> Lakukan Analisis
                                             </a>
                                         </td>
                                     </tr>

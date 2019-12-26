@@ -38,6 +38,7 @@ class Personel extends MY_Controller {
         $this->load->model('data_barang_m');
         $this->load->model('his_pengukuran_m');
         $this->load->model('log_ukur_m');
+        $this->load->model('analisis_m');
     }
     
 
@@ -147,7 +148,7 @@ class Personel extends MY_Controller {
             $this->flashmsg('Data berhasil disimpan');
         }
         $this->data['data_personil'] = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
-        $this->data['active'] = 4;
+        $this->data['active'] = 5;
         $this->data['content'] = 'setting';
         $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);   
@@ -253,11 +254,59 @@ class Personel extends MY_Controller {
         $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);
     }
+    public function analisis_eq($id)
+    {
+        $this->data['barang'] = $this->his_pengukuran_m->get_join_where(['data_barang'], ['histori_pengukuran.id_equipment = data_barang.asset_id'], ['id_pengukuran' => $id]);
+        $this->data['tools'] = $this->log_ukur_m->get_join_all_where(['tools'], ['log_ukur.id_tools = tools.id_tools'], ['id_histori' => $id]);
+        $this->data['active'] = 3;
+        $this->data['content'] = 'anal';
+        $this->data['title'] = 'Admin | ';
+        $this->load->view('personel/template/template', $this->data);
+    }
+
 
     public function tools_list()
     {
         echo json_encode($this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']));
     }
+
+    public function list_analisis()
+    {
+        if($this->POST('anal')) {
+            $this->data['input'] = [
+                'id_equipment' => $this->POST('asset_id'),
+                'mpi' => $this->POST('mpi'),
+                'spek_a' => $this->POST('spek_a'),
+                'spek_b' => $this->POST('spek_b'),
+                'spek_c' => $this->POST('spek_c'),
+                'spek_d' => $this->POST('spek_d'),
+                'general_draw' => $this->POST('gen_dr'),
+                'finding' => $this->POST('finding'),
+                'diagnose' => $this->POST('diagnose'),
+                'analysis' => $this->POST('analisis'),
+                'recommendation' => $this->POST('recommend'),
+                'waktu' => date('Y-m-d')
+            ];
+            $this->analisis_m->insert($this->data['input']);
+            $this->flashmsg('Analisis Telah Ditambahkan');
+        }
+        $this->data['analisis'] = $this->analisis_m->getDataJoin(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id']);
+        $this->data['active'] = 4;
+        $this->data['content'] = 'list_anal';
+        $this->data['title'] = 'Admin | ';
+        $this->load->view('personel/template/template', $this->data);
+    }
+
+    public function detail_pengukuran($id)
+    {
+        $this->data['barang'] = $this->his_pengukuran_m->get_join_where(['data_barang'], ['histori_pengukuran.id_equipment = data_barang.asset_id'], ['id_pengukuran' => $id]);
+        $this->data['tools'] = $this->log_ukur_m->get_join_all_where(['tools'], ['log_ukur.id_tools = tools.id_tools'], ['id_histori' => $id]);
+        $this->data['active'] = 3;
+        $this->data['content'] = 'detail_pengukuran';
+        $this->data['title'] = 'Admin | ';
+        $this->load->view('personel/template/template', $this->data);
+    }
+
 
 }
 

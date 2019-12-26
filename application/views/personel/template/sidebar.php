@@ -47,7 +47,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= site_url('personel/setting') ?>" class="nav-link <?php if($active == 4) { echo "active"; } ?>">
+                            <a href="<?= site_url('personel/list_analisis') ?>" class="nav-link <?php if($active == 4) { echo "active"; } ?>">
+                                <i class="nav-icon fas fa-bong"></i>
+                                <p>
+                                    List Analisis
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('personel/setting') ?>" class="nav-link <?php if($active == 5) { echo "active"; } ?>">
                                 <i class="nav-icon fas fa-cog"></i>
                                 <p>
                                     Settings

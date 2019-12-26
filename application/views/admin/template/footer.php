@@ -85,8 +85,6 @@
                                 +'</option>';
                     }
                     html += '</select><div class="form-group mb-2 mt-2"><input class="form-control" name="angka[]" placeholder="Angka Indikasi"></div>';
-                    
-                    
                     html += '<div class="form-group mb-2"><select name="kondisi[]" class="custom-select">';
                     html += '<option selected disabled>Pilih Kondisi</option><option value="1">Good</option><option value="2">Warning</option><option value="3">Bad</option>'
                     html += '</select></div></div></div></div>';

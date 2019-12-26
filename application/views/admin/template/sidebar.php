@@ -17,7 +17,7 @@
                         <a href="<?= site_url('admin') ?>" class="d-block"><?= $this->data['username'] ?></a>
                     </div>
                 </div>
-
+                
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     
@@ -50,6 +50,14 @@
                                 <i class="nav-icon fas fa-thermometer-quarter"></i>
                                 <p>
                                     Histori Pengukuran
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?= site_url('admin/list_analisis') ?>" class="nav-link <?php if($active == 7) { echo "active"; } ?>">
+                                <i class="nav-icon fas fa-bong"></i>
+                                <p>
+                                    List Analisis
                                 </p>
                             </a>
                         </li>

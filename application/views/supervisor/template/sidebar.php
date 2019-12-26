@@ -18,7 +18,6 @@
                     <a href="#" class="d-block">Supervisor</a>
                 </div>
             </div>
-
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -48,6 +47,16 @@
                             </p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                            <a href="<?= site_url('supervisor/his_pengukuran') ?>" class="nav-link">
+                                <i class="nav-icon fas fa-thermometer-quarter"></i>
+                                <p>
+                                    Histori Pengukuran
+                                </p>
+                            </a>
+                    </li>
+
                     <li class="nav-item">
                         <a href="<?= site_url('logout') ?>" class="nav-link">
                             <i class="nav-icon fas fa-sign-out-alt"></i>

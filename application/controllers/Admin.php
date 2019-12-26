@@ -349,7 +349,8 @@ class Admin extends MY_Controller {
         $options->setIsRemoteEnabled(true);
         $dompdf->setOptions($options);
         $dompdf->render();
-        $dompdf->stream('Laporan.pdf', array("Attachment" => 0));
+        file_put_contents($_SERVER['DOCUMENT_ROOT'].'/pln/assets/'.$this->data['input']->desk, $dompdf->output());
+        // $dompdf->stream('Laporan.pdf', array("Attachment" => 0));
     }
 
     public function data_pengukuran()

@@ -83,7 +83,6 @@
             <td colspan="3">MPI</td>
             <td colspan="9">: <?= $input->mpi ?></td>
             <td colspan="2" class="border" rowspan="3">
-                
             </td>
         </tr>
         <tr>

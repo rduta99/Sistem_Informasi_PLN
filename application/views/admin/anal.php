@@ -10,7 +10,7 @@
                                 <li class="breadcrumb-item"><a href="<?= site_url('admin') ?>">Home</a></li>
                                 <li class="breadcrumb-item"><a href="<?= site_url('admin/his_pengukuran') ?>">Histori Pengukuran</a></li>
                                 <li class="breadcrumb-item"><a href="<?= site_url('admin/detail_pengukuran') ?>">Detail Pengukuran</a></li>
-                                <li class="breadcrumb-item active">Analisis Equipment</li>
+                                <li class="breadcrumb-item active">Analisis</li>
                             </ol>
                         </div>
                     </div>
@@ -24,17 +24,21 @@
                             <h3 class="card-title">Analisis <?= $barang->desk ?></h3>
                         </div>
                         <div class="card-body">
-                            <?= form_open('admin/laporan_analisis') ?>
+                            <?= form_open('admin/laporan_analisis/'.$barang->asset_id) ?>
                                 <div class="row">
-                                    <div class="form-group col-md-4 mb-3">
+                                    <div class="form-group col-md-3 mb-3">
                                         <label for="">Nama Peralatan</label>
                                         <input type="text" name="nama_peralatan" class="form-control" value="<?= $barang->desk ?>">
                                     </div>
-                                    <div class="form-group col-md-4 mb-3">
-                                        <label for="">Nomor KKS</label>
+                                    <div class="form-group col-md-3 mb-3">
+                                        <label for="">Asset ID</label>
+                                        <input type="text" name="asset_id" class="form-control" value="<?= $barang->asset_id ?>">
+                                    </div>
+                                    <div class="form-group col-md-3 mb-3">
+                                        <label for="">KKS Number</label>
                                         <input type="text" name="kks_number" class="form-control" value="<?= $barang->kks_number ?>">
                                     </div>
-                                    <div class="form-group col-md-4 mb-3">
+                                    <div class="form-group col-md-3 mb-3">
                                         <label for="">MPI</label>
                                         <input type="text" name="mpi" class="form-control">
                                     </div>

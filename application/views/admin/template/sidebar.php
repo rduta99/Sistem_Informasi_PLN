@@ -54,6 +54,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?= site_url('admin/list_analisis') ?>" class="nav-link <?php if($active == 7) { echo "active"; } ?>">
+                                <i class="nav-icon fas fa-bong"></i>
+                                <p>
+                                    List Analisis
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= site_url('admin/jab_unit') ?>" class="nav-link <?php if($active == 2) { echo "active"; } ?>">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>

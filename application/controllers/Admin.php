@@ -349,7 +349,10 @@ class Admin extends MY_Controller {
         $options->setIsRemoteEnabled(true);
         $dompdf->setOptions($options);
         $dompdf->render();
-        file_put_contents($_SERVER['DOCUMENT_ROOT'].'/pln/assets/'.$this->data['input']->desk, $dompdf->output());
+        file_put_contents($_SERVER['DOCUMENT_ROOT'].'/pln/assets/'.$this->data['input']->desk.' Analysis '.date('d-m-Y'), $dompdf->output());
+        $this->data['url'] = $_SERVER['DOCUMENT_ROOT'].'/pln/assets/'.$this->data['input']->desk.' Analysis '.date('d-m-Y');
+        $this->load->view('admin/pdf_view', $this->data);
+        
         // $dompdf->stream('Laporan.pdf', array("Attachment" => 0));
     }
 

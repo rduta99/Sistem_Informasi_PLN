@@ -58,6 +58,15 @@
                     </li>
 
                     <li class="nav-item">
+                            <a href="<?= site_url('supervisor/list_analisis') ?>" class="nav-link">
+                                <i class="nav-icon fas fa-bong"></i>
+                                <p>
+                                    List Analisis
+                                </p>
+                            </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="<?= site_url('logout') ?>" class="nav-link">
                             <i class="nav-icon fas fa-sign-out-alt"></i>
                             <p>

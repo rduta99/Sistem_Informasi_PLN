@@ -82,7 +82,38 @@
                                             </div>
                                             <input type="text" name="desk" class="form-control" placeholder="Description">
                                         </div>
-                                                                           
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-pen"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" name="spek_a" class="form-control" placeholder="Spesifikasi A">
+                                        </div>   
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-pen"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" name="spek_b" class="form-control" placeholder="Spesifikasi B">
+                                        </div>   
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-pen"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" name="spek_c" class="form-control" placeholder="Spesifikasi C">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-pen"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" name="spek_d" class="form-control" placeholder="Spesifikasi D">
+                                        </div>                                           
                                     </div>
                                     <div class="modal-footer justify-content-between">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -161,15 +192,6 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-toolbox"></i>
-                                                                    </span>
-                                                                </div>
-                                                                <input type="text" name="desk" class="form-control" value="<?= $k->desk ?>">
-                                                            </div>
-
-                                                            <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text">
                                                                         <i class="fas fa-envelope"></i>
                                                                     </span>
                                                                 </div>
@@ -180,6 +202,48 @@
                                                                     <?php } ?>
                                                                 </select>
                                                             </div>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-toolbox"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="text" name="desk" class="form-control" value="<?= $k->desk ?>">
+                                                            </div>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-toolbox"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="text" name="spek_a" class="form-control" value="<?= $k->spek_a ?>">
+                                                            </div>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-toolbox"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="text" name="spek_b" class="form-control" value="<?= $k->spek_b ?>">
+                                                            </div>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-toolbox"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="text" name="spek_c" class="form-control" value="<?= $k->spek_c ?>">
+                                                            </div>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-toolbox"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="text" name="spek_d" class="form-control" value="<?= $k->spek_d ?>">
+                                                            </div>
+
+                                                            
                                                         </div>
                                                         <div class="modal-footer justify-content-between">
                                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

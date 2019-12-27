@@ -399,6 +399,20 @@ class Admin extends MY_Controller {
         // $dompdf->stream('Laporan.pdf', array("Attachment" => 0));
     }
 
+    public function mon_analisis()
+    {
+        $dompdf = new Dompdf\Dompdf();
+        $html = $this->load->view('admin/mon_analisis', [], true);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'landscape');
+        $options = new Dompdf\Options();
+        $options->setIsRemoteEnabled(true);
+        $dompdf->setOptions($options);
+        $dompdf->render();
+        $dompdf->stream('Laporan.pdf', array("Attachment" => 0));
+    }
+
+
     public function data_pengukuran()
     {
         $dompdf = new Dompdf\Dompdf();

@@ -128,15 +128,15 @@
 
                         
 
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-striped table-valign-middle">
+                        <div class="card-body table-responsive p-3">
+                            <table class="table table-striped table-valign-middle" id="example1">
                                 <thead>
                                     <tr>
-                                        <th>Asset ID</th>
-                                        <th>KKS Number</th>
-                                        <th>Unit</th>
-                                        <th>Description</th>
-                                        
+                                        <td>Asset ID</td>
+                                        <td>KKS Number</td>
+                                        <td>Unit</td>
+                                        <td>Description</td>
+                                        <td>Option</td>
                                     </tr>
                                 </thead>
 

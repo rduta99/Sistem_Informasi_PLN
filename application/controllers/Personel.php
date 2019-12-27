@@ -54,9 +54,9 @@ class Personel extends MY_Controller {
         }
         // echo $this->data['username'];
         $unit = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
+        $this->data['equipment'] = $this->equipment_m->get(['unit' => $unit->unit]);
         // print_r($unit);
         // exit;
-        $this->data['equipment'] = $this->equipment_m->get(['unit' => $unit->unit]);
         $this->data['active'] = 1;
         $this->data['content'] = 'main';
         $this->data['title'] = 'Personel | ';
@@ -264,6 +264,20 @@ class Personel extends MY_Controller {
         $this->load->view('personel/template/template', $this->data);
     }
 
+    public function master_eq_edit()
+    {
+        $data = [
+            'asset_id' => $this->POST('asset_id'),
+            'kks_number' => $this->POST('kks_number'),
+            'desk' => $this->POST('desk'),
+            'unit' => $this->POST('unit')
+        ];
+        $this->data_barang_m->update($this->POST('asset_id'), $data);
+        $this->flashmsg('Data berhasil diubah');
+        redirect('personel/master_eq');
+    }
+
+
 
     public function tools_list()
     {
@@ -293,7 +307,7 @@ class Personel extends MY_Controller {
         $this->data['analisis'] = $this->analisis_m->getDataJoin(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id']);
         $this->data['active'] = 4;
         $this->data['content'] = 'list_anal';
-        $this->data['title'] = 'Admin | ';
+        $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);
     }
 

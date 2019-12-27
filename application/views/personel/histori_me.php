@@ -57,7 +57,7 @@
                                             <a href="<?= site_url('personel/detail_pengukuran/'.$k->id_pengukuran) ?>" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-cog"></i> Detail
                                             </a>
-                                            <a href="<?= site_url('personel/analisis_eq/'.$barang->id_pengukuran) ?>" class="btn btn-tool btn-sm">
+                                            <a href="<?= site_url('personel/analisis_eq/'.$k->id_pengukuran) ?>" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-cog"></i> Lakukan Analisis
                                             </a>
                                         </td>

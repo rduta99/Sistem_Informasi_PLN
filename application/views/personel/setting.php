@@ -26,7 +26,7 @@
                           </div>
                           <div class="form-group">
                             <label for="">ID Pegawai</label>
-                            <input type="text" class="form-control" name="id_pegawai" id="pegawai" value="<?= $data_personil->id_pegawai ?>">
+                            <input type="text" class="form-control" name="id_pegawai" id="id_pegawai" value="<?= $data_personil->id_pegawai ?>">
                           </div>
                           <div class="form-group">
                             <label for="exampleInputEmail1">Nama</label>

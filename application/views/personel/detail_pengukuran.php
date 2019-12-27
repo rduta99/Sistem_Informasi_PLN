@@ -22,9 +22,6 @@
                         <div class="card-header border-0">
                             <h3 class="card-title"><?= $barang->desk ?></h3>
                             <div class="card-tools">
-                                <a href="<?= site_url('personel/analisis_eq/'.$barang->id_pengukuran) ?>" class="btn btn-tool btn-sm">
-                                    <i class="fas fa-cog"></i> Lakukan Analisis
-                                </a>
                             </div>
                         </div>
                         <div class="card-body">

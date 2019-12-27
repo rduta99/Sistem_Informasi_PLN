@@ -7,7 +7,7 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="<?= site_url('personel/lupa_password') ?>">Home</a></li>
+                                <li class="breadcrumb-item"><a href="<?= site_url('personel') ?>">Home</a></li>
                                 <li class="breadcrumb-item active">Dashboard</li>
                             </ol>
                         </div>
@@ -38,19 +38,19 @@
                                 </thead>
 
                                 <tbody>
-                                    <?php foreach ($equipment as $k) { ?>
+                                    <?php foreach ($equipment as $q) { ?>
                                     <tr>
                                         <td>
-                                            <?= $k->asset_id ?>
+                                            <?= $q->asset_id ?>
                                         </td>
                                         <td>
-                                            <?= $k->kks_number ?>
+                                            <?= $q->kks_number ?>
                                         </td>
                                         <td>
-                                            <?= $k->desk ?>
+                                            <?= $q->desk ?>
                                         </td>
                                         <td>
-                                            <?= $k->unit ?>
+                                            <?= $q->unit ?>
                                         </td>
                                         
                                     </tr>

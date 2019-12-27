@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="<?= base_url('assets/') ?>dist/css/adminlte.min.css">
   
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -62,8 +63,8 @@
     </div>
     <!-- /.login-card-body -->
   </div>
+  <p class="mt-3 text-muted text-center">Copyright &copy; Lebah Ganteng</p>
 </div>
-<!-- /.login-box -->
 
 <!-- jQuery -->
 <script src="<?= base_url('assets/') ?>plugins/jquery/jquery.min.js"></script>

@@ -47,7 +47,54 @@
 
     <script src="<?= base_url('assets/') ?>dist/js/demo.js"></script>
 
+
+
     <script type="text/javascript">
+
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+
+            $('.select2').select2({
+                theme: 'bootstrap4'
+            });
+        });
+
+        function add_eq() {
+            $.ajax({
+                type  : 'ajax',
+                url   : '<?php echo site_url('personel/tools_list'); ?>',
+                async : false,
+                dataType : 'json',
+                success : function(data) {
+                    var html = '<div class="col-md-6"><div class="card"><div class="card-body"><select name="teknologi[]" class="form-control select2" style="width: 100%;">';
+                    for (let index = 0; index < data.length; index++) {
+                        html += '<option value="'+data[index].id_tools+'">'
+                                +data[index].nama_teknologi
+                                +' | '+data[index].merk
+                                +'</option>';
+                    }
+                    html += '</select><div class="form-group mb-2 mt-2"><input class="form-control" name="angka[]" placeholder="Angka Indikasi"></div>';
+                    
+                    
+                    html += '<div class="form-group mb-2"><select name="kondisi[]" class="custom-select">';
+                    html += '<option selected disabled>Pilih Kondisi</option><option value="1">Good</option><option value="2">Warning</option><option value="3">Bad</option>'
+                    html += '</select></div></div></div></div>';
+                    $('#tools').append(html);
+                    $('.select2').select2({
+                        theme: 'bootstrap4'
+                    });
+                }
+            });
+        }
+
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();

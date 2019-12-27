@@ -24,7 +24,7 @@
                             <h3 class="card-title">Analisis <?= $barang->desk ?></h3>
                         </div>
                         <div class="card-body">
-                            <?= form_open('admin/laporan_analisis/'.$barang->asset_id) ?>
+                            <?= form_open('admin/list_analisis/'.$barang->asset_id) ?>
                                 <div class="row">
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">Nama Peralatan</label>

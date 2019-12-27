@@ -22,72 +22,9 @@
                         <div class="card-header border-0">
                             <h3 class="card-title">Master Equipment</h3>
                             <div class="card-tools">
-                                <button type="button" class="btn btn-tool btn-sm" data-toggle="modal" data-target="#modal-default">
+                                <a class="btn btn-tool btn-sm" href="<?= site_url('admin/master_eq_add') ?>">
                                     <i class="fas fa-plus"></i> Tambah Equipment
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="modal fade" id="modal-default">
-                            <div class="modal-dialog">
-
-                                <?= form_open("admin/master_eq") ?>
-
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Tambah Equipment</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-pen"></i>
-                                                </span>
-                                            </div>
-                                            <input type="text" name="asset_id" class="form-control" placeholder="Asset ID">
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-lock"></i>
-                                                </span>
-                                            </div>
-                                            <input type="text" name="kks_number" class="form-control" placeholder="KKS Number">
-                                        </div>
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-toolbox"></i>
-                                                </span>
-                                            </div>
-                                            <input type="text" name="desk" class="form-control" placeholder="Nama Equipment">
-                                        </div>
-
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-envelope"></i>
-                                                </span>
-                                            </div>
-                                            <select name="unit" class="custom-select">
-                                                <option disabled selected>Pilih Unit</option>
-                                                <?php foreach ($unit as $k) { ?>
-                                                    <option value="<?= $k->id_unit ?>"><?= $k->nama_unit ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer justify-content-between">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <input type="submit" class="btn btn-primary" value="Tambah Equipment" name="simpan">
-                                    </div>
-                                </div>
-
-                                <?= form_close() ?>
-
+                                </a>
                             </div>
                         </div>
 

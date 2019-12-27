@@ -34,8 +34,8 @@
 
                         <div class="modal fade" id="tool_reg">
                             <div class="modal-dialog">
-
-                                <?= form_open("supervisor/tools") ?>
+                            <?= $this->session->flashdata('msg') ?>
+                                <?= form_open("personel/tools") ?>
 
                                 <div class="modal-content">
                                     <div class="modal-header">

@@ -167,7 +167,7 @@ class Personel extends MY_Controller {
 
             $this->tools_m->insert($data);
             $this->flashmsg('Data berhasil ditambahkan');
-            redirect('personel/setting');
+            redirect('personel/tools');
             
         }
 

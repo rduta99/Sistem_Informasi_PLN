@@ -38,6 +38,7 @@ class Personel extends MY_Controller {
         $this->load->model('data_barang_m');
         $this->load->model('his_pengukuran_m');
         $this->load->model('log_ukur_m');
+        $this->load->model('log_anal_m');
         $this->load->model('analisis_m');
     }
     
@@ -287,13 +288,19 @@ class Personel extends MY_Controller {
     public function list_analisis()
     {
         if($this->POST('anal')) {
+            $cek = $this->log_anal_m->get_row(['id_equip' => $this->POST('asset_id')]);
+            if($cek == null) {
+                $this->log_anal_m->insert(['id_equip' => $this->POST('asset_id')]);
+                $id = $this->log_anal_m->get_row(['id_equip' => $this->POST('asset_id')])->id_log;
+            } else {
+                $id = $cek->id_log;
+                $this->log_anal_m->insert($id, ['id_equip' => $this->POST('asset_id')]);
+            }
+            
             $this->data['input'] = [
                 'id_equipment' => $this->POST('asset_id'),
+                'id_log' => $id,
                 'mpi' => $this->POST('mpi'),
-                'spek_a' => $this->POST('spek_a'),
-                'spek_b' => $this->POST('spek_b'),
-                'spek_c' => $this->POST('spek_c'),
-                'spek_d' => $this->POST('spek_d'),
                 'general_draw' => $this->POST('gen_dr'),
                 'finding' => $this->POST('finding'),
                 'diagnose' => $this->POST('diagnose'),
@@ -304,7 +311,7 @@ class Personel extends MY_Controller {
             $this->analisis_m->insert($this->data['input']);
             $this->flashmsg('Analisis Telah Ditambahkan');
         }
-        $this->data['analisis'] = $this->analisis_m->getDataJoin(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id']);
+        $this->data['analisis'] = $this->log_anal_m->getDataJoin(['data_barang'], ['log_anal.id_equip = data_barang.asset_id']);
         $this->data['active'] = 4;
         $this->data['content'] = 'list_anal';
         $this->data['title'] = 'Personel | ';
@@ -317,9 +324,19 @@ class Personel extends MY_Controller {
         $this->data['tools'] = $this->log_ukur_m->get_join_all_where(['tools'], ['log_ukur.id_tools = tools.id_tools'], ['id_histori' => $id]);
         $this->data['active'] = 3;
         $this->data['content'] = 'detail_pengukuran';
-        $this->data['title'] = 'Admin | ';
+        $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);
     }
+
+    public function detail_analisis($id)
+    {
+        $this->data['analisis'] = $this->analisis_m->get_data_join_order(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id'], 'waktu','DESC',['id_log' => $id]);
+        $this->data['active'] = 4;
+        $this->data['content'] = 'detail_anal';
+        $this->data['title'] = 'Personel | ';
+        $this->load->view('personel/template/template', $this->data);
+    }
+
 
 
 }

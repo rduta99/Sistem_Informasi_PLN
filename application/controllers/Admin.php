@@ -38,6 +38,7 @@ class Admin extends MY_Controller {
         $this->load->model('log_ukur_m');
         $this->load->model('his_pengukuran_m');
         $this->load->model('analisis_m');
+        $this->load->model('log_anal_m');
     }
     
 
@@ -85,6 +86,33 @@ class Admin extends MY_Controller {
         $this->data['content'] = 'master_eq';
         $this->data['title'] = 'Admin | ';
         $this->load->view('admin/template/template', $this->data);
+    }
+
+    public function master_eq_add()
+    {
+        if($this->POST('simpan')) {
+            $data = [
+                'asset_id' => $this->POST('asset_id'),
+                'kks_number' => $this->POST('kks_number'),
+                'desk' => $this->POST('desk'),
+                'unit' => $this->POST('unit'),
+                'spek_a' => $this->POST('spek_a'),
+                'spek_b' => $this->POST('spek_b'),
+                'spek_c' => $this->POST('spek_c'),
+                'spek_d' => $this->POST('spek_d'),
+            ];
+            $this->data_barang_m->insert($data);
+            $this->flashmsg('Data berhasil ditambah');
+            redirect('admin/master_eq');
+            exit;
+        }
+        $this->data['unit'] = $this->unit_m->get();
+        $this->data['equipment'] = $this->data_barang_m->getDataJoin(['unit'], ['data_barang.unit = unit.id_unit']);
+        $this->data['active'] = 4;
+        $this->data['content'] = 'master_eq_add';
+        $this->data['title'] = 'Admin | ';
+        $this->load->view('admin/template/template', $this->data);
+
     }
 
     public function master_eq_edit()
@@ -314,13 +342,19 @@ class Admin extends MY_Controller {
     public function list_analisis()
     {
         if($this->POST('anal')) {
+            $cek = $this->log_anal_m->get_row(['id_equip' => $this->POST('asset_id')]);
+            if($cek == null) {
+                $this->log_anal_m->insert(['id_equip' => $this->POST('asset_id')]);
+                $id = $this->log_anal_m->get_row(['id_equip' => $this->POST('asset_id')])->id_log;
+            } else {
+                $id = $cek->id_log;
+                $this->log_anal_m->insert($id, ['id_equip' => $this->POST('asset_id')]);
+            }
+            
             $this->data['input'] = [
                 'id_equipment' => $this->POST('asset_id'),
+                'id_log' => $id,
                 'mpi' => $this->POST('mpi'),
-                'spek_a' => $this->POST('spek_a'),
-                'spek_b' => $this->POST('spek_b'),
-                'spek_c' => $this->POST('spek_c'),
-                'spek_d' => $this->POST('spek_d'),
                 'general_draw' => $this->POST('gen_dr'),
                 'finding' => $this->POST('finding'),
                 'diagnose' => $this->POST('diagnose'),
@@ -331,16 +365,26 @@ class Admin extends MY_Controller {
             $this->analisis_m->insert($this->data['input']);
             $this->flashmsg('Analisis Telah Ditambahkan');
         }
-        $this->data['analisis'] = $this->analisis_m->getDataJoin(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id']);
+        $this->data['analisis'] = $this->log_anal_m->getDataJoin(['data_barang'], ['log_anal.id_equip = data_barang.asset_id']);
         $this->data['active'] = 7;
         $this->data['content'] = 'list_anal';
         $this->data['title'] = 'Admin | ';
         $this->load->view('admin/template/template', $this->data);
     }
 
-    public function laporan_analisis($id)
+    public function detail_analisis($id)
     {
-        $this->data['input'] = $this->analisis_m->get_join_where(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id'],['id_anal' => $id]);
+        $this->data['analisis'] = $this->analisis_m->get_data_join_order(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id'], 'waktu','DESC',['id_log' => $id]);
+        $this->data['active'] = 7;
+        $this->data['content'] = 'detail_anal';
+        $this->data['title'] = 'Admin | ';
+        $this->load->view('admin/template/template', $this->data);
+    }
+
+    public function laporan_analisis()
+    {
+        $this->data['input'] = $this->analisis_m->get_join_where(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id'],['id_anal' => 2]);
+        
         $dompdf = new Dompdf\Dompdf();
         $html = $this->load->view('admin/laporan_analisis', $this->data, true);
         $dompdf->loadHtml($html);
@@ -349,9 +393,10 @@ class Admin extends MY_Controller {
         $options->setIsRemoteEnabled(true);
         $dompdf->setOptions($options);
         $dompdf->render();
-        file_put_contents($_SERVER['DOCUMENT_ROOT'].'/pln/assets/'.$this->data['input']->desk.' Analysis '.date('d-m-Y'), $dompdf->output());
-        $this->data['url'] = $_SERVER['DOCUMENT_ROOT'].'/pln/assets/'.$this->data['input']->desk.' Analysis '.date('d-m-Y');
-        $this->load->view('admin/pdf_view', $this->data);
+        $dompdf->stream('Tes.pdf', ['Attachment' => 0]);
+        // file_put_contents($_SERVER['DOCUMENT_ROOT'].'/pln/assets/'.$this->data['input']->desk.' Analysis '.date('d-m-Y'), $dompdf->output());
+        // $this->data['url'] = $_SERVER['DOCUMENT_ROOT'].'/pln/assets/'.$this->data['input']->desk.' Analysis '.date('d-m-Y');
+        // $this->load->view('admin/pdf_view', $this->data);
         
         // $dompdf->stream('Laporan.pdf', array("Attachment" => 0));
     }

@@ -29,8 +29,8 @@
                                     <tr>
                                         <td>No</td>
                                         <td>Nama Equipment</td>
+                                        <td>Asset ID</td>
                                         <td>KKS Number</td>
-                                        <td>Tanggal Analisis</td>
                                         <td>Opsi</td>
                                     </tr>
                                 </thead>
@@ -43,10 +43,10 @@
                                     <tr>
                                         <td><?= ++$no ?></td>
                                         <td><?= $k->desk ?></td>
+                                        <td><?= $k->asset_id ?></td>
                                         <td><?= $k->kks_number ?></td>
-                                        <td><?= date('d M Y', strtotime($k->waktu)) ?></td>
                                         <td>
-                                            <a href="<?= site_url('personel/laporan_analisis/'.$k->id_anal) ?>" class="btn btn-primary btn-sm">
+                                            <a href="<?= site_url('personel/detail_analisis/'.$k->id_log) ?>" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-cog"></i> Detail
                                             </a>
                                         </td>

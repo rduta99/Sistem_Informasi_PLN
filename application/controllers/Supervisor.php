@@ -213,7 +213,8 @@ class Supervisor extends MY_Controller {
                     $max = $kondisi[$i];
                 }
             }
-            $this->his_pengukuran_m->insert(['id_equipment' => $id, 'gambar' => $gambar, 'kondisi' => $max, 'waktu' => date('Y-m-d')]);
+            $k = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
+            $this->his_pengukuran_m->insert(['id_equipment' => $id, 'gambar' => $gambar, 'kondisi' => $max, 'waktu' => date('Y-m-d'), 'unit' => $k->unit]);
             unlink($data['full_path']);
             $id = $this->his_pengukuran_m->get_row(['id_equipment' => $id, 'kondisi' => $max, 'waktu' => date('Y-m-d')])->id_pengukuran;
             for ($i=0; $i < count($angka); $i++) { 
@@ -306,6 +307,15 @@ class Supervisor extends MY_Controller {
         $this->data['tools'] = $this->log_ukur_m->get_join_all_where(['tools'], ['log_ukur.id_tools = tools.id_tools'], ['id_histori' => $id]);
         $this->data['active'] = 6;
         $this->data['content'] = 'detail_pengukuran';
+        $this->data['title'] = 'Supervisor | ';
+        $this->load->view('supervisor/template/template', $this->data);
+    }
+
+    public function detail_analisis($id)
+    {
+        $this->data['analisis'] = $this->analisis_m->get_data_join_order(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id'], 'waktu','DESC',['id_log' => $id]);
+        $this->data['active'] = 7;
+        $this->data['content'] = 'detail_anal';
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);
     }

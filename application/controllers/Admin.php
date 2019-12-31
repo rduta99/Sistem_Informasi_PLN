@@ -381,9 +381,10 @@ class Admin extends MY_Controller {
         $this->load->view('admin/template/template', $this->data);
     }
 
-    public function laporan_analisis($id)
+    public function laporan_analisis()
     {
-        $this->data['input'] = $this->analisis_m->get_join_where(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id'],['id_anal' => $id]);
+        $this->data['input'] = $this->analisis_m->get_join_where(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id'],['id_anal' => 2]);
+        
         $dompdf = new Dompdf\Dompdf();
         $html = $this->load->view('admin/laporan_analisis', $this->data, true);
         $dompdf->loadHtml($html);
@@ -392,9 +393,10 @@ class Admin extends MY_Controller {
         $options->setIsRemoteEnabled(true);
         $dompdf->setOptions($options);
         $dompdf->render();
-        file_put_contents($_SERVER['DOCUMENT_ROOT'].'/pln/assets/'.$this->data['input']->desk.' Analysis '.date('d-m-Y'), $dompdf->output());
-        $this->data['url'] = $_SERVER['DOCUMENT_ROOT'].'/pln/assets/'.$this->data['input']->desk.' Analysis '.date('d-m-Y');
-        $this->load->view('admin/pdf_view', $this->data);
+        $dompdf->stream('Tes.pdf', ['Attachment' => 0]);
+        // file_put_contents($_SERVER['DOCUMENT_ROOT'].'/pln/assets/'.$this->data['input']->desk.' Analysis '.date('d-m-Y'), $dompdf->output());
+        // $this->data['url'] = $_SERVER['DOCUMENT_ROOT'].'/pln/assets/'.$this->data['input']->desk.' Analysis '.date('d-m-Y');
+        // $this->load->view('admin/pdf_view', $this->data);
         
         // $dompdf->stream('Laporan.pdf', array("Attachment" => 0));
     }

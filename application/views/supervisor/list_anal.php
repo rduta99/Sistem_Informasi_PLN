@@ -46,7 +46,7 @@
                                         <td><?= $k->kks_number ?></td>
                                         <td><?= date('d M Y', strtotime($k->waktu)) ?></td>
                                         <td>
-                                            <a href="<?= site_url('supervisor/laporan_analisis/'.$k->id_anal) ?>" class="btn btn-primary btn-sm">
+                                            <a href="<?= site_url('supervisor/detail_analisis/'.$k->id_log) ?>" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-cog"></i> Detail
                                             </a>
                                         </td>

@@ -39,7 +39,14 @@
                                             </div>
                                             
                                             <div class="card-body" style="display: none;">
-                                                
+                                                <div class="card">
+                                                    <div class="card-header border-0">
+                                                        <h3 class="card-title">General Drawing Peralatan & Titik Pengukuran</h3>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <?= $k->general_draw ?>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

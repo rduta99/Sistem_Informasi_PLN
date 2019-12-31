@@ -364,6 +364,7 @@ class Admin extends MY_Controller {
             ];
             $this->analisis_m->insert($this->data['input']);
             $this->flashmsg('Analisis Telah Ditambahkan');
+            exit;
         }
         $this->data['analisis'] = $this->log_anal_m->getDataJoin(['data_barang'], ['log_anal.id_equip = data_barang.asset_id']);
         $this->data['active'] = 7;

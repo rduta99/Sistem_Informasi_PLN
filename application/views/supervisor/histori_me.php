@@ -14,7 +14,6 @@
                     </div>
                 </div>
             </div>
-
             <sectio class="content">
                 <div class="container-fluid">
                     <div class="card">
@@ -53,7 +52,14 @@
                                                 <?= $cond[$k->kondisi] ?>
                                             </span>
                                         </td>
-                                        <td></td>
+                                        <td>
+                                            <a href="<?= site_url('supervisor/detail_pengukuran/'.$k->id_pengukuran) ?>" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-cog"></i> Detail
+                                            </a>
+                                            <a href="<?= site_url('supervisor/analisis_eq/'.$k->id_pengukuran) ?>" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-cog"></i> Lakukan Analasis
+                                            </a>
+                                        </td>
                                     </tr>
                                     <?php } ?>
                                 </tbody>

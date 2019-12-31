@@ -16,12 +16,7 @@
   <link rel="stylesheet" href="<?= base_url('assets/') ?>dist/css/adminlte.min.css">
   
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <style>
-    body, html {
-      background-image: url('<?= base_url() ?>assets/dist/img/bg_pln.png') !important;
-      background-size: auto;
-    }
-  </style>
+  
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">

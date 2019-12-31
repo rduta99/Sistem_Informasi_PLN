@@ -53,17 +53,13 @@
 
     <script src="<?= base_url('assets/') ?>plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 
+    <script src="<?= base_url('assets/') ?>plugins/summernote/summernote-bs4.min.js"></script>
+
     <script>
         $(function () {
             $("#example1").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-            });
+
+            $('.textarea').summernote();
 
             $('.select2').select2({
                 theme: 'bootstrap4'

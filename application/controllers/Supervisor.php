@@ -28,6 +28,7 @@ class Supervisor extends MY_Controller {
         }
         
         $this->load->model('data_barang_m');
+        $this->load->model('equipment_m');
         $this->load->model('tools_m');
         $this->load->model('teknologi_m');
         $this->load->model('unit_m');
@@ -37,6 +38,8 @@ class Supervisor extends MY_Controller {
         $this->load->model('role_m');
         $this->load->model('his_pengukuran_m');
         $this->load->model('log_ukur_m');
+        $this->load->model('analisis_m');
+
 
 
 
@@ -50,6 +53,10 @@ class Supervisor extends MY_Controller {
                 'kks_number' => $this->POST('kks_number'),
                 'unit' => $this->POST('unit'),
                 'desk' => $this->POST('desk'),
+                'spek_a' => $this->POST('spek_a'),
+                'spek_b' => $this->POST('spek_b'),
+                'spek_c' => $this->POST('spek_c'),
+                'spek_d' => $this->POST('spek_d'),
                 
             ];
            // $this->user_m->insert(['asset_id' => $this->POST('asset_id'), 'kks_number' => $this->POST('kks_number'), 'desk' => $this->POST('desk')]);
@@ -254,6 +261,53 @@ class Supervisor extends MY_Controller {
         $dompdf->setOptions($options);
         $dompdf->render();
         $dompdf->stream('Laporan.pdf', array("Attachment" => 0));
+    }
+
+    public function list_analisis()
+    {
+        if($this->POST('anal')) {
+            $this->data['input'] = [
+                'id_equipment' => $this->POST('asset_id'),
+                'mpi' => $this->POST('mpi'),
+                'spek_a' => $this->POST('spek_a'),
+                'spek_b' => $this->POST('spek_b'),
+                'spek_c' => $this->POST('spek_c'),
+                'spek_d' => $this->POST('spek_d'),
+                'general_draw' => $this->POST('gen_dr'),
+                'finding' => $this->POST('finding'),
+                'diagnose' => $this->POST('diagnose'),
+                'analysis' => $this->POST('analisis'),
+                'recommendation' => $this->POST('recommend'),
+                'waktu' => date('Y-m-d')
+            ];
+            $this->analisis_m->insert($this->data['input']);
+            $this->flashmsg('Analisis Telah Ditambahkan');
+        }
+        $this->data['analisis'] = $this->analisis_m->getDataJoin(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id']);
+        $this->data['active'] = 7;
+        $this->data['content'] = 'list_anal';
+        $this->data['title'] = 'Supervisor | ';
+        $this->load->view('supervisor/template/template', $this->data);
+    }
+
+    public function analisis_eq($id)
+    {
+        $this->data['barang'] = $this->his_pengukuran_m->get_join_where(['data_barang'], ['histori_pengukuran.id_equipment = data_barang.asset_id'], ['id_pengukuran' => $id]);
+        $this->data['tools'] = $this->log_ukur_m->get_join_all_where(['tools'], ['log_ukur.id_tools = tools.id_tools'], ['id_histori' => $id]);
+        $this->data['active'] = 6;
+        $this->data['content'] = 'anal';
+        $this->data['title'] = 'Supervisor | ';
+        $this->load->view('supervisor/template/template', $this->data);
+    }
+
+    public function detail_pengukuran($id)
+    {
+        $this->data['barang'] = $this->his_pengukuran_m->get_join_where(['data_barang'], ['histori_pengukuran.id_equipment = data_barang.asset_id'], ['id_pengukuran' => $id]);
+        $this->data['tools'] = $this->log_ukur_m->get_join_all_where(['tools'], ['log_ukur.id_tools = tools.id_tools'], ['id_histori' => $id]);
+        $this->data['active'] = 6;
+        $this->data['content'] = 'detail_pengukuran';
+        $this->data['title'] = 'Supervisor | ';
+        $this->load->view('supervisor/template/template', $this->data);
     }
 
 }

@@ -47,6 +47,15 @@
                                                         <?= $k->general_draw ?>
                                                     </div>
                                                 </div>
+
+                                                <div class="card">
+                                                    <div class="card-header border-0">
+                                                        <h3 class="card-title">Finding</h3>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <?= $k->finding ?>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -39,10 +39,6 @@ class Supervisor extends MY_Controller {
         $this->load->model('his_pengukuran_m');
         $this->load->model('log_ukur_m');
         $this->load->model('analisis_m');
-
-
-
-
     }
     
     public function index()
@@ -59,12 +55,12 @@ class Supervisor extends MY_Controller {
                 'spek_d' => $this->POST('spek_d'),
                 
             ];
-           // $this->user_m->insert(['asset_id' => $this->POST('asset_id'), 'kks_number' => $this->POST('kks_number'), 'desk' => $this->POST('desk')]);
             $this->data_barang_m->insert($data);
             $this->flashmsg('Data berhasil ditambahkan');
         }
-        //$this->data['pegawai'] = $this->user_m->getDataJoin(['role', 'data_personil'], ['user.id_role = role.id_role', 'user.nip = data_personil.nip']);
-        $this->data['data_barang'] = $this->data_barang_m->getDataJoin(['unit'], ['data_barang.unit = unit.id_unit']);
+        //$this->data['data_barang'] = $this->data_barang_m->getDataJoin(['unit'], ['data_barang.unit = unit.id_unit']);
+        $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;
+        $this->data['data_barang'] = $this->data_barang_m->get_join_all_where(['unit'], ['data_barang.unit = unit.id_unit'], ['id_unit' => $id]);
         $this->data['teknologi'] = $this->teknologi_m->get();
         $this->data['unit'] = $this->unit_m->get();
         $this->data['content'] = 'eq';
@@ -91,7 +87,9 @@ class Supervisor extends MY_Controller {
 
         $this->data['teknologi'] = $this->teknologi_m->get();
         $this->data['unit'] = $this->unit_m->get();
-        $this->data['tools'] = $this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']);
+        $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;
+        $this->data['tools'] = $this->tools_m->get_join_all_where(['unit'], ['tools.unit = unit.id_unit'], ['id_unit' => $id]);
+        //$this->data['tools'] = $this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']);
         $this->data['content'] = 'tool';
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);
@@ -164,7 +162,8 @@ class Supervisor extends MY_Controller {
         
         $this->data['unit'] = $this->unit_m->get();
         $this->data['jabatan'] = $this->jabatan_m->get();
-        $this->data['personel'] = $this->data_personil_m->getDataJoin(['jabatan', 'unit'], ['data_personil.jabatan = jabatan.id_jabatan', 'data_personil.unit = unit.id_unit']);
+        $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;
+        $this->data['personel'] = $this->data_personil_m->get_join_all_where(['unit'], ['data_personil.unit = unit.id_unit'], ['id_unit' => $id]);
         $this->data['content'] = 'personel';
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);

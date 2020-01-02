@@ -151,7 +151,7 @@
                                             <?= $k->nama_unit ?>
                                         </td>
                                         <td>
-                                            <?= $k->nama_teknologi ?>
+                                            <?= $k->teknologi ?>
                                         </td>
                                         <td>
                                             <?= $k->tgl_kalibrasi ?>

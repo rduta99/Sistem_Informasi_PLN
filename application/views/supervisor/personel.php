@@ -162,10 +162,10 @@
                                             <?= $k->nama ?>
                                         </td>
                                         <td>
-                                            <?= $k->nama_jabatan ?>
+                                            <?= $k->jabatan ?>
                                         </td>
                                         <td>
-                                            <?= $k->unit ?>
+                                            <?= $k->nama_unit ?>
                                         </td>
                                         <td>
                                             <?= $k->no ?>

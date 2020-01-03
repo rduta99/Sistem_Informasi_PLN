@@ -28,7 +28,6 @@ class Login extends MY_Controller {
 
 		$this->load->model('user_m');
 	}
-	
 
 	public function index()
 	{
@@ -55,5 +54,21 @@ class Login extends MY_Controller {
 			}
 		}
 		$this->load->view('login');
+	}
+
+	public function cek_use()
+	{
+		$data = [
+			'nip' => $this->POST('nip'),
+			'password' => $this->POST('password')
+		];
+		$cek = $this->user_m->get_row($data);
+		if($cek == null) {
+			$arr = ['status' => true];
+			echo json_encode($arr);
+		} else {
+			$arr = ['status' => false];
+			echo json_encode($arr);
+		}
 	}
 }

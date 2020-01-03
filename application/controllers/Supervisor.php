@@ -63,6 +63,7 @@ class Supervisor extends MY_Controller {
         $this->data['data_barang'] = $this->data_barang_m->get_join_all_where(['unit'], ['data_barang.unit = unit.id_unit'], ['id_unit' => $id]);
         $this->data['teknologi'] = $this->teknologi_m->get();
         $this->data['unit'] = $this->unit_m->get();
+        $this->data['active'] = 1;
         $this->data['content'] = 'eq';
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);
@@ -89,7 +90,7 @@ class Supervisor extends MY_Controller {
         $this->data['unit'] = $this->unit_m->get();
         $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;
         $this->data['tools'] = $this->tools_m->get_join_all_where(['unit'], ['tools.unit = unit.id_unit'], ['id_unit' => $id]);
-        //$this->data['tools'] = $this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']);
+        $this->data['active'] = 2;
         $this->data['content'] = 'tool';
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);
@@ -165,6 +166,7 @@ class Supervisor extends MY_Controller {
         $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;
         $this->data['personel'] = $this->data_personil_m->get_join_all_where(['unit'], ['data_personil.unit = unit.id_unit'], ['id_unit' => $id]);
         $this->data['content'] = 'personel';
+        $this->data['active'] = 3;
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);
     }
@@ -229,8 +231,8 @@ class Supervisor extends MY_Controller {
             }
         }
         $this->data['pengukuran'] = $this->his_pengukuran_m->get_data_join_order(['data_barang', 'unit'], ['histori_pengukuran.id_equipment = data_barang.asset_id', 'data_barang.unit = unit.id_unit'], 'waktu', 'DESC');
-        $this->data['active'] = 6;
         $this->data['content'] = 'histori_me';
+        $this->data['active'] = 4;
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);
     }
@@ -239,7 +241,7 @@ class Supervisor extends MY_Controller {
     {
         $this->data['equipment'] = $this->data_barang_m->getDataJoin(['unit'], ['data_barang.unit = unit.id_unit']);
         $this->data['tools'] = $this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']);
-        $this->data['active'] = 6;
+        $this->data['active'] = 4;
         $this->data['content'] = 'ukur_eq';
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);
@@ -284,7 +286,7 @@ class Supervisor extends MY_Controller {
             $this->flashmsg('Analisis Telah Ditambahkan');
         }
         $this->data['analisis'] = $this->analisis_m->getDataJoin(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id']);
-        $this->data['active'] = 7;
+        $this->data['active'] = 5;
         $this->data['content'] = 'list_anal';
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);
@@ -294,7 +296,7 @@ class Supervisor extends MY_Controller {
     {
         $this->data['barang'] = $this->his_pengukuran_m->get_join_where(['data_barang'], ['histori_pengukuran.id_equipment = data_barang.asset_id'], ['id_pengukuran' => $id]);
         $this->data['tools'] = $this->log_ukur_m->get_join_all_where(['tools'], ['log_ukur.id_tools = tools.id_tools'], ['id_histori' => $id]);
-        $this->data['active'] = 6;
+        $this->data['active'] = 4;
         $this->data['content'] = 'anal';
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);
@@ -304,7 +306,7 @@ class Supervisor extends MY_Controller {
     {
         $this->data['barang'] = $this->his_pengukuran_m->get_join_where(['data_barang'], ['histori_pengukuran.id_equipment = data_barang.asset_id'], ['id_pengukuran' => $id]);
         $this->data['tools'] = $this->log_ukur_m->get_join_all_where(['tools'], ['log_ukur.id_tools = tools.id_tools'], ['id_histori' => $id]);
-        $this->data['active'] = 6;
+        $this->data['active'] = 4;
         $this->data['content'] = 'detail_pengukuran';
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);
@@ -313,7 +315,7 @@ class Supervisor extends MY_Controller {
     public function detail_analisis($id)
     {
         $this->data['analisis'] = $this->analisis_m->get_data_join_order(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id'], 'waktu','DESC',['id_log' => $id]);
-        $this->data['active'] = 7;
+        $this->data['active'] = 5;
         $this->data['content'] = 'detail_anal';
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);

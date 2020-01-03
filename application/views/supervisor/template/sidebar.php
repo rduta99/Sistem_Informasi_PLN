@@ -24,7 +24,7 @@
                 
                     
                     <li class="nav-item">
-                        <a href="<?= site_url('supervisor') ?>" class="nav-link">
+                        <a href="<?= site_url('supervisor') ?>" class="nav-link <?php if($active == 1) { echo "active"; } ?>">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Daftar Equipment
@@ -32,7 +32,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= site_url('supervisor/tools') ?>" class="nav-link">
+                        <a href="<?= site_url('supervisor/tools') ?>" class="nav-link <?php if($active == 2) { echo "active"; } ?>">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Daftar Tools
@@ -40,7 +40,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?= site_url('supervisor/personel') ?>" class="nav-link">
+                        <a href="<?= site_url('supervisor/personel') ?>" class="nav-link <?php if($active == 3) { echo "active"; } ?>">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Daftar Personel
@@ -49,7 +49,7 @@
                     </li>
 
                     <li class="nav-item">
-                            <a href="<?= site_url('supervisor/his_pengukuran') ?>" class="nav-link">
+                            <a href="<?= site_url('supervisor/his_pengukuran') ?>" class="nav-link <?php if($active == 4) { echo "active"; } ?>">
                                 <i class="nav-icon fas fa-thermometer-quarter"></i>
                                 <p>
                                     Histori Pengukuran
@@ -58,7 +58,7 @@
                     </li>
 
                     <li class="nav-item">
-                            <a href="<?= site_url('supervisor/list_analisis') ?>" class="nav-link">
+                            <a href="<?= site_url('supervisor/list_analisis') ?>" class="nav-link <?php if($active == 5) { echo "active"; } ?>">
                                 <i class="nav-icon fas fa-bong"></i>
                                 <p>
                                     List Analisis
@@ -67,7 +67,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="<?= site_url('logout') ?>" class="nav-link">
+                        <a href="<?= site_url('logout') ?>" class="nav-link <?php if($active == 6) { echo "active"; } ?>">
                             <i class="nav-icon fas fa-sign-out-alt"></i>
                             <p>
                                 Keluar

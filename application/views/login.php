@@ -60,7 +60,6 @@
   <div class="row">
     <div class="col-md-4 pt-5">
       <div class="strokeme mt-5 pt-5">
-        <center><img src="<?= base_url('assets/') ?>dist/img/pln.png" class="img-square" style="width:65"></center>
         <h1>
           <b><center>ENGINEERING<br>PLN UIKSBS</center><b>
         </h1>

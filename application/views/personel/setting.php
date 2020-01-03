@@ -53,7 +53,7 @@
                           <img src="#" id="blah" style="display: none">
                           <div class="form-group">
                               <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="foto_bukti">
+                                  <input type="file" class="custom-file-input" name="gambar" id="foto_bukti">
                                   <label class="custom-file-label" for="foto_bukti">Foto bukti</label>
                               </div>
                           </div>

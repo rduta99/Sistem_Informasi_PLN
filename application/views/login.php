@@ -16,12 +16,52 @@
   <link rel="stylesheet" href="<?= base_url('assets/') ?>dist/css/adminlte.min.css">
   
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+  a {
+    color: #0097a7;
+    text-decoration: none;
+    background-color: transparent;
+}
+  .btn-primary {
+    color: #fff;
+    background-color: #0097a7;
+    border-color: #0097a7;
+    box-shadow: none;
+  }
+    .login-card-body, .register-card-body {
+    background: #e0f7fa;
+    border-top: 0;
+    color:#0097a7;
+    padding: 20px;
+}
+    body, html {
+      background: url('<?= base_url('assets/dist/img/pln_backg.jpg') ?>') !important;
+      background-repeat: no-repeat !important;
+      background-size: contain !important;
+      background-position: center !important;
+      background-color: #26a69a !important;
+    }
+  
+    .text-muted {
+    color:#004d40 !important;
+    border-color:fff;
+}
+.login-logo a, .register-logo a {
+    color: #fafafa;
+    font-weight: bold;
+    border-color: black;
+}
+.strokeme {
+  color: white;
+  text-shadow: -1px -1px 0 #26a69a, 1px -1px 0 #26a69a, -1px 1px 0 #26a69a, 1px 1px 0 #26a69a;
+}
+  </style>
   
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-  <div class="login-logo">
-    <a href="<?= site_url('login') ?>"><b></b>PLN</a>
+  <div class="strokeme">
+    <h1><b><center>ENGINEERING<br>PLN KIT SBS</center><b></h1>
   </div>
 
   <?= $this->session->flashdata('msg') ?>
@@ -55,15 +95,12 @@
       <?= form_close() ?>
 
       <p class="mb-1 mt-4">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p>
-      <p class="mb-0">
-        <a href="register.html" class="text-center">Register a new membership</a>
+        <a href="forgot-password.html">Forgot Password</a>
       </p>
     </div>
     <!-- /.login-card-body -->
   </div>
-  <p class="mt-3 text-muted text-center">Copyright &copy; Lebah Ganteng</p>
+  <p class="mt-3 text-muted text-center"><b>Copyright &copy; Lebah Gantengs</b></p>
 </div>
 
 <!-- jQuery -->

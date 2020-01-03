@@ -255,13 +255,14 @@ class Personel extends MY_Controller {
         $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);
     }
+
     public function analisis_eq($id)
     {
         $this->data['barang'] = $this->his_pengukuran_m->get_join_where(['data_barang'], ['histori_pengukuran.id_equipment = data_barang.asset_id'], ['id_pengukuran' => $id]);
         $this->data['tools'] = $this->log_ukur_m->get_join_all_where(['tools'], ['log_ukur.id_tools = tools.id_tools'], ['id_histori' => $id]);
-        $this->data['active'] = 3;
+        $this->data['active'] = 6;
         $this->data['content'] = 'anal';
-        $this->data['title'] = 'Admin | ';
+        $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);
     }
 

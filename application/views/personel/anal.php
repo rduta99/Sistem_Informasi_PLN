@@ -24,7 +24,7 @@
                             <h3 class="card-title">Analisis <?= $barang->desk ?></h3>
                         </div>
                         <div class="card-body">
-                            <?= form_open('personel/laporan_analisis/'.$barang->asset_id) ?>
+                            <?= form_open('personel/list_analisis/'.$barang->asset_id) ?>
                                 <div class="row">
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">Nama Peralatan</label>
@@ -44,43 +44,43 @@
                                     </div>
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">Spesifikasi A</label>
-                                        <input type="text" name="spek_a" class="form-control">
+                                        <input type="text" value="<?= $barang->spek_a ?>" class="form-control">
                                     </div>
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">Spesifikasi B</label>
-                                        <input type="text" name="spek_b" class="form-control">
+                                        <input type="text" value="<?= $barang->spek_b ?>" class="form-control">
                                     </div>
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">Spesifikasi C</label>
-                                        <input type="text" name="spek_c" class="form-control">
+                                        <input type="text" value="<?= $barang->spek_c ?>" class="form-control">
                                     </div>
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">Spesifikasi D</label>
-                                        <input type="text" name="spek_d" class="form-control">
+                                        <input type="text" value="<?= $barang->spek_d ?>" class="form-control">
                                     </div>
                                     <input type="hidden" name="id" value="<?= $barang->id_pengukuran ?>">
-                                    <div class="col-md-4">
+                                    <!-- <div class="col-md-4">
                                         <label for="">Gambar Peralatan</label>
                                     <?= '<img class="img-thumbnail p-4" src="data:image/jpeg;base64,'.base64_encode($barang->gambar).'">' ?>
-                                    </div>
-                                    <div class="form-group col-md-8 mb-3">
+                                    </div> -->
+                                    <div class="form-group col-md-12 mb-3">
                                         <label for="">General Drawing Peralatan & Titik Pengukuran</label>
-                                        <textarea class="form-control" name="gen_dr" id="" cols="30" rows="10"></textarea>
+                                        <textarea class="textarea" name="gen_dr" id="" cols="30" rows="10"></textarea>
                                     </div>
-                                    <div class="form-group col-md-6 mb-3">
+                                    <div class="form-group col-md-12 mb-3">
                                         <label for="">Finding</label>
-                                        <textarea class="form-control" name="finding" id="" cols="30" rows="10"></textarea>
+                                        <textarea class="textarea" name="finding" id="" cols="30" rows="10"></textarea>
                                     </div>
-                                    <div class="form-group col-md-6 mb-3">
+                                    <div class="form-group col-md-12 mb-3">
                                         <label for="">Diagnose</label>
-                                        <textarea class="form-control" name="diagnose" id="" cols="30" rows="10"></textarea>
-                                    </div><div class="form-group col-md-6 mb-3">
+                                        <textarea class="textarea" name="diagnose" id="" cols="30" rows="10"></textarea>
+                                    </div><div class="form-group col-md-12 mb-3">
                                         <label for="">Analysis</label>
-                                        <textarea class="form-control" name="analisis" id="" cols="30" rows="10"></textarea>
+                                        <textarea class="textarea" name="analisis" id="" cols="30" rows="10"></textarea>
                                     </div>
-                                    <div class="form-group col-md-6 mb-3">
+                                    <div class="form-group col-md-12 mb-3">
                                         <label for="">Recommendation</label>
-                                        <textarea class="form-control" name="recommend" id="" cols="30" rows="10"></textarea>
+                                        <textarea class="textarea" name="recommend" id="" cols="30" rows="10"></textarea>
                                     </div>
                                 </div>
                                 <input type="submit" name="anal" value="Lakukan Analisis" class="btn btn-primary btn-md w-100">

@@ -34,6 +34,78 @@
 
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <style>
+        [class*=sidebar-dark-] {
+            background-color: #26a69a;
+        }        
+        [class*=content-wrapper] {
+            background-color: #e0f7fa;
+        }
+        [class*=main-header] {
+            background-color: #26a69a;
+        }
+        [class*=main-footer] {
+            background-color: #26a69a;
+        }
+        
+        .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: #54b4c3;
+    color: #fff;
+    }
+
+    body {
+    margin: 0;
+    font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #006064;
+    text-align: left;
+    background-color: #ffee58;
+    }
+
+    a {
+        color: #fdd835 ;
+        text-decoration: none;
+        background-color: transparent;
+    }
+
+    .btn-primary {
+    color: #fff;
+    background-color: #26a69a;
+    border-color: #26a69a;
+    box-shadow: none;
+}
+.text-dark {
+    color:#007575 !important;
+}
+
+.main-footer {
+    
+    color: #C4DBE0;
+    
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #26a69a;
+    border-color: #26a69a;
+    box-shadow: none;
+}
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #26a69a;
+    border-color: #26a69a;
+}
+
+.alert-success {
+    color: #fff;
+    background:#00b8d4;
+    border-color: #00b8d4;
+}
+
+    </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">

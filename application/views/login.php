@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Log In | PT PLN Persero</title>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/fontawesome-free/css/all.min.css">
   
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
@@ -69,15 +60,18 @@
   <div class="row">
     <div class="col-md-4 pt-5">
       <div class="strokeme mt-5 pt-5">
-        <h1><b><center>ENGINEERING<br>PLN KIT SBS</center><b></h1>
+        <center><img src="<?= base_url('assets/') ?>dist/img/pln.png" class="img-square" style="width:65"></center>
+        <h1>
+          <b><center>ENGINEERING<br>PLN UIKSBS</center><b>
+        </h1>
       </div>
 
       <?= $this->session->flashdata('msg') ?>
-
-        <div class="card-body py-5">
       <?= form_open('login', ['id' => 'login'], ['login' => 'test']) ?>
+      <div class="card">
+        <div class="card-body py-5">
 
-          <?= form_open('login') ?>
+          
 
             <div class="input-group mb-3">
               <input type="text" name="nip" class="form-control" placeholder="NIP">
@@ -95,20 +89,20 @@
                 </div>
               </div>
             </div>
+            <button type="button" class="btn btn-primary btn-block" id="masuk">Login</button>
+            <p class="mb-1 mt-4">
+              <a href="forgot-password.html">Forgot Password</a>
+            </p>
           </div>
         </div>
         
-        <button type="button" class="btn btn-primary btn-block" id="masuk">Login</button>
           
           <?= form_close() ?>
 
-          <p class="mb-1 mt-4">
-            <a href="forgot-password.html">Forgot Password</a>
-          </p>
+          <p class="mt-3 text-muted text-center"><b>Copyright &copy; Lebah Gantengs</b></p>
         </div>
         <!-- /.login-card-body -->
       </div>
-      <p class="mt-3 text-muted text-center"><b>Copyright &copy; Lebah Gantengs</b></p>
     </div>
     <div class="col"></div>
   </div>

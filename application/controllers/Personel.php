@@ -56,8 +56,7 @@ class Personel extends MY_Controller {
         // echo $this->data['username'];
         $unit = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
         $this->data['equipment'] = $this->equipment_m->get(['unit' => $unit->unit]);
-        // print_r($unit);
-        // exit;
+        $this->data['unit'] = $this->unit_m->get();
         $this->data['active'] = 1;
         $this->data['content'] = 'main';
         $this->data['title'] = 'Personel | ';
@@ -145,15 +144,17 @@ class Personel extends MY_Controller {
                 'gambar' => $gambar
             ];
             $this->data_personil_m->update($this->POST('nip'), $datas);
-            unlink($data['full_path']);
             $this->flashmsg('Data berhasil disimpan');
         }
         $this->data['data_personil'] = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
+        $this->data['pegawai'] = $this->user_m->getDataJoin(['role', 'data_personil', 'jabatan', 'unit'], ['user.id_role = role.id_role', 'user.nip = data_personil.nip', 'data_personil.jabatan = jabatan.id_jabatan', 'data_personil.unit = unit.id_unit']);
+        $this->data['unit'] = $this->unit_m->get();
         $this->data['active'] = 5;
         $this->data['content'] = 'setting';
         $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);   
     }
+
     public function tools(){
 
         if($this->POST('simpan_tool')) {
@@ -295,7 +296,7 @@ class Personel extends MY_Controller {
                 $id = $this->log_anal_m->get_row(['id_equip' => $this->POST('asset_id')])->id_log;
             } else {
                 $id = $cek->id_log;
-                $this->log_anal_m->insert($id, ['id_equip' => $this->POST('asset_id')]);
+                $this->log_anal_m->update($id, ['id_equip' => $this->POST('asset_id')]);
             }
             
             $this->data['input'] = [

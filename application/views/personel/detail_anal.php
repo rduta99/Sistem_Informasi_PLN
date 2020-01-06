@@ -56,6 +56,30 @@
                                                         <?= $k->finding ?>
                                                     </div>
                                                 </div>
+                                                <div class="card">
+                                                    <div class="card-header border-0">
+                                                        <h3 class="card-title">Diagnosis</h3>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <?= $k->diagnose ?>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-header border-0">
+                                                        <h3 class="card-title">Analisis</h3>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <?= $k->analysis ?>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-header border-0">
+                                                        <h3 class="card-title">Rekomendasi</h3>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <?= $k->recommendation ?>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -38,7 +38,13 @@
                           </div>
                           <div class="form-group">
                             <label for="">Unit</label>
-                            <input type="text" class="form-control" name="unit" id="unit" value="<?= $data_personil->unit ?>" >
+                            <select name="unit" id="" class="custom-select">
+                            <?= $k->nama_unit ?>
+                                                                    <option selected disabled>Pilih unit</option>
+                                                                    <?php foreach ($unit as $d) { ?>
+                                                                        <option <?php if($unit == $d->id_unit) { echo "selected"; } ?> value="<?= $d->id_unit ?>"><?= $d->nama_unit ?></option>
+                                                                    <?php } ?>
+                          </select>
                           </div>
                           <div class="form-group">
                             <label for="exampleInputPassword1">No.HP</label>
@@ -54,7 +60,7 @@
                           <div class="form-group">
                               <div class="custom-file">
                                   <input type="file" class="custom-file-input" name="gambar" id="foto_bukti">
-                                  <label class="custom-file-label" for="foto_bukti">Foto bukti</label>
+                                  <label class="custom-file-label" for="foto_bukti">Attach Gambar</label>
                               </div>
                           </div>
                           </div>

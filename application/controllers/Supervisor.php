@@ -39,6 +39,7 @@ class Supervisor extends MY_Controller {
         $this->load->model('his_pengukuran_m');
         $this->load->model('log_ukur_m');
         $this->load->model('analisis_m');
+        $this->load->model('log_anal_m');
     }
     
     public function index()
@@ -267,14 +268,22 @@ class Supervisor extends MY_Controller {
 
     public function list_analisis()
     {
+        
         if($this->POST('anal')) {
+
+            $cek = $this->log_anal_m->get_row(['id_equip' => $this->POST('asset_id')]);
+            if($cek == null) {
+                $this->log_anal_m->insert(['id_equip' => $this->POST('asset_id')]);
+                $id = $this->log_anal_m->get_row(['id_equip' => $this->POST('asset_id')])->id_log;
+            } else {
+                $id = $cek->id_log;
+                $this->log_anal_m->update($id, ['id_equip' => $this->POST('asset_id')]);
+            }
+
             $this->data['input'] = [
                 'id_equipment' => $this->POST('asset_id'),
                 'mpi' => $this->POST('mpi'),
-                'spek_a' => $this->POST('spek_a'),
-                'spek_b' => $this->POST('spek_b'),
-                'spek_c' => $this->POST('spek_c'),
-                'spek_d' => $this->POST('spek_d'),
+                'id_log' => $id,
                 'general_draw' => $this->POST('gen_dr'),
                 'finding' => $this->POST('finding'),
                 'diagnose' => $this->POST('diagnose'),

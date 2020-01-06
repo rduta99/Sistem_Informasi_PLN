@@ -348,7 +348,7 @@ class Admin extends MY_Controller {
                 $id = $this->log_anal_m->get_row(['id_equip' => $this->POST('asset_id')])->id_log;
             } else {
                 $id = $cek->id_log;
-                $this->log_anal_m->insert($id, ['id_equip' => $this->POST('asset_id')]);
+                $this->log_anal_m->update($id, ['id_equip' => $this->POST('asset_id')]);
             }
             
             $this->data['input'] = [

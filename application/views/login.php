@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Log In | PT PLN Persero</title>
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/fontawesome-free/css/all.min.css">
   
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
@@ -43,6 +34,7 @@
       background-repeat: no-repeat !important;
       background-size: contain !important;
       background-position: center !important;
+      background-attachment: fixed;
       background-color: #26a69a !important;
     }
   
@@ -62,49 +54,57 @@
   </style>
   
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <div class="strokeme">
-    <h1><b><center>ENGINEERING<br>PLN KIT SBS</center></b></h1>
-  </div>
+<body class="hold-transition">
 
-  <?= $this->session->flashdata('msg') ?>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 pt-5">
+      <div class="strokeme mt-5 pt-5">
+        <h1>
+          <b><center>ENGINEERING<br>PLN UIKSBS</center><b>
+        </h1>
+      </div>
 
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
-
+      <?= $this->session->flashdata('msg') ?>
       <?= form_open('login', ['id' => 'login'], ['login' => 'test']) ?>
+      <div class="card">
+        <div class="card-body py-5">
 
-        <div class="input-group mb-3">
-          <input type="text" name="nip" class="form-control" placeholder="NIP">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
+          
+
+            <div class="input-group mb-3">
+              <input type="text" name="nip" class="form-control" placeholder="NIP">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-user"></span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+            <div class="input-group mb-3">
+              <input type="password" name="password" class="form-control" placeholder="Password">
+              <div class="input-group-append">
+                <div class="input-group-text">
+                  <span class="fas fa-lock"></span>
+                </div>
+              </div>
             </div>
+            <button type="button" class="btn btn-primary btn-block" id="masuk">Login</button>
+            <p class="mb-1 mt-4">
+              <a href="forgot-password.html">Forgot Password</a>
+            </p>
           </div>
         </div>
         
-        <button type="button" class="btn btn-primary btn-block" id="masuk">Login</button>
           
-      
-      <?= form_close() ?>
+          <?= form_close() ?>
 
-      <p class="mb-1 mt-4">
-        <a href="forgot-password.html">Forgot Password</a>
-      </p>
+          <p class="mt-3 text-muted text-center"><b>Copyright &copy; Lebah Gantengs</b></p>
+        </div>
+        <!-- /.login-card-body -->
+      </div>
     </div>
-    <!-- /.login-card-body -->
+    <div class="col"></div>
   </div>
-  <p class="mt-3 text-muted text-center"><b>Copyright &copy; Lebah Gantengs</b></p>
 </div>
 
 <script src="<?= base_url('assets/') ?>plugins/jquery/jquery.min.js"></script>

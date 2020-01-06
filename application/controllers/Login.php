@@ -60,7 +60,7 @@ class Login extends MY_Controller {
 	{
 		$data = [
 			'nip' => $this->POST('nip'),
-			'password' => md5($this->POST('password'))
+			'password' => md5($this->POST('password')),
 		];
 		$cek = $this->user_m->get_row($data);
 		if($cek == null) {

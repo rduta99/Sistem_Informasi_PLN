@@ -56,18 +56,19 @@
 <script>
 $(function () {
     $("#example1").DataTable();
-    $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-    });
+    $("#PANTEKS").DataTable();
+    // $('#example2').DataTable({
+    //     "paging": true,
+    //     "lengthChange": false,
+    //     "searching": false,
+    //     "ordering": true,
+    //     "info": true,
+    //     "autoWidth": false,
+    // });
 
-    $('.select2').select2({
-        theme: 'bootstrap4'
-    });
+    // $('.select2').select2({
+    //     theme: 'bootstrap4'
+    // });
 });
 
 function add_eq() {

@@ -56,7 +56,32 @@
 <script>
 $(function () {
     $("#example1").DataTable();
-    $("#PANTEKS").DataTable();
+    $('#summernote').summernote({
+    height: 200,
+    callbacks: {
+        onImageUpload: function(image) {
+                        uploadImage(image[0]);
+                    }
+    }
+});
+            function uploadImage(image) {
+                var data = new FormData();
+                data.append("image", image);
+                $.ajax({
+                    url: "<?php echo site_url('supervisor/up_img')?>",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    type: "POST",
+                    success: function(url) {
+                        $('#summernote').summernote("insertImage", url);
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            }
     // $('#example2').DataTable({
     //     "paging": true,
     //     "lengthChange": false,

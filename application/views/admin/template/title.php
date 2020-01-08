@@ -105,6 +105,11 @@
     border-color: #00b8d4;
 }
 
+.btn-primary:hover {
+    color: #fff;
+    background-color: #43a047;
+    border-color: #43a047;
+}
     </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">

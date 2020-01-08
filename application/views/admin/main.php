@@ -260,6 +260,7 @@
                                                             <input type="submit" class="btn btn-primary" value="Simpan Perubahan" name="simpan">
                                                         </div>
                                                     </div>
+                                                </div>
 
                                                     <?= form_close() ?>
 

@@ -49,19 +49,28 @@ class Personel extends MY_Controller {
             $data = [
                 'asset_id' => $this->POST('asset_id'),
                 'kks_number' => $this->POST('kks_number'),
-                'desk' => $this->POST('desk'),
                 'unit' => $this->POST('unit'),
-                ];
+                'desk' => $this->POST('desk'),
+                'spek_a' => $this->POST('spek_a'),
+                'spek_b' => $this->POST('spek_b'),
+                'spek_c' => $this->POST('spek_c'),
+                'spek_d' => $this->POST('spek_d'),
+                
+            ];
+            $this->data_barang_m->insert($data);
+            $this->flashmsg('Data berhasil ditambahkan');
         }
-        // echo $this->data['username'];
-        $unit = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
-        $this->data['equipment'] = $this->equipment_m->get(['unit' => $unit->unit]);
+        //$this->data['data_barang'] = $this->data_barang_m->getDataJoin(['unit'], ['data_barang.unit = unit.id_unit']);
+        $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;
+        $this->data['data_barang'] = $this->data_barang_m->get_join_all_where(['unit'], ['data_barang.unit = unit.id_unit'], ['id_unit' => $id]);
+        $this->data['teknologi'] = $this->teknologi_m->get();
         $this->data['unit'] = $this->unit_m->get();
         $this->data['active'] = 1;
         $this->data['content'] = 'main';
         $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);
     }
+
 
     public function edit()
     {
@@ -127,7 +136,7 @@ class Personel extends MY_Controller {
     public function setting()
     {
      if($this->POST('simpan')) {
-            $config['upload_path'] = base_url().'/assets/';
+            $config['upload_path'] = './assets/';
             $config['allowed_types'] = 'jpg|png|jpeg';
             $this->upload->initialize($config);
             $this->upload->do_upload('gambar');
@@ -144,6 +153,7 @@ class Personel extends MY_Controller {
                 'gambar' => $gambar
             ];
             $this->data_personil_m->update($this->POST('nip'), $datas);
+            unlink($data['full_path']);
             $this->flashmsg('Data berhasil disimpan');
         }
         $this->data['data_personil'] = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
@@ -212,17 +222,16 @@ class Personel extends MY_Controller {
         $this->data['tools'] = $this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']);
         $this->data['active'] = 3;
         $this->data['content'] = 'ukur_eq';
-        $this->data['title'] = 'Admin | ';
+        $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);
     }
-
-        public function his_pengukuran()
+    public function his_pengukuran()
     {
         if($this->POST('simpan_ukur')) {
             $config['upload_path'] = './assets/';
-            $config['allowed_types'] = 'jpg|png|jpeg';
-            $this->upload->initialize($config);
-            $this->upload->do_upload('gambar');
+			$config['allowed_types'] = 'jpg|png|jpeg';
+			$this->upload->initialize($config);
+			$this->upload->do_upload('gambar');
             $data = $this->upload->data();
             $gambar = file_get_contents($data['full_path']);
             $id = $this->POST('equipment');
@@ -235,7 +244,8 @@ class Personel extends MY_Controller {
                     $max = $kondisi[$i];
                 }
             }
-            $this->his_pengukuran_m->insert(['id_equipment' => $id, 'gambar' => $gambar, 'kondisi' => $max, 'waktu' => date('Y-m-d')]);
+            $k = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
+            $this->his_pengukuran_m->insert(['id_equipment' => $id, 'gambar' => $gambar, 'kondisi' => $max, 'waktu' => date('Y-m-d'), 'unit' => $k->unit]);
             unlink($data['full_path']);
             $id = $this->his_pengukuran_m->get_row(['id_equipment' => $id, 'kondisi' => $max, 'waktu' => date('Y-m-d')])->id_pengukuran;
             for ($i=0; $i < count($angka); $i++) { 
@@ -250,9 +260,9 @@ class Personel extends MY_Controller {
                 $this->flashmsg("Pengukuran berhasil disimpan"); 
             }
         }
-        $this->data['pengukuran'] = $this->his_pengukuran_m->get_data_join_order(['data_barang'], ['histori_pengukuran.id_equipment = data_barang.asset_id'], 'waktu', 'DESC');
-        $this->data['active'] = 3;
+        $this->data['pengukuran'] = $this->his_pengukuran_m->get_data_join_order(['data_barang', 'unit'], ['histori_pengukuran.id_equipment = data_barang.asset_id', 'data_barang.unit = unit.id_unit'], 'waktu', 'DESC');
         $this->data['content'] = 'histori_me';
+        $this->data['active'] = 3;
         $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);
     }

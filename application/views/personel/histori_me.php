@@ -14,8 +14,7 @@
                     </div>
                 </div>
             </div>
-
-            <section class="content">
+            <sectio class="content">
                 <div class="container-fluid">
                     <div class="card">
                         <div class="card-header border-0">
@@ -58,7 +57,7 @@
                                                 <i class="fas fa-cog"></i> Detail
                                             </a>
                                             <a href="<?= site_url('personel/analisis_eq/'.$k->id_pengukuran) ?>" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-cog"></i> Lakukan Analisis
+                                                <i class="fas fa-cog"></i> Lakukan Analasis
                                             </a>
                                         </td>
                                     </tr>
@@ -68,4 +67,4 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </sectio>

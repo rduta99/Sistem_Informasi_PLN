@@ -30,74 +30,21 @@
                                 <div class="modal fade" id="modal-default">
                                     <div class="modal-dialog">
 
-                                        <?= form_open("admin/master_to") ?>
+                                        <?= form_open_multipart("admin/upload_kalibrasi", [], ['id' => $this->uri->segment(3)]) ?>
 
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 class="modal-title">Tambah Tools</h4>
+                                                <h4 class="modal-title">Upload File Kalibrasi (.pdf file)</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-pen"></i>
-                                                        </span>
+                                                <div class="form-group">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" name="file_pdf" id="foto_bukti">
+                                                        <label class="custom-file-label" for="foto_bukti">File Kalibrasi</label>
                                                     </div>
-                                                    <input type="text" name="id_tools" class="form-control" placeholder="ID Tools">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-lock"></i>
-                                                        </span>
-                                                    </div>
-                                                    <input type="text" name="type" class="form-control" placeholder="Type">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-toolbox"></i>
-                                                        </span>
-                                                    </div>
-                                                    <input type="text" name="merk" class="form-control" placeholder="Merk">
-                                                </div>
-
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-envelope"></i>
-                                                        </span>
-                                                    </div>
-                                                    <select name="unit" class="custom-select">
-                                                        <option disabled selected>Pilih Unit</option>
-                                                        <?php foreach ($unit as $k) { ?>
-                                                            <option value="<?= $k->id_unit ?>"><?= $k->nama_unit ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-envelope"></i>
-                                                        </span>
-                                                    </div>
-                                                    <select name="teknologi" class="custom-select">
-                                                        <option disabled selected>Pilih Teknologi</option>
-                                                        <?php foreach ($teknologi as $d) { ?>
-                                                            <option value="<?= $d->id_teknologi ?>"><?= $d->nama_teknologi ?></option>
-                                                        <?php } ?>
-                                                    </select>
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <i class="fas fa-calendar"></i>
-                                                        </span>
-                                                    </div>
-                                                    <input type="date" name="tgl_kalibrasi" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="modal-footer justify-content-between">
@@ -120,7 +67,7 @@
                     <div class="card">
                         <div class="card-header border-0">
                             <h3 class="card-title">
-                                List Analisis
+                                List Kalibrasi
                             </h3>
                         </div>
                         <div class="card-body table-responsive p-3">
@@ -128,30 +75,26 @@
                                 <thead>
                                     <tr>
                                         <td>No</td>
-                                        <td>Nama Equipment</td>
-                                        <td>Asset ID</td>
-                                        <td>KKS Number</td>
+                                        <td>Tanggal Kalibrasi</td>
                                         <td>Opsi</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- <?php 
+                                    <?php 
                                     
-                                    $no = 0; foreach ($analisis as $k) { 
+                                    $no = 0; foreach ($list_kalibrasi as $k) { 
                                     
                                     ?>
                                     <tr>
                                         <td><?= ++$no ?></td>
-                                        <td><?= $k->desk ?></td>
-                                        <td><?= $k->asset_id ?></td>
-                                        <td><?= $k->kks_number ?></td>
+                                        <td><?= date('d M Y', strtotime($k->tgl)) ?></td>
                                         <td>
-                                            <a href="<?= site_url('admin/detail_analisis/'.$k->id_log) ?>" class="btn btn-primary btn-sm">
+                                            <a href="<?= site_url('admin/detail_kalibrasi/'.$k->id_kalibrasi) ?>" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-cog"></i> Detail
                                             </a>
                                         </td>
                                     </tr>
-                                    <?php } ?> -->
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

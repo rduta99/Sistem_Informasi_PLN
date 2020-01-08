@@ -382,6 +382,19 @@ class Admin extends MY_Controller {
         $this->load->view('admin/template/template', $this->data);
     }
 
+    public function detail_tools()
+    {
+        $this->data['active'] = 5;
+        $this->data['content'] = 'list_kalibrasi';
+        $this->data['title'] = 'Admin | ';
+        $this->load->view('admin/template/template', $this->data);
+    }
+
+    public function upload_kalibrasi()
+    {
+        
+    }
+
     public function laporan_analisis()
     {
         $this->data['input'] = $this->analisis_m->get_join_where(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id'],['id_anal' => 2]);

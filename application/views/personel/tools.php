@@ -34,7 +34,7 @@
 
                         <div class="modal fade" id="tool_reg">
                             <div class="modal-dialog">
-                            <?= $this->session->flashdata('msg') ?>
+
                                 <?= form_open("personel/tools") ?>
 
                                 <div class="modal-content">
@@ -122,8 +122,8 @@
                             </div>
                         </div>
 
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-striped table-valign-middle">
+                        <div class="card-body table-responsive p-3">
+                            <table class="table table-striped table-valign-middle" id="example1">
                                 <thead>
                                     <tr>
                                         <th>Tools ID</th>
@@ -151,7 +151,7 @@
                                             <?= $k->nama_unit ?>
                                         </td>
                                         <td>
-                                            <?= $k->nama_teknologi ?>
+                                            <?= $k->teknologi ?>
                                         </td>
                                         <td>
                                             <?= $k->tgl_kalibrasi ?>
@@ -188,7 +188,7 @@
                                                                         <i class="fas fa-envelope"></i>
                                                                     </span>
                                                                 </div>
-                                                                <select name="unit" class="custom-select">
+                                                                <select name="teknologi" class="custom-select">
                                                                     <option disabled selected>Jenis Teknologi</option>
                                                                     <?php foreach ($teknologi as $z) { ?>
                                                                         <option <?php if($k->teknologi == $z->id_teknologi) echo "selected" ?> value="<?= $z->id_teknologi ?>"><?= $z->nama_teknologi ?></option>

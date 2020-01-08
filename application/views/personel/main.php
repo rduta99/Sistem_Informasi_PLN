@@ -7,7 +7,7 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="<?= site_url('personel') ?>">Home</a></li>
+                                <li class="breadcrumb-item"><a href="<?= site_url('supervisor') ?>">Home</a></li>
                                 <li class="breadcrumb-item active">Dashboard</li>
                             </ol>
                         </div>
@@ -20,37 +20,36 @@
                     <?= $this->session->flashdata('msg') ?>
                     <div class="card">
                         <div class="card-header border-0">
-                            <h3 class="card-title">Equipment Based on Unit</h3>
+                            <h3 class="card-title">Daftar Equipment</h3>
                         </div>
+                        
 
-                            </div>
-                        </div>
-
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-striped table-valign-middle">
+                        <div class="card-body table-responsive p-3">
+                            <table class="table table-striped table-valign-middle" id="example1">
                                 <thead>
                                     <tr>
-                                        <th>Asset ID</th>
-                                        <th>KKS Number</th>
-                                        <th>Description</th>
-                                        <th>Unit</th>
+                                        <td>Asset ID</td>
+                                        <td>KKS Number</td>
+                                        <td>Unit</td>
+                                        <td>Description</td>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    <?php foreach ($equipment as $q) { ?>
+                                    <?php foreach ($data_barang as $k) { ?>
                                     <tr>
                                         <td>
-                                            <?= $q->asset_id ?>
+                                            <img src="<?= base_url('assets/') ?>dist/img/avatar3.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                                            <?= $k->asset_id ?>
                                         </td>
                                         <td>
-                                            <?= $q->kks_number ?>
+                                            <?= $k->kks_number ?>
                                         </td>
                                         <td>
-                                            <?= $q->desk ?>
+                                            <?= $k->nama_unit ?>
                                         </td>
                                         <td>
-                                            <?= $q->unit ?>
+                                            <?= $k->desk ?>
                                         </td>
                                         
                                     </tr>

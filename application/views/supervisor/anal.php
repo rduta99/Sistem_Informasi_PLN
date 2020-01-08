@@ -65,22 +65,22 @@
                                     </div> -->
                                     <div class="form-group col-md-12 mb-3">
                                         <label for="">General Drawing Peralatan & Titik Pengukuran</label>
-                                        <textarea class="textarea" name="gen_dr" id="" cols="30" rows="10"></textarea>
+                                        <textarea class="textarea" name="gen_dr" id="summernote" cols="30" rows="10"></textarea>
                                     </div>
                                     <div class="form-group col-md-12 mb-3">
                                         <label for="">Finding</label>
-                                        <textarea class="textarea" name="finding" id="" cols="30" rows="10"></textarea>
+                                        <textarea class="textarea" name="finding" cols="30" rows="10"></textarea>
                                     </div>
                                     <div class="form-group col-md-12 mb-3">
                                         <label for="">Diagnose</label>
-                                        <textarea class="textarea" name="diagnose" id="" cols="30" rows="10"></textarea>
+                                        <textarea class="textarea" name="diagnose" cols="30" rows="10"></textarea>
                                     </div><div class="form-group col-md-12 mb-3">
                                         <label for="">Analysis</label>
-                                        <textarea class="textarea" name="analisis" id="" cols="30" rows="10"></textarea>
+                                        <textarea class="textarea" name="analisis" cols="30" rows="10"></textarea>
                                     </div>
                                     <div class="form-group col-md-12 mb-3">
                                         <label for="">Recommendation</label>
-                                        <textarea class="textarea" name="recommend" id="" cols="30" rows="10"></textarea>
+                                        <textarea class="textarea" name="recommend" cols="30" rows="10"></textarea>
                                     </div>
                                 </div>
                                 <input type="submit" name="anal" value="Lakukan Analisis" class="btn btn-primary btn-md w-100">

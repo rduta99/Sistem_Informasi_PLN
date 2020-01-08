@@ -84,6 +84,12 @@
     border-color: #26a69a;
     box-shadow: none;
 }
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #26a69a;
+    border-color: #26a69a;
+}
 
     </style>
 </head>

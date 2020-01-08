@@ -204,7 +204,7 @@ class Supervisor extends MY_Controller {
 			$this->upload->initialize($config);
 			$this->upload->do_upload('gambar');
             $data = $this->upload->data();
-            $gambar = file_get_contents($data['full_path']);
+            $gambar = $data['full_path'];
             $id = $this->POST('equipment');
             $angka = $this->POST('angka');
             $kondisi = $this->POST('kondisi');
@@ -217,7 +217,7 @@ class Supervisor extends MY_Controller {
             }
             $k = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
             $this->his_pengukuran_m->insert(['id_equipment' => $id, 'gambar' => $gambar, 'kondisi' => $max, 'waktu' => date('Y-m-d'), 'unit' => $k->unit]);
-            unlink($data['full_path']);
+            // unlink($data['full_path']);
             $id = $this->his_pengukuran_m->get_row(['id_equipment' => $id, 'kondisi' => $max, 'waktu' => date('Y-m-d')])->id_pengukuran;
             for ($i=0; $i < count($angka); $i++) { 
                 $data = [
@@ -228,7 +228,7 @@ class Supervisor extends MY_Controller {
                     'waktu' => date('Y-m-d')
                 ];
                 $this->log_ukur_m->insert($data);
-                $this->flashmsg("Pengukuran berhasil disimpan"); 
+                $this->flashmsg("Pengukuran berhasil disimpan");
             }
         }
         $this->data['pengukuran'] = $this->his_pengukuran_m->get_data_join_order(['data_barang', 'unit'], ['histori_pengukuran.id_equipment = data_barang.asset_id', 'data_barang.unit = unit.id_unit'], 'waktu', 'DESC');
@@ -294,7 +294,7 @@ class Supervisor extends MY_Controller {
             $this->analisis_m->insert($this->data['input']);
             $this->flashmsg('Analisis Telah Ditambahkan');
         }
-        $this->data['analisis'] = $this->analisis_m->getDataJoin(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id']);
+        $this->data['analisis'] = $this->log_anal_m->getDataJoin(['data_barang'], ['log_anal.id_equip = data_barang.asset_id']);
         $this->data['active'] = 5;
         $this->data['content'] = 'list_anal';
         $this->data['title'] = 'Supervisor | ';
@@ -310,6 +310,31 @@ class Supervisor extends MY_Controller {
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);
     }
+
+    // public function up_img()
+    // {
+        
+    //     $config['upload_path'] = './assets/analisis/';
+    //     $config['allowed_types'] = 'jpg|png|jpeg';
+    //     $this->upload->initialize($config);
+        
+    //     if(!$this->upload->do_upload('image')) {
+            
+    //     } else {
+    //         $data = $this->upload->data();
+    //         $config['image_library']='gd2';
+    //         $config['source_image']='./assets/analisis/'.$data['file_name'];
+    //         $config['create_thumb']= FALSE;
+    //         $config['maintain_ratio']= TRUE;
+    //         $config['quality']= '60%';
+    //         $config['width']= 800;
+    //         $config['height']= 800;
+    //         $config['new_image']= './assets/analisis/'.$data['file_name'];
+    //         $this->load->library('image_lib', $config);
+    //         $this->image_lib->resize();
+    //         echo base_url().'assets/analisis/'.$data['file_name'];
+    //     }
+    // }
 
     public function detail_pengukuran($id)
     {

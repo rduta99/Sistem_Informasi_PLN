@@ -30,7 +30,6 @@
                                         <td>No</td>
                                         <td>Nama Equipment</td>
                                         <td>KKS Number</td>
-                                        <td>Tanggal Analisis</td>
                                         <td>Opsi</td>
                                     </tr>
                                 </thead>
@@ -44,7 +43,6 @@
                                         <td><?= ++$no ?></td>
                                         <td><?= $k->desk ?></td>
                                         <td><?= $k->kks_number ?></td>
-                                        <td><?= date('d M Y', strtotime($k->waktu)) ?></td>
                                         <td>
                                             <a href="<?= site_url('supervisor/detail_analisis/'.$k->id_log) ?>" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-cog"></i> Detail

@@ -31,7 +31,7 @@
                         <div class="modal fade" id="eq_reg">
                             <div class="modal-dialog">
 
-                                <?= form_open("supervisor") ?>
+                                <?= form_open_multipart("supervisor") ?>
 
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -113,7 +113,16 @@
                                                 </span>
                                             </div>
                                             <input type="text" name="spek_d" class="form-control" placeholder="Spesifikasi D">
-                                        </div>                                           
+                                        </div> 
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-pen"></i>
+                                                </span>
+                                            </div>
+                                            <input type="file" class="custom-file-input" name="gambar" id="foto_bukti">
+                                            <label class="custom-file-label" for="foto_bukti">Gambar Equipment</label>
+                                        </div>                                            
                                     </div>
                                     <div class="modal-footer justify-content-between">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -132,6 +141,7 @@
                             <table class="table table-striped table-valign-middle" id="example1">
                                 <thead>
                                     <tr>
+                                        <td>Gambar Equipment</td>
                                         <td>Asset ID</td>
                                         <td>KKS Number</td>
                                         <td>Unit</td>
@@ -144,7 +154,10 @@
                                     <?php foreach ($data_barang as $k) { ?>
                                     <tr>
                                         <td>
-                                            <img src="<?= base_url('assets/') ?>dist/img/avatar3.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                                        <img src="data:image/png;base64, <?= $k->gambar ?>" alt="Gambar Barang" />
+                                        </td>
+                                        <td>
+                                            <!-- <img src="<?= base_url('assets/') ?>dist/img/avatar3.png" alt="Product 1" class="img-circle img-size-32 mr-2"> -->
                                             <?= $k->asset_id ?>
                                         </td>
                                         <td>
@@ -153,6 +166,7 @@
                                         <td>
                                             <?= $k->nama_unit ?>
                                         </td>
+                                        
                                         <td>
                                             <?= $k->desk ?>
                                         </td>
@@ -242,7 +256,6 @@
                                                                 </div>
                                                                 <input type="text" name="spek_d" class="form-control" value="<?= $k->spek_d ?>">
                                                             </div>
-
                                                             
                                                         </div>
                                                         <div class="modal-footer justify-content-between">

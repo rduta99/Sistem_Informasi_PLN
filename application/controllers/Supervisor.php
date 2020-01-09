@@ -45,6 +45,16 @@ class Supervisor extends MY_Controller {
     public function index()
     {
         if($this->POST('simpan')) {
+            $config['upload_path'] = './assets/equip/';
+			$config['allowed_types'] = 'jpg|png|jpeg';
+			$this->upload->initialize($config);
+            if($this->upload->do_upload('gambar')) {
+                echo "TTTTTTT";
+            } else {
+                echo "kontol";
+            }
+            $data = $this->upload->data();
+            $gambar = $data['full_path'];
             $data = [
                 'asset_id' => $this->POST('asset_id'),
                 'kks_number' => $this->POST('kks_number'),
@@ -54,10 +64,12 @@ class Supervisor extends MY_Controller {
                 'spek_b' => $this->POST('spek_b'),
                 'spek_c' => $this->POST('spek_c'),
                 'spek_d' => $this->POST('spek_d'),
+                'gambar' => $gambar,
                 
             ];
             $this->data_barang_m->insert($data);
             $this->flashmsg('Data berhasil ditambahkan');
+            exit;
         }
         //$this->data['data_barang'] = $this->data_barang_m->getDataJoin(['unit'], ['data_barang.unit = unit.id_unit']);
         $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;

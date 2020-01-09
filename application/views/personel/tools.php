@@ -15,6 +15,20 @@
                 </div>
             </div>
 
+            
+            <section class="content">
+                <div class="container-fluid">
+                    <?= $this->session->flashdata('msg') ?>
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <h3 class="card-title">Daftar Tools</h3>
+                            <div class="card-tools">
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+            </section>
+
             <section class="content">
                 <div class="container-fluid">
                     <?= $this->session->flashdata('msg') ?>
@@ -261,3 +275,5 @@
                     
                 </div>
             </section>
+                
+                 

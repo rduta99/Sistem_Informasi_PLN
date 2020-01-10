@@ -133,7 +133,10 @@ class Supervisor extends MY_Controller {
             'asset_id' => $this->POST('asset_id'),
             'kks_number' => $this->POST('kks_number'),
             'desk' => $this->POST('desk'),
-            'unit' => $this->POST('unit')
+            'spek_a' => $this->POST('spek_a'),
+            'spek_b' => $this->POST('spek_b'),
+            'spek_c' => $this->POST('spek_c'),
+            'spek_d' => $this->POST('spek_d'),
         ];
         $this->data_barang_m->update($this->POST('asset_id'), $data);
         $this->flashmsg('Data berhasil diubah');

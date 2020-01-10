@@ -148,8 +148,7 @@
                                     <?php foreach ($tools as $k) { ?>
                                     <tr>
                                         <td>
-                                        <img src="<?= base_url('assets/tools/'.$k->gambar) ?>" alt="Gambar Tools" width="150">
-                                            <!-- <img src="<?php $link_gambar = explode('/', $k->gambar); echo base_url().$link_gambar[4].'/'.$link_gambar[5].'/'.$link_gambar[6] ?>" alt="Gambar Barang" width="150"/> -->
+                                            <img src="<?= base_url('assets/tools/'.$k->gambar) ?>" alt="Gambar Tools" width="150">
                                         </td>
                                         <td>
                                             <?= $k->id_tools ?>

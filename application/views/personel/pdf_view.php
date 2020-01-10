@@ -1,0 +1,1 @@
+<iframe src="https://docs.google.com/viewer?url=<?= $url.'.pdf' ?>" style="width:600px; height:500px;" frameborder="0"></iframe>

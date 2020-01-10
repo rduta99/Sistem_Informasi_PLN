@@ -19,8 +19,8 @@
                 <div class="card">
                   <?= $this->session->flashdata('msg') ?>
                     <div class="card-body">
+                        <?= form_open_multipart('personel/setting') ?>
                         <div class="form-group">
-                          <?= form_open_multipart('personel/setting') ?>
                             <label for="">NIP</label>
                             <input type="text" class="form-control" name="nip" readonly id="nip" value="<?= $data_personil->nip ?>">
                           </div>
@@ -33,16 +33,26 @@
                             <input type="text" class="form-control" name="nama" id="nama" value="<?= $data_personil->nama ?>">
                           </div>
                           <div class="form-group">
+                            <label for="exampleInputPassword1">Foto Profil</label>
+                          <img src="#" id="blah" style="display: none">
+                          <div class="form-group">
+                              <div class="custom-file">
+                                  <input type="file" class="custom-file-input" name="gambar" id="foto_bukti">
+                                  <label class="custom-file-label" for="gambar">Masukkan Gambar</label>
+                              </div>
+                          </div>
+                          </div>
+                          <div class="form-group">
                             <label for="exampleInputEmail1">Jabatan</label>
                             <input type="text" class="form-control" name="jabatan" readonly id="jabatan"  value="<?= $data_personil->jabatan ?>">
                           </div>
                           <div class="form-group">
                             <label for="">Unit</label>
                             <select name="unit" id="" class="custom-select">
-                            <?= $k->nama_unit ?>
-                                                                    <option selected disabled>Pilih unit</option>
+                            
+            
                                                                     <?php foreach ($unit as $d) { ?>
-                                                                        <option <?php if($unit == $d->id_unit) { echo "selected"; } ?> value="<?= $d->id_unit ?>"><?= $d->nama_unit ?></option>
+                                                                        <option <?php if($data_personil->unit == $d->id_unit) { echo "selected"; } ?> value="<?= $d->id_unit ?>"><?= $d->nama_unit ?></option>
                                                                     <?php } ?>
                           </select>
                           </div>
@@ -53,16 +63,6 @@
                           <div class="form-group">
                             <label for="exampleInputPassword1">Email</label>
                             <input type="text" class="form-control" name="email" id="email" value="<?= $data_personil->email ?>">
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputPassword1">Attachment Sertifikat</label>
-                          <img src="#" id="blah" style="display: none">
-                          <div class="form-group">
-                              <div class="custom-file">
-                                  <input type="file" class="custom-file-input" name="gambar" id="foto_bukti">
-                                  <label class="custom-file-label" for="foto_bukti">Attach Gambar</label>
-                              </div>
-                          </div>
                           </div>
                           <div class="modal-footer justify-content-between">
                                  <input type="submit" class="btn btn-primary" value="Simpan Perubahan" name="simpan">

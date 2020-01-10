@@ -11,7 +11,7 @@
             
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="<?= base_url('assets/') ?>dist/img/avatar3.png" class="img-circle elevation-2" alt="User Image">
+                    <img src="<?= base_url('assets/profil/'.$user->gambar) ?>" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
                         <a href="<?= site_url('personel') ?>" class="d-block"><?= $this->data['username'] ?></a>

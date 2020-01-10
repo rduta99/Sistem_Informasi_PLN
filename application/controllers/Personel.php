@@ -40,6 +40,9 @@ class Personel extends MY_Controller {
         $this->load->model('log_ukur_m');
         $this->load->model('log_anal_m');
         $this->load->model('analisis_m');
+        $this->load->model('kalibrasi_m');
+        $this->load->model('log_kalibrasi_m');
+        $this->data['user'] = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
     }
     
 
@@ -135,25 +138,36 @@ class Personel extends MY_Controller {
 
     public function setting()
     {
-     if($this->POST('simpan')) {
-            $config['upload_path'] = './assets/';
-            $config['allowed_types'] = 'jpg|png|jpeg';
-            $this->upload->initialize($config);
-            $this->upload->do_upload('gambar');
-            $data = $this->upload->data();
-            $gambar = file_get_contents($data['full_path']);
+        if($this->POST('simpan')) {
+            $datas = [];
+            if($_FILES['gambar']['error'] == 0) { 
+                $config['upload_path'] = './assets/profil/';
+                $config['allowed_types'] = 'jpg|png|jpeg';
+                $this->upload->initialize($config);
+                $this->upload->do_upload('gambar');
+                $data = $this->upload->data();
+                $gambar = $data['file_name'];
+                $datas = [
+                    'id_pegawai' => $this->POST('id_pegawai'),
+                    'nama' => $this->POST('nama'),
+                    'unit' => $this->POST('unit'),
+                    'no' => $this->POST('no'),
+                    'email' => $this->POST('email'),
+                    'sertifikasi' => $this->POST('sertifikasi'),
+                    'gambar' => $gambar
+                ];
+            } else {
+                $datas = [
+                    'id_pegawai' => $this->POST('id_pegawai'),
+                    'nama' => $this->POST('nama'),
+                    'unit' => $this->POST('unit'),
+                    'no' => $this->POST('no'),
+                    'email' => $this->POST('email'),
+                    'sertifikasi' => $this->POST('sertifikasi')
+                ];
+            }
 
-            $datas = [
-                'id_pegawai' => $this->POST('id_pegawai'),
-                'nama' => $this->POST('nama'),
-                'unit' => $this->POST('unit'),
-                'no' => $this->POST('no'),
-                'email' => $this->POST('email'),
-                'sertifikasi' => $this->POST('sertifikasi'),
-                'gambar' => $gambar
-            ];
             $this->data_personil_m->update($this->POST('nip'), $datas);
-            unlink($data['full_path']);
             $this->flashmsg('Data berhasil disimpan');
         }
         $this->data['data_personil'] = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
@@ -166,33 +180,37 @@ class Personel extends MY_Controller {
     }
 
     public function tools(){
-
+        $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;
         if($this->POST('simpan_tool')) {
+            $config['upload_path'] = './assets/tools';
+			$config['allowed_types'] = 'jpg|png|jpeg';
+			$this->upload->initialize($config);
+            $this->upload->do_upload('gambar');
+            $datas = $this->upload->data();
             $data = [
                 'id_tools' => $this->POST('id_tools'),
                 'type' => $this->POST('type'),
                 'merk' => $this->POST('merk'),
-                'unit' => $this->POST('unit'),
+                'unit' => $id,
                 'teknologi' => $this->POST('teknologi'),
                 'tgl_kalibrasi' => $this->POST('tgl_kalibrasi'),
+                'gambar' => $datas['file_name']
             ];
-
             $this->tools_m->insert($data);
             $this->flashmsg('Data berhasil ditambahkan');
-            redirect('personel/tools');
             
         }
 
         $this->data['teknologi'] = $this->teknologi_m->get();
         $this->data['unit'] = $this->unit_m->get();
-        $this->data['tools'] = $this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']);
-        $this->data['content'] = 'tools';
+        $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;
+        $this->data['tools'] = $this->tools_m->get_join_all_where(['unit'], ['tools.unit = unit.id_unit'], ['id_unit' => $id]);
         $this->data['active'] = 2;
+        $this->data['content'] = 'tools';
         $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);
 
     }
-
     public function delete_tools($id_tools)
     {
         $this->tools_m->delete($id_tools);
@@ -349,7 +367,56 @@ class Personel extends MY_Controller {
         $this->load->view('personel/template/template', $this->data);
     }
 
-    
+    public function upload_kalibrasi()
+    {
+        $config['upload_path'] = './assets/file_kalibrasi';
+        $config['allowed_types'] = 'pdf';
+        $this->upload->initialize($config);
+        $this->upload->do_upload('file_pdf');
+        $data = $this->upload->data();
+        $gambar = $data['full_path'];
+        $data = [
+            'id_equipment' => $this->POST('id')
+        ];
+        $id = $this->log_kalibrasi_m->get_row($data);
+        if($id == null) {
+            $this->log_kalibrasi_m->insert($data);
+        } else {
+            $this->log_kalibrasi_m->update($id->id_log, $data);
+            $id = $this->log_kalibrasi_m->get_row($data);
+        }
+
+        $data = [
+            'id_equipment' => $this->POST('id'),
+            'id_log' => $id->id_log,
+            'tgl' => date('Y-m-d'),
+            'file' => $gambar,
+        ];
+        $this->kalibrasi_m->insert($data);
+        redirect('personel/detail_tools/'.$this->POST('id'));
+        exit;
+    }
+
+
+        public function detail_tools()
+        {
+            $this->data['list_kalibrasi'] = $this->kalibrasi_m->get(['id_equipment' => $this->uri->segment(3)]);
+            $this->data['active'] = 5;
+            $this->data['content'] = 'list_kalibrasi';
+            $this->data['title'] = 'Admin | ';
+            $this->load->view('personel/template/template', $this->data);
+        }
+
+        public function detail_kalibrasi()
+    {
+        $file = $this->kalibrasi_m->get_row(['id_kalibrasi' => $this->uri->segment(3)])->file;
+        $filename = 'filename.pdf';
+        header('Content-type: application/pdf');
+        header('Content-Disposition: inline; filename="' . $filename . '"');
+        header('Content-Transfer-Encoding: binary');
+        header('Accept-Ranges: bytes');
+        @readfile($file);
+    }
 
 }
 

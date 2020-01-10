@@ -14,7 +14,7 @@
                     <img src="<?= base_url('assets/profil/'.$user->gambar) ?>" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="<?= site_url('personel/setting') ?>" class="d-block"><?= $this->data['username'] ?></a>
+                        <a href="<?= site_url('personel') ?>" class="d-block"><?= $this->data['username'] ?></a>
                     </div>
 
                 </div>

@@ -180,33 +180,37 @@ class Personel extends MY_Controller {
     }
 
     public function tools(){
-
+        $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;
         if($this->POST('simpan_tool')) {
+            $config['upload_path'] = './assets/tools';
+			$config['allowed_types'] = 'jpg|png|jpeg';
+			$this->upload->initialize($config);
+            $this->upload->do_upload('gambar');
+            $datas = $this->upload->data();
             $data = [
                 'id_tools' => $this->POST('id_tools'),
                 'type' => $this->POST('type'),
                 'merk' => $this->POST('merk'),
-                'unit' => $this->POST('unit'),
+                'unit' => $id,
                 'teknologi' => $this->POST('teknologi'),
                 'tgl_kalibrasi' => $this->POST('tgl_kalibrasi'),
+                'gambar' => $datas['file_name']
             ];
-
             $this->tools_m->insert($data);
             $this->flashmsg('Data berhasil ditambahkan');
-            redirect('personel/tools');
             
         }
 
         $this->data['teknologi'] = $this->teknologi_m->get();
         $this->data['unit'] = $this->unit_m->get();
-        $this->data['tools'] = $this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']);
-        $this->data['content'] = 'tools';
+        $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;
+        $this->data['tools'] = $this->tools_m->get_join_all_where(['unit'], ['tools.unit = unit.id_unit'], ['id_unit' => $id]);
         $this->data['active'] = 2;
+        $this->data['content'] = 'tools';
         $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);
 
     }
-
     public function delete_tools($id_tools)
     {
         $this->tools_m->delete($id_tools);

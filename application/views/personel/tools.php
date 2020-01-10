@@ -15,20 +15,6 @@
                 </div>
             </div>
 
-            
-            <section class="content">
-                <div class="container-fluid">
-                    <?= $this->session->flashdata('msg') ?>
-                    <div class="card">
-                        <div class="card-header border-0">
-                            <h3 class="card-title">Daftar Tools</h3>
-                            <div class="card-tools">
-                 </div>
-                 </div>
-                 </div>
-                 </div>
-            </section>
-
             <section class="content">
                 <div class="container-fluid">
                     <?= $this->session->flashdata('msg') ?>
@@ -171,10 +157,10 @@
                                             <?= $k->tgl_kalibrasi ?>
                                         </td>
                                         <td>
-                                            <button class="btn btn-sm btn-warning text-white" data-toggle="modal" data-target="#modal-<?= $k->id_tools ?>">
+                                            <a class="btn btn-sm btn-warning text-white" href="<?= site_url('personel/detail_tools/'.$k->id_tools) ?>">
                                                 <i class="fas fa-pen"></i>
-                                            </button>
-                                            <div class="modal fade" id="modal-<?= $k->id_tools ?>">
+                                            </a>
+                                            <!-- <div class="modal fade" id="modal-<?= $k->id_tools ?>">
                                                 <div class="modal-dialog">
 
                                                     <?= form_open("personel/tools_edit") ?>
@@ -261,7 +247,7 @@
                                                     <?= form_close() ?>
 
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <a href="<?= site_url('personel/delete_tools/'.$k->id_tools) ?>"class="btn btn-sm btn-danger text-white">
                                                 <i class="fas fa-trash"></i>
                                             </a>

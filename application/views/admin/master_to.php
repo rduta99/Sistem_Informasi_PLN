@@ -148,10 +148,10 @@
                                             <?= $k->tgl_kalibrasi ?>
                                         </td>
                                         <td>
-                                            <button class="btn btn-sm btn-warning text-white" data-toggle="modal" data-target="#modal-<?= $k->id_tools ?>">
+                                            <a class="btn btn-sm btn-warning text-white" href="<?= site_url('admin/detail_tools/'.$k->id_tools) ?>">
                                                 <i class="fas fa-pen"></i>
-                                            </button>
-                                            <div class="modal fade" id="modal-<?= $k->id_tools ?>">
+                                            </a>
+                                            <!-- <div class="modal fade" id="modal-<?= $k->id_tools ?>">
                                                 <div class="modal-dialog">
 
                                                     <?= form_open("admin/master_eq_edit") ?>
@@ -225,7 +225,7 @@
                                                     <?= form_close() ?>
 
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <a href="<?= site_url('admin/del_to/'.$k->id_tools) ?>" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>

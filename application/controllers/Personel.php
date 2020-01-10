@@ -225,47 +225,47 @@ class Personel extends MY_Controller {
         $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);
     }
-    public function his_pengukuran()
-    {
-        if($this->POST('simpan_ukur')) {
-            $config['upload_path'] = './assets/';
-			$config['allowed_types'] = 'jpg|png|jpeg';
-			$this->upload->initialize($config);
-			$this->upload->do_upload('gambar');
-            $data = $this->upload->data();
-            $gambar = file_get_contents($data['full_path']);
-            $id = $this->POST('equipment');
-            $angka = $this->POST('angka');
-            $kondisi = $this->POST('kondisi');
-            $teknologi = $this->POST('teknologi');
-            $max = $kondisi[0];
-            for ($i=1; $i < count($kondisi); $i++) { 
-                if($max < $kondisi[$i]) {
-                    $max = $kondisi[$i];
+        public function his_pengukuran()
+        {
+            if($this->POST('simpan_ukur')) {
+                $config['upload_path'] = './assets/';
+                $config['allowed_types'] = 'jpg|png|jpeg';
+                $this->upload->initialize($config);
+                $this->upload->do_upload('gambar');
+                $data = $this->upload->data();
+                $gambar = file_get_contents($data['full_path']);
+                $id = $this->POST('equipment');
+                $angka = $this->POST('angka');
+                $kondisi = $this->POST('kondisi');
+                $teknologi = $this->POST('teknologi');
+                $max = $kondisi[0];
+                for ($i=1; $i < count($kondisi); $i++) { 
+                    if($max < $kondisi[$i]) {
+                        $max = $kondisi[$i];
+                    }
+                }
+                $k = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
+                $this->his_pengukuran_m->insert(['id_equipment' => $id, 'gambar' => $gambar, 'kondisi' => $max, 'waktu' => date('Y-m-d'), 'unit' => $k->unit]);
+                unlink($data['full_path']);
+                $id = $this->his_pengukuran_m->get_row(['id_equipment' => $id, 'kondisi' => $max, 'waktu' => date('Y-m-d')])->id_pengukuran;
+                for ($i=0; $i < count($angka); $i++) { 
+                    $data = [
+                        'id_histori' => $id,
+                        'id_tools' => $teknologi[$i],
+                        'angka' => $angka[$i],
+                        'kondisi' => $kondisi[$i],
+                        'waktu' => date('Y-m-d')
+                    ];
+                    $this->log_ukur_m->insert($data);
+                    $this->flashmsg("Pengukuran berhasil disimpan"); 
                 }
             }
-            $k = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
-            $this->his_pengukuran_m->insert(['id_equipment' => $id, 'gambar' => $gambar, 'kondisi' => $max, 'waktu' => date('Y-m-d'), 'unit' => $k->unit]);
-            unlink($data['full_path']);
-            $id = $this->his_pengukuran_m->get_row(['id_equipment' => $id, 'kondisi' => $max, 'waktu' => date('Y-m-d')])->id_pengukuran;
-            for ($i=0; $i < count($angka); $i++) { 
-                $data = [
-                    'id_histori' => $id,
-                    'id_tools' => $teknologi[$i],
-                    'angka' => $angka[$i],
-                    'kondisi' => $kondisi[$i],
-                    'waktu' => date('Y-m-d')
-                ];
-                $this->log_ukur_m->insert($data);
-                $this->flashmsg("Pengukuran berhasil disimpan"); 
-            }
+            $this->data['pengukuran'] = $this->his_pengukuran_m->get_data_join_order(['data_barang', 'unit'], ['histori_pengukuran.id_equipment = data_barang.asset_id', 'data_barang.unit = unit.id_unit'], 'waktu', 'DESC');
+            $this->data['content'] = 'histori_me';
+            $this->data['active'] = 3;
+            $this->data['title'] = 'Personel | ';
+            $this->load->view('personel/template/template', $this->data);
         }
-        $this->data['pengukuran'] = $this->his_pengukuran_m->get_data_join_order(['data_barang', 'unit'], ['histori_pengukuran.id_equipment = data_barang.asset_id', 'data_barang.unit = unit.id_unit'], 'waktu', 'DESC');
-        $this->data['content'] = 'histori_me';
-        $this->data['active'] = 3;
-        $this->data['title'] = 'Personel | ';
-        $this->load->view('personel/template/template', $this->data);
-    }
 
     public function analisis_eq($id)
     {
@@ -349,7 +349,7 @@ class Personel extends MY_Controller {
         $this->load->view('personel/template/template', $this->data);
     }
 
-
+    
 
 }
 

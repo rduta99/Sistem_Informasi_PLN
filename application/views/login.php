@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?= base_url('assets/') ?>plugins/fontawesome-free/css/all.min.css">
   
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
@@ -60,7 +60,7 @@
   <div class="row">
     <div class="col-md-4 pt-5">
       <div class="strokeme mt-5 pt-5">
-        <h1><b><center>ENGINEERING<br>PLN KIT SBS</center><b></h1>
+        <h1><b><center>ENGINEERING<br>PLN UIK SBS</center><b></h1>
       </div>
 
       <?= $this->session->flashdata('msg') ?>

@@ -31,7 +31,7 @@
                         <div class="modal fade" id="eq_reg">
                             <div class="modal-dialog">
 
-                                <?= form_open("supervisor") ?>
+                                <?= form_open_multipart("supervisor") ?>
 
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -45,7 +45,7 @@
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
-                                                    <i class="fas fa-pen"></i>
+                                                    <i class="fas fa-lock"></i>
                                                 </span>
                                             </div>
                                             <input type="text" name="asset_id" class="form-control" placeholder="Asset ID">
@@ -54,24 +54,10 @@
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
-                                                    <i class="fas fa-pen"></i>
+                                                    <i class="fas fa-copy"></i>
                                                 </span>
                                             </div>
                                             <input type="text" name="kks_number" class="form-control" placeholder="KKS Number">
-                                        </div>
-
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-envelope"></i>
-                                                </span>
-                                            </div>
-                                            <select name="unit" class="custom-select">
-                                                <option disabled selected>Pilih Unit</option>
-                                                <?php foreach ($unit as $k) { ?>
-                                                    <option value="<?= $k->id_unit ?>"><?= $k->nama_unit ?></option>
-                                                <?php } ?>
-                                            </select>
                                         </div>
 
                                         <div class="input-group mb-3">
@@ -85,7 +71,7 @@
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
-                                                    <i class="fas fa-pen"></i>
+                                                    <i class="fas fa-code"></i>
                                                 </span>
                                             </div>
                                             <input type="text" name="spek_a" class="form-control" placeholder="Spesifikasi A">
@@ -93,7 +79,7 @@
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
-                                                    <i class="fas fa-pen"></i>
+                                                    <i class="fas fa-code"></i>
                                                 </span>
                                             </div>
                                             <input type="text" name="spek_b" class="form-control" placeholder="Spesifikasi B">
@@ -101,7 +87,7 @@
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
-                                                    <i class="fas fa-pen"></i>
+                                                    <i class="fas fa-code"></i>
                                                 </span>
                                             </div>
                                             <input type="text" name="spek_c" class="form-control" placeholder="Spesifikasi C">
@@ -109,11 +95,20 @@
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
-                                                    <i class="fas fa-pen"></i>
+                                                    <i class="fas fa-code"></i>
                                                 </span>
                                             </div>
                                             <input type="text" name="spek_d" class="form-control" placeholder="Spesifikasi D">
-                                        </div>                                           
+                                        </div> 
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-code"></i>
+                                                </span>
+                                            </div>
+                                            <input type="file" class="custom-file-input" name="gambar" id="foto_bukti">
+                                            <label class="custom-file-label" for="foto_bukti">Gambar Equipment</label>
+                                        </div>                                            
                                     </div>
                                     <div class="modal-footer justify-content-between">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -132,6 +127,7 @@
                             <table class="table table-striped table-valign-middle" id="example1">
                                 <thead>
                                     <tr>
+                                        <td>Gambar Equipment</td>
                                         <td>Asset ID</td>
                                         <td>KKS Number</td>
                                         <td>Unit</td>
@@ -144,7 +140,11 @@
                                     <?php foreach ($data_barang as $k) { ?>
                                     <tr>
                                         <td>
-                                            <img src="<?= base_url('assets/') ?>dist/img/avatar3.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                                        <img src="<?= base_url('assets/equip/'.$k->gambar) ?>" alt="Gambar Equipment" width="150">
+                                        <!-- <img src="<?php $link_gambar = explode('/', $k->gambar); echo base_url().$link_gambar[4].'/'.$link_gambar[5].'/'.$link_gambar[6] ?>" alt="Gambar Barang" width="150" /> -->
+                                        </td>
+                                        <td>
+                                            <!-- <img src="<?= base_url('assets/') ?>dist/img/avatar3.png" alt="Product 1" class="img-circle img-size-32 mr-2"> -->
                                             <?= $k->asset_id ?>
                                         </td>
                                         <td>
@@ -153,6 +153,7 @@
                                         <td>
                                             <?= $k->nama_unit ?>
                                         </td>
+                                        
                                         <td>
                                             <?= $k->desk ?>
                                         </td>
@@ -176,7 +177,7 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-pen"></i>
+                                                                        <i class="fas fa-lock"></i>
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="asset_id" class="form-control" value="<?= $k->asset_id ?>">
@@ -184,12 +185,12 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-lock"></i>
+                                                                        <i class="fas fa-copy"></i>
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="kks_number" class="form-control" value="<?= $k->kks_number ?>">
                                                             </div>
-                                                            <div class="input-group mb-3">
+                                                            <!-- <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
                                                                         <i class="fas fa-envelope"></i>
@@ -201,11 +202,11 @@
                                                                         <option <?php if($k->unit == $c->id_unit) echo "selected" ?> value="<?= $c->id_unit ?>"><?= $c->nama_unit ?></option>
                                                                     <?php } ?>
                                                                 </select>
-                                                            </div>
+                                                            </div> -->
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-toolbox"></i>
+                                                                        <i class="fas fa-pen"></i>
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="desk" class="form-control" value="<?= $k->desk ?>">
@@ -213,7 +214,7 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-toolbox"></i>
+                                                                        <i class="fas fa-code"></i>
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="spek_a" class="form-control" value="<?= $k->spek_a ?>">
@@ -221,7 +222,7 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-toolbox"></i>
+                                                                        <i class="fas fa-code"></i>
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="spek_b" class="form-control" value="<?= $k->spek_b ?>">
@@ -229,7 +230,7 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-toolbox"></i>
+                                                                        <i class="fas fa-code"></i>
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="spek_c" class="form-control" value="<?= $k->spek_c ?>">
@@ -237,12 +238,11 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-toolbox"></i>
+                                                                        <i class="fas fa-code"></i>
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="spek_d" class="form-control" value="<?= $k->spek_d ?>">
                                                             </div>
-
                                                             
                                                         </div>
                                                         <div class="modal-footer justify-content-between">

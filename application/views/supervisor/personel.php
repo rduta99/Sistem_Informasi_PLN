@@ -41,7 +41,7 @@
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                            <i class="fas fa-pen"></i>
+                                                            <i class="fas fa-user"></i>
                                                         </span>
                                                     </div>
                                                     <input type="text" name="nip" class="form-control" placeholder="NIP">
@@ -51,7 +51,7 @@
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                            <i class="fas fa-pen"></i>
+                                                            <i class="fas fa-key"></i>
                                                         </span>
                                                     </div>
                                                     <input type="password" name="password" class="form-control" placeholder="Password">
@@ -69,7 +69,7 @@
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                            <i class="fas fa-toolbox"></i>
+                                                            <i class="fas fa-pen"></i>
                                                         </span>
                                                     </div>
                                                     <input type="text" name="nama" class="form-control" placeholder="Nama">
@@ -78,7 +78,7 @@
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                            <i class="fas fa-envelope"></i>
+                                                            <i class="fas fa-users"></i>
                                                         </span>
                                                     </div>
                                                     <select name="jabatan" class="custom-select">
@@ -92,7 +92,7 @@
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                            <i class="fas fa-envelope"></i>
+                                                            <i class="fas fa-home"></i>
                                                         </span>
                                                     </div>
                                                     <select name="unit" class="custom-select">
@@ -106,7 +106,7 @@
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                            <i class="fas fa-toolbox"></i>
+                                                            <i class="fas fa-phone"></i>
                                                         </span>
                                                     </div>
                                                     <input type="text" name="no" class="form-control" placeholder="Nomor HP">
@@ -114,7 +114,7 @@
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text">
-                                                            <i class="fas fa-toolbox"></i>
+                                                            <i class="fas fa-envelope"></i>
                                                         </span>
                                                     </div>
                                                     <input type="email" name="email" class="form-control" placeholder="Email">
@@ -196,7 +196,7 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-pen"></i>
+                                                                        <i class="fas fa-user"></i>
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="nip" class="form-control" value="<?= $k->nip ?>">
@@ -214,7 +214,7 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-toolbox"></i>
+                                                                        <i class="fas fa-pen"></i>
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="nama" class="form-control" value="<?= $k->nama ?>">
@@ -223,7 +223,7 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-envelope"></i>
+                                                                        <i class="fas fa-users"></i>
                                                                     </span>
                                                                 </div>
                                                                 <select name="jabatan" class="custom-select">
@@ -237,7 +237,7 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-envelope"></i>
+                                                                        <i class="fas fa-home"></i>
                                                                     </span>
                                                                 </div>
                                                                 <select name="unit" class="custom-select">
@@ -251,7 +251,7 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-toolbox"></i>
+                                                                        <i class="fas fa-phone"></i>
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="no" class="form-control" value="<?= $k->no ?>">
@@ -259,7 +259,7 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-toolbox"></i>
+                                                                        <i class="fas fa-envelope"></i>
                                                                     </span>
                                                                 </div>
                                                                 <input type="email" name="email" class="form-control" value="<?= $k->email ?>">

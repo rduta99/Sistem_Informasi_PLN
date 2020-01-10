@@ -35,7 +35,7 @@
                         <div class="modal fade" id="tool_reg">
                             <div class="modal-dialog">
 
-                                <?= form_open("supervisor/tools") ?>
+                                <?= form_open_multipart("supervisor/tools") ?>
 
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -49,7 +49,7 @@
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
-                                                    <i class="fas fa-pen"></i>
+                                                    <i class="fas fa-lock"></i>
                                                 </span>
                                             </div>
                                             <input type="text" name="tools_id" class="form-control" placeholder="Tools ID">
@@ -58,7 +58,7 @@
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
-                                                    <i class="fas fa-envelope"></i>
+                                                    <i class="fas fa-cube"></i>
                                                 </span>
                                             </div>
                                             <select name="teknologi" class="custom-select">
@@ -87,7 +87,7 @@
                                             <input type="text" name="type" class="form-control" placeholder="Type">
                                         </div>
 
-                                        <div class="input-group mb-3">
+                                        <!-- <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
                                                     <i class="fas fa-users"></i>
@@ -99,7 +99,7 @@
                                                     <option value="<?= $k->id_unit ?>"><?= $k->nama_unit ?></option>
                                                 <?php } ?>
                                             </select>
-                                        </div>
+                                        </div> -->
 
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
@@ -109,7 +109,15 @@
                                             </div>
                                             <input type="date" name="tgl_kalibrasi" class="form-control" placeholder="Tanggal Kalibrasi">
                                         </div>
-                                                                                
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-pen"></i>
+                                                </span>
+                                            </div>
+                                            <input type="file" class="custom-file-input" name="gambar" id="foto_bukti">
+                                            <label class="custom-file-label" for="foto_bukti">Gambar Equipment</label>
+                                        </div>                                                                                  
                                     </div>
                                     <div class="modal-footer justify-content-between">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -126,6 +134,7 @@
                             <table class="table table-striped table-valign-middle" id="example1">
                                 <thead>
                                     <tr>
+                                        <th>Gambar Equipment</th>
                                         <th>Tools ID</th>
                                         <th>Type</th>
                                         <th>Merk</th>
@@ -138,6 +147,10 @@
                                 <tbody>
                                     <?php foreach ($tools as $k) { ?>
                                     <tr>
+                                        <td>
+                                        <img src="<?= base_url('assets/tools/'.$k->gambar) ?>" alt="Gambar Tools" width="150">
+                                            <!-- <img src="<?php $link_gambar = explode('/', $k->gambar); echo base_url().$link_gambar[4].'/'.$link_gambar[5].'/'.$link_gambar[6] ?>" alt="Gambar Barang" width="150"/> -->
+                                        </td>
                                         <td>
                                             <?= $k->id_tools ?>
                                         </td>
@@ -176,7 +189,7 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-pen"></i>
+                                                                        <i class="fas fa-lock"></i>
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="id_tools" class="form-control" value="<?= $k->id_tools ?>">
@@ -185,7 +198,7 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-envelope"></i>
+                                                                        <i class="fas fa-cube"></i>
                                                                     </span>
                                                                 </div>
                                                                 <select name="teknologi" class="custom-select">
@@ -199,7 +212,7 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-lock"></i>
+                                                                        <i class="fas fa-pen"></i>
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="type" class="form-control" value="<?= $k->type ?>">
@@ -207,13 +220,13 @@
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-toolbox"></i>
+                                                                        <i class="fas fa-pen"></i>
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="merk" class="form-control" value="<?= $k->merk ?>">
                                                             </div>
 
-                                                            <div class="input-group mb-3">
+                                                            <!-- <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
                                                                         <i class="fas fa-envelope"></i>
@@ -225,12 +238,12 @@
                                                                         <option <?php if($k->unit == $c->id_unit) echo "selected" ?> value="<?= $c->id_unit ?>"><?= $c->nama_unit ?></option>
                                                                     <?php } ?>
                                                                 </select>
-                                                            </div>
+                                                            </div> -->
 
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
-                                                                        <i class="fas fa-toolbox"></i>
+                                                                        <i class="fas fa-calendar-alt"></i>
                                                                     </span>
                                                                 </div>
                                                                 <input type="date" name="tgl_kalibrasi" class="form-control" value="<?= $k->tgl_kalibrasi ?>">

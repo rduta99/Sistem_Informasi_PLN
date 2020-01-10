@@ -25,7 +25,7 @@
                     
                     <li class="nav-item">
                         <a href="<?= site_url('supervisor') ?>" class="nav-link <?php if($active == 1) { echo "active"; } ?>">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="nav-icon fas fa-toolbox"></i>
                             <p>
                                 Daftar Equipment
                             </p>
@@ -33,7 +33,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="<?= site_url('supervisor/tools') ?>" class="nav-link <?php if($active == 2) { echo "active"; } ?>">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="nav-icon fas fa-tools"></i>
                             <p>
                                 Daftar Tools
                             </p>
@@ -41,7 +41,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="<?= site_url('supervisor/personel') ?>" class="nav-link <?php if($active == 3) { echo "active"; } ?>">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <i class="nav-icon fas fa-users"></i>
                             <p>
                                 Daftar Personel
                             </p>

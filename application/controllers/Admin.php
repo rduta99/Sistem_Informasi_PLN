@@ -386,6 +386,7 @@ class Admin extends MY_Controller {
 
     public function detail_tools()
     {
+        $this->data['tools'] = $this->tools_m->get_row(['id_tools' => $this->uri->segment(3)]);
         $this->data['list_kalibrasi'] = $this->kalibrasi_m->get(['id_equipment' => $this->uri->segment(3)]);
         $this->data['active'] = 5;
         $this->data['content'] = 'list_kalibrasi';

@@ -60,7 +60,19 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="">Type Tools</label>
+                                        <input type="text" name="" class="form-control" value="<?= $tools->type ?>" id="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Merk Tools</label>
+                                        <input type="text" name="" class="form-control" value="<?= $tools->merk ?>" id="">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

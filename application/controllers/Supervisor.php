@@ -44,23 +44,29 @@ class Supervisor extends MY_Controller {
     
     public function index()
     {
+        $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;
         if($this->POST('simpan')) {
+            $config['upload_path'] = './assets/equip/';
+			$config['allowed_types'] = 'jpg|png|jpeg';
+			$this->upload->initialize($config);
+            $this->upload->do_upload('gambar');
+            $data = $this->upload->data();
+            $gambar = $data['file_name'];
             $data = [
                 'asset_id' => $this->POST('asset_id'),
                 'kks_number' => $this->POST('kks_number'),
-                'unit' => $this->POST('unit'),
+                'unit' => $id,
                 'desk' => $this->POST('desk'),
                 'spek_a' => $this->POST('spek_a'),
                 'spek_b' => $this->POST('spek_b'),
                 'spek_c' => $this->POST('spek_c'),
                 'spek_d' => $this->POST('spek_d'),
+                'gambar' => $gambar,
                 
             ];
             $this->data_barang_m->insert($data);
             $this->flashmsg('Data berhasil ditambahkan');
         }
-        //$this->data['data_barang'] = $this->data_barang_m->getDataJoin(['unit'], ['data_barang.unit = unit.id_unit']);
-        $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;
         $this->data['data_barang'] = $this->data_barang_m->get_join_all_where(['unit'], ['data_barang.unit = unit.id_unit'], ['id_unit' => $id]);
         $this->data['teknologi'] = $this->teknologi_m->get();
         $this->data['unit'] = $this->unit_m->get();
@@ -71,17 +77,22 @@ class Supervisor extends MY_Controller {
     }
 
     public function tools(){
-
+        $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;
         if($this->POST('simpan_tool')) {
+            $config['upload_path'] = './assets/tools';
+			$config['allowed_types'] = 'jpg|png|jpeg';
+			$this->upload->initialize($config);
+            $this->upload->do_upload('gambar');
+            $datas = $this->upload->data();
             $data = [
                 'id_tools' => $this->POST('id_tools'),
                 'type' => $this->POST('type'),
                 'merk' => $this->POST('merk'),
-                'unit' => $this->POST('unit'),
+                'unit' => $id,
                 'teknologi' => $this->POST('teknologi'),
                 'tgl_kalibrasi' => $this->POST('tgl_kalibrasi'),
+                'gambar' => $datas['file_name']
             ];
-
             $this->tools_m->insert($data);
             $this->flashmsg('Data berhasil ditambahkan');
             
@@ -199,12 +210,12 @@ class Supervisor extends MY_Controller {
     public function his_pengukuran()
     {
         if($this->POST('simpan_ukur')) {
-            $config['upload_path'] = './assets/';
+            
+            $config['upload_path'] = './assets/ukur_eq/';
 			$config['allowed_types'] = 'jpg|png|jpeg';
 			$this->upload->initialize($config);
 			$this->upload->do_upload('gambar');
             $data = $this->upload->data();
-            $gambar = $data['full_path'];
             $id = $this->POST('equipment');
             $angka = $this->POST('angka');
             $kondisi = $this->POST('kondisi');
@@ -216,8 +227,7 @@ class Supervisor extends MY_Controller {
                 }
             }
             $k = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
-            $this->his_pengukuran_m->insert(['id_equipment' => $id, 'gambar' => $gambar, 'kondisi' => $max, 'waktu' => date('Y-m-d'), 'unit' => $k->unit]);
-            // unlink($data['full_path']);
+            $this->his_pengukuran_m->insert(['id_equipment' => $id, 'gambar' => $data['file_name'], 'kondisi' => $max, 'waktu' => date('Y-m-d'), 'unit' => $k->unit]);
             $id = $this->his_pengukuran_m->get_row(['id_equipment' => $id, 'kondisi' => $max, 'waktu' => date('Y-m-d')])->id_pengukuran;
             for ($i=0; $i < count($angka); $i++) { 
                 $data = [
@@ -230,6 +240,7 @@ class Supervisor extends MY_Controller {
                 $this->log_ukur_m->insert($data);
                 $this->flashmsg("Pengukuran berhasil disimpan");
             }
+            
         }
         $this->data['pengukuran'] = $this->his_pengukuran_m->get_data_join_order(['data_barang', 'unit'], ['histori_pengukuran.id_equipment = data_barang.asset_id', 'data_barang.unit = unit.id_unit'], 'waktu', 'DESC');
         $this->data['content'] = 'histori_me';
@@ -339,6 +350,7 @@ class Supervisor extends MY_Controller {
     public function detail_pengukuran($id)
     {
         $this->data['barang'] = $this->his_pengukuran_m->get_join_where(['data_barang'], ['histori_pengukuran.id_equipment = data_barang.asset_id'], ['id_pengukuran' => $id]);
+        $this->data['gmbr'] = $this->his_pengukuran_m->get_row(['id_pengukuran' => $id])->gambar;
         $this->data['tools'] = $this->log_ukur_m->get_join_all_where(['tools'], ['log_ukur.id_tools = tools.id_tools'], ['id_histori' => $id]);
         $this->data['active'] = 4;
         $this->data['content'] = 'detail_pengukuran';

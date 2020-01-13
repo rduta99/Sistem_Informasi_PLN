@@ -59,9 +59,13 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="card-body">
+                        <div class="card-body">
                             <div class="row">
-                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <div>
+                                        <img src="<?= base_url('assets/tools/'.$tools->gambar) ?>" alt="Gambar Tools" width="400">
+                                    </div>
+                                </div>
                                 <div class="col-md-8">
                                     <div class="form-group">
                                         <label for="">Type Tools</label>
@@ -74,7 +78,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
+
                     <div class="card">
                         <div class="card-header border-0">
                             <h3 class="card-title">

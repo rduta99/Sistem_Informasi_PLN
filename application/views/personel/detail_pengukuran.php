@@ -28,7 +28,8 @@
                         <div class="card-body">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                <?= '<img class="img-thumbnail p-4" src="data:image/jpeg;base64,'.base64_encode($barang->gambar).'">' ?>
+                                <img src="<?= base_url('assets/ukur_eq/'.$gmbr) ?>" alt="Foto Bukti" width="450">
+                                <!-- <img class="img-thumbnail p-4" src="<?= $barang->gambar ?>"> -->
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-group mb-3">

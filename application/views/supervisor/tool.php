@@ -148,8 +148,7 @@
                                     <?php foreach ($tools as $k) { ?>
                                     <tr>
                                         <td>
-                                        <img src="<?= base_url('assets/tools/'.$k->gambar) ?>" alt="Gambar Tools" width="150">
-                                            <!-- <img src="<?php $link_gambar = explode('/', $k->gambar); echo base_url().$link_gambar[4].'/'.$link_gambar[5].'/'.$link_gambar[6] ?>" alt="Gambar Barang" width="150"/> -->
+                                            <img src="<?= base_url('assets/tools/'.$k->gambar) ?>" alt="Gambar Tools" width="150">
                                         </td>
                                         <td>
                                             <?= $k->id_tools ?>
@@ -170,10 +169,13 @@
                                             <?= $k->tgl_kalibrasi ?>
                                         </td>
                                         <td>
-                                            <button class="btn btn-sm btn-warning text-white" data-toggle="modal" data-target="#modal-<?= $k->id_tools ?>">
+                                            <a class="btn btn-sm btn-warning text-white" href="<?= site_url('supervisor/detail_tools/'.$k->id_tools) ?>">
                                                 <i class="fas fa-pen"></i>
-                                            </button>
-                                            <div class="modal fade" id="modal-<?= $k->id_tools ?>">
+                                            </a>
+                                            <!-- <button class="btn btn-sm btn-warning text-white" data-toggle="modal" data-target="#modal-<?= $k->id_tools ?>">
+                                                <i class="fas fa-pen"></i>
+                                            </button> -->
+                                            <!-- <div class="modal fade" id="modal-<?= $k->id_tools ?>">
                                                 <div class="modal-dialog">
 
                                                     <?= form_open("supervisor/tools_edit") ?>
@@ -224,7 +226,7 @@
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="merk" class="form-control" value="<?= $k->merk ?>">
-                                                            </div>
+                                                            </div> -->
 
                                                             <!-- <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
@@ -240,7 +242,7 @@
                                                                 </select>
                                                             </div> -->
 
-                                                            <div class="input-group mb-3">
+                                                            <!-- <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
                                                                         <i class="fas fa-calendar-alt"></i>
@@ -260,7 +262,7 @@
                                                     <?= form_close() ?>
 
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <a href="<?= site_url('supervisor/delete_tools/'.$k->id_tools) ?>"class="btn btn-sm btn-danger text-white">
                                                 <i class="fas fa-trash"></i>
                                             </a>

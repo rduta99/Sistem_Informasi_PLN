@@ -40,6 +40,8 @@ class Supervisor extends MY_Controller {
         $this->load->model('log_ukur_m');
         $this->load->model('analisis_m');
         $this->load->model('log_anal_m');
+        $this->load->model('log_kalibrasi_m');
+        $this->load->model('kalibrasi_m');
     }
     
     public function index()
@@ -131,7 +133,10 @@ class Supervisor extends MY_Controller {
             'asset_id' => $this->POST('asset_id'),
             'kks_number' => $this->POST('kks_number'),
             'desk' => $this->POST('desk'),
-            'unit' => $this->POST('unit')
+            'spek_a' => $this->POST('spek_a'),
+            'spek_b' => $this->POST('spek_b'),
+            'spek_c' => $this->POST('spek_c'),
+            'spek_d' => $this->POST('spek_d'),
         ];
         $this->data_barang_m->update($this->POST('asset_id'), $data);
         $this->flashmsg('Data berhasil diubah');
@@ -365,6 +370,57 @@ class Supervisor extends MY_Controller {
         $this->data['content'] = 'detail_anal';
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);
+    }
+
+    public function detail_tools()
+    {
+        $this->data['tools'] = $this->tools_m->get_row(['id_tools' => $this->uri->segment(3)]);
+        $this->data['list_kalibrasi'] = $this->kalibrasi_m->get(['id_equipment' => $this->uri->segment(3)]);
+        $this->data['active'] = 2;
+        $this->data['content'] = 'list_kalibrasi';
+        $this->data['title'] = 'Supervisor | ';
+        $this->load->view('supervisor/template/template', $this->data);
+    }
+
+    public function detail_kalibrasi()
+    {
+        $file = $this->kalibrasi_m->get_row(['id_kalibrasi' => $this->uri->segment(3)])->file;
+        $filename = 'filename.pdf';
+        header('Content-type: application/pdf');
+        header('Content-Disposition: inline; filename="' . $filename . '"');
+        header('Content-Transfer-Encoding: binary');
+        header('Accept-Ranges: bytes');
+        @readfile($file);
+    }
+
+    public function upload_kalibrasi()
+    {
+        $config['upload_path'] = './assets/file_kalibrasi';
+        $config['allowed_types'] = 'pdf';
+        $this->upload->initialize($config);
+        $this->upload->do_upload('file_pdf');
+        $data = $this->upload->data();
+        $gambar = $data['full_path'];
+        $data = [
+            'id_equipment' => $this->POST('id')
+        ];
+        $id = $this->log_kalibrasi_m->get_row($data);
+        if($id == null) {
+            $this->log_kalibrasi_m->insert($data);
+            $id = $this->log_kalibrasi_m->get_row($data);
+        } else {
+            $this->log_kalibrasi_m->update($id->id_log, $data);
+        }
+
+        $data = [
+            'id_equipment' => $this->POST('id'),
+            'id_log' => $id->id_log,
+            'tgl' => date('Y-m-d'),
+            'file' => $gambar,
+        ];
+        $this->kalibrasi_m->insert($data);
+        redirect('supervisor/detail_tools/'.$this->POST('id'));
+        exit;
     }
 
 }

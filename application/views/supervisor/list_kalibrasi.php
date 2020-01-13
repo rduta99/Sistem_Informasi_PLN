@@ -7,8 +7,8 @@
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="<?= site_url('personel') ?>">Home</a></li>
-                                <li class="breadcrumb-item"><a href="<?= site_url('personel/tools') ?>">Tools</a></li>
+                                <li class="breadcrumb-item"><a href="<?= site_url('supervisor') ?>">Home</a></li>
+                                <li class="breadcrumb-item"><a href="<?= site_url('supervisor/tools') ?>">Tools</a></li>
                                 <li class="breadcrumb-item active">Detail Tools</li>
                             </ol>
                         </div>
@@ -30,7 +30,7 @@
                                 <div class="modal fade" id="modal-default">
                                     <div class="modal-dialog">
 
-                                        <?= form_open_multipart("personel/upload_kalibrasi", [], ['id' => $this->uri->segment(3)]) ?>
+                                        <?= form_open_multipart("supervisor/upload_kalibrasi", [], ['id' => $this->uri->segment(3)]) ?>
 
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -105,7 +105,7 @@
                                         <td><?= ++$no ?></td>
                                         <td><?= date('d M Y', strtotime($k->tgl)) ?></td>
                                         <td>
-                                            <a href="<?= site_url('personel/detail_kalibrasi/'.$k->id_kalibrasi) ?>" class="btn btn-primary btn-sm">
+                                            <a href="<?= site_url('supervisor/detail_kalibrasi/'.$k->id_kalibrasi) ?>" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-cog"></i> Detail
                                             </a>
                                         </td>

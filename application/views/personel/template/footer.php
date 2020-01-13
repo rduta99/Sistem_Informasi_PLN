@@ -2,10 +2,10 @@
         </div>
 
 <footer class="main-footer">
-    <strong>Copyright &copy; 2019 <a href="">ENGINEERING PLN UIK SBS</a>.</strong>
+    <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-        <!-- <b>Version</b> 3.0.2-pre -->
+        <b>Version</b> 3.0.2-pre
     </div>
 </footer>
 
@@ -56,7 +56,32 @@
 <script>
 $(function () {
     $("#example1").DataTable();
-    $("#PANTEKS").DataTable();
+    $('#summernote').summernote({
+    height: 200,
+    callbacks: {
+        onImageUpload: function(image) {
+                        uploadImage(image[0]);
+                    }
+    }
+});
+            function uploadImage(image) {
+                var data = new FormData();
+                data.append("image", image);
+                $.ajax({
+                    url: "<?php echo site_url('personel/up_img')?>",
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    type: "POST",
+                    success: function(url) {
+                        $('#summernote').summernote("insertImage", url);
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            }
     // $('#example2').DataTable({
     //     "paging": true,
     //     "lengthChange": false,

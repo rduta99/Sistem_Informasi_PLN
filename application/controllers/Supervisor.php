@@ -103,7 +103,7 @@ class Supervisor extends MY_Controller {
         $this->data['teknologi'] = $this->teknologi_m->get();
         $this->data['unit'] = $this->unit_m->get();
         $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;
-        $this->data['tools'] = $this->tools_m->get_join_all_where(['unit'], ['tools.unit = unit.id_unit'], ['id_unit' => $id]);
+        $this->data['tools'] = $this->tools_m->get_join_all_where(['unit', 'teknologi'],  ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi'], ['id_unit' => $id]);
         $this->data['active'] = 2;
         $this->data['content'] = 'tool';
         $this->data['title'] = 'Supervisor | ';
@@ -149,13 +149,13 @@ class Supervisor extends MY_Controller {
             'id_tools' => $this->POST('id_tools'),
             'type' => $this->POST('type'),
             'merk' => $this->POST('merk'),
-            'unit' => $this->POST('unit'),
             'teknologi' => $this->POST('teknologi'),
-            'tgl_kalibrasi' => $this->POST('tgl_kalibrasi'),
+            
         ];
         $this->tools_m->update($this->POST('id_tools'), $data);
         $this->flashmsg('Data berhasil diubah');
-        redirect('supervisor/tools');
+        $this->session->set_flashdata('id', $this->POST('id_tools'));
+        redirect('supervisor/tools/'.$this->POST('id_tools'));
     }
 
     public function personel()
@@ -172,6 +172,7 @@ class Supervisor extends MY_Controller {
 
             ];
             $this->user_m->insert(['nip' => $this->POST('nip'), 'password' => md5($this->POST('password')), 'id_role' => 3]);
+            
             $this->data_personil_m->insert($data);
             $this->flashmsg('Data berhasil ditambahkan');
             
@@ -181,7 +182,7 @@ class Supervisor extends MY_Controller {
         $this->data['unit'] = $this->unit_m->get();
         $this->data['jabatan'] = $this->jabatan_m->get();
         $id = $this->data_personil_m->get_row(['nip' => $this->data['username']])->unit;
-        $this->data['personel'] = $this->data_personil_m->get_join_all_where(['unit'], ['data_personil.unit = unit.id_unit'], ['id_unit' => $id]);
+        $this->data['personel'] = $this->data_personil_m->get_join_all_where(['unit', 'jabatan'], ['data_personil.unit = unit.id_unit', 'data_personil.jabatan = jabatan.id_jabatan'], ['id_unit' => $id]);
         $this->data['content'] = 'personel';
         $this->data['active'] = 3;
         $this->data['title'] = 'Supervisor | ';
@@ -269,17 +270,32 @@ class Supervisor extends MY_Controller {
         echo json_encode($this->tools_m->getDataJoin(['unit', 'teknologi'], ['tools.unit = unit.id_unit', 'tools.teknologi = teknologi.id_teknologi']));
     }
 
-    public function laporan_analisis()
+    public function laporan_analisis_dua()
     {
         $dompdf = new Dompdf\Dompdf();
-        $html = $this->load->view('supervisor/laporan_analisis', [], true);
+        $html = $this->load->view('supervisor/laporan_analisis_dua', [], true);
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'landscape');
         $options = new Dompdf\Options();
         $options->setIsRemoteEnabled(true);
         $dompdf->setOptions($options);
         $dompdf->render();
-        $dompdf->stream('Laporan.pdf', array("Attachment" => 0));
+        $dompdf->stream('Laporan Cok.pdf', array("Attachment" => 0));
+    }
+
+    public function laporan_analisis()
+    {
+        $this->data['input'] = $this->analisis_m->get_join_where(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id'],['id_anal' => $this->uri->segment(3)]);
+        
+        $dompdf = new Dompdf\Dompdf();
+        $html = $this->load->view('supervisor/laporan_analisis', $this->data, true);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'potrait');
+        $options = new Dompdf\Options();
+        $options->setIsRemoteEnabled(true);
+        $dompdf->setOptions($options);
+        $dompdf->render();
+        $dompdf->stream('Laporan.pdf', ['Attachment' => 0]);
     }
 
     public function list_analisis()
@@ -372,10 +388,12 @@ class Supervisor extends MY_Controller {
         $this->load->view('supervisor/template/template', $this->data);
     }
 
-    public function detail_tools()
+    public function detail_tools($id)
     {
-        $this->data['tools'] = $this->tools_m->get_row(['id_tools' => $this->uri->segment(3)]);
-        $this->data['list_kalibrasi'] = $this->kalibrasi_m->get(['id_equipment' => $this->uri->segment(3)]);
+        $this->data['tools'] = $this->tools_m->get_row(['id_tools' => $id]);
+        
+        $this->data['list_kalibrasi'] = $this->kalibrasi_m->get(['id_equipment' => $id]);
+        $this->data['teknologi'] = $this->teknologi_m->get();
         $this->data['active'] = 2;
         $this->data['content'] = 'list_kalibrasi';
         $this->data['title'] = 'Supervisor | ';

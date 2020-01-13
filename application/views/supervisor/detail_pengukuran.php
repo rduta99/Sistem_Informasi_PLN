@@ -69,7 +69,7 @@
                                                     Hasil Ukur
                                                 </label>
                                                 <div class="col-6">
-                                                    <input type="text" value="<?= $k->angka ?>" class="form-control">
+                                                    <input type="text" value="<?= $k->angka ?>" readonly class="form-control">
                                                 </div>
                                             </div>
                                         </div>

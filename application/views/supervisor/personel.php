@@ -123,7 +123,7 @@
                                             </div>
                                             <div class="modal-footer justify-content-between">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <input type="submit" class="btn btn-primary" value="Simpan Perubahan" name="simpan_personel">
+                                                <input type="submit" class="btn btn-primary" value="Tambah Personel" name="simpan_personel">
                                             </div>
                                         </div>
 
@@ -146,6 +146,7 @@
                                         <th>Nomor HP</th>
                                         <th>Email</th>
                                         <th>Sertifikasi</th>
+                                        <th>Opsi</th>
                                     </tr>
                                 </thead>
 
@@ -162,7 +163,7 @@
                                             <?= $k->nama ?>
                                         </td>
                                         <td>
-                                            <?= $k->jabatan ?>
+                                            <?= $k->nama_jabatan ?>
                                         </td>
                                         <td>
                                             <?= $k->nama_unit ?>

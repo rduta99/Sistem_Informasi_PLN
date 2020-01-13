@@ -33,6 +33,7 @@
                                                     <h3 class="card-title"><?= $k->desk ?></h3>
 
                                                     <div class="card-tools">
+                                                        <a href="<?= site_url('supervisor/laporan_analisis/'.$k->id_anal) ?>" class="btn btn-primary btn-sm">Download</a>
                                                         <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
                                                     </div>
                                                     

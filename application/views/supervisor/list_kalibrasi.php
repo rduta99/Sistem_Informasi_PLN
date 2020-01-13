@@ -67,15 +67,33 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
+                                <?= form_open("supervisor/tools_edit") ?>
                                     <div class="form-group">
-                                        <label for="">Type Tools</label>
-                                        <input type="text" name="" class="form-control" value="<?= $tools->type ?>" id="">
+                                        <label for="">ID Tools</label>
+                                        <input type="text" name="id_tools" class="form-control" value="<?= $tools->id_tools ?>" id="">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Merk Tools</label>
-                                        <input type="text" name="" class="form-control" value="<?= $tools->merk ?>" id="">
+                                        <input type="text" name="merk" class="form-control" value="<?= $tools->merk ?>" id="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Type Tools</label>
+                                        <input type="text" name="type" class="form-control" value="<?= $tools->type ?>" id="">
+                                    </div>
+                                    <div class="form-group">
+                                    <label for="">Jenis Teknologi</label>
+                                        <select name="teknologi" class="custom-select">
+                                            <option disabled selected>Jenis Teknologi</option>
+                                            <?php foreach ($teknologi as $k) { ?>
+                                                <option <?php if($tools->teknologi == $k->id_teknologi) { echo "selected"; } ?> value="<?= $k->id_teknologi ?>"><?= $k->nama_teknologi ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-primary" value="Simpan Perubahan" name="simpan">
                                     </div>
                                 </div>
+                                <?= form_close() ?>
                             </div>
                         </div>
                     </div>
@@ -106,7 +124,7 @@
                                         <td><?= date('d M Y', strtotime($k->tgl)) ?></td>
                                         <td>
                                             <a href="<?= site_url('supervisor/detail_kalibrasi/'.$k->id_kalibrasi) ?>" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-cog"></i> Detail
+                                                <i class="fas fa-download"></i> Download
                                             </a>
                                         </td>
                                     </tr>

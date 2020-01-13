@@ -127,12 +127,12 @@
                             <table class="table table-striped table-valign-middle" id="example1">
                                 <thead>
                                     <tr>
-                                        <td>Gambar Equipment</td>
-                                        <td>Asset ID</td>
-                                        <td>KKS Number</td>
-                                        <td>Unit</td>
-                                        <td>Description</td>
-                                        <td>Option</td>
+                                        <th>Gambar Equipment</th>
+                                        <th>Asset ID</th>
+                                        <th>KKS Number</th>
+                                        <th>Unit</th>
+                                        <th>Description</th>
+                                        <th>Opsi</th>
                                     </tr>
                                 </thead>
 

@@ -29,11 +29,11 @@
                             <table class="table table-striped table-valign-middle" id="example1">
                                 <thead>
                                     <tr>
-                                        <td>No</td>
-                                        <td>Equipment</td>
-                                        <td>Tanggal Pengukuran</td>
-                                        <td>Kondisi</td>
-                                        <td>Opsi</td>
+                                        <th>No</th>
+                                        <th>Equipment</th>
+                                        <th>Tanggal Pengukuran</th>
+                                        <th>Kondisi</th>
+                                        <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -27,10 +27,10 @@
                             <table class="table table-striped table-valign-middle" id="example1">
                                 <thead>
                                     <tr>
-                                        <td>No</td>
-                                        <td>Nama Equipment</td>
-                                        <td>KKS Number</td>
-                                        <td>Opsi</td>
+                                        <th>No</th>
+                                        <th>Nama Equipment</th>
+                                        <th>KKS Number</th>
+                                        <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>

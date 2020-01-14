@@ -76,7 +76,7 @@
             <td>
                 <?= date('d M Y', strtotime($b->waktu)) ?>
             </td>
-            <?php $ab = $this->db->query('SELECT * FROM log_ukur WHERE id_histori = '.$b->id_pengukuran.' AND waktu = '.$b->waktu)->result(); print_r($ab); ?>
+            <?php $ab = $this->db->query('SELECT * FROM log_ukur WHERE id_histori = '.$b->id_pengukuran)->result(); print_r($ab); ?>
             <td>
             </td>
             <td>

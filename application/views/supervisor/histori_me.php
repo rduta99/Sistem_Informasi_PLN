@@ -20,6 +20,40 @@
                         <div class="card-header border-0">
                             <h3 class="card-title">Histori Pengukuran</h3>
                             <div class="card-tools">
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#tool_reg">
+                                    <i class="fas fa-download"></i> Download Laporan
+                                </button>
+                                <div class="modal fade" id="tool_reg">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                            <?= form_open('supervisor/laporan_analisis_dua') ?>
+                                                <div class="form-group">
+                                                    <input type="number" name="tahun" placeholder="tahun" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <select name="bulan" id="" class="custom-select">
+                                                        <option value="1">Januari</option>
+                                                        <option value="2">Februari</option>
+                                                        <option value="3">Maret</option>
+                                                        <option value="4">April</option>
+                                                        <option value="5">Mei</option>
+                                                        <option value="6">Juni</option>
+                                                        <option value="7">Juli</option>
+                                                        <option value="8">Agustus</option>
+                                                        <option value="9">September</option>
+                                                        <option value="10">Oktober</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">Desember</option>
+                                                    </select>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <?= form_close() ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br><br>
                                 <a href="<?= site_url('supervisor/ukur_eq') ?>" class="btn btn-tool btn-sm">
                                     <i class="fas fa-plus"></i> Ukur Equipment
                                 </a>

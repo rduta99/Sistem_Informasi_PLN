@@ -273,7 +273,9 @@ class Supervisor extends MY_Controller {
     public function laporan_analisis_dua()
     {
         $dompdf = new Dompdf\Dompdf();
-        $html = $this->load->view('supervisor/laporan_analisis_dua', [], true);
+        $this->data['eq'] = $this->db->query("SELECT * FROM histori_pengukuran INNER JOIN data_barang ON histori_pengukuran.id_equipment = data_barang.asset_id WHERE MONTH(waktu) = ".$this->POST('bulan')." AND YEAR(waktu) = ".$this->POST('tahun')." ORDER BY waktu, id_equipment")->result();
+        $this->data['tool'] = $this->tools_m->getDataJoin(['teknologi'], ['tools.teknologi = teknologi.id_teknologi']);
+        $html = $this->load->view('supervisor/laporan_analisis_dua', $this->data, true);
         $dompdf->loadHtml($html);
         $dompdf->setPaper('A4', 'landscape');
         $options = new Dompdf\Options();

@@ -28,44 +28,47 @@
                                 <div class="row">
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">Nama Peralatan</label>
-                                        <input type="text" name="nama_peralatan" class="form-control" value="<?= $barang->desk ?>">
+                                        <input type="text" name="nama_peralatan" readonly class="form-control" value="<?= $barang->desk ?>">
                                     </div>
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">Asset ID</label>
-                                        <input type="text" name="asset_id" class="form-control" value="<?= $barang->asset_id ?>">
+                                        <input type="text" name="asset_id" class="form-control" readonly value="<?= $barang->asset_id ?>">
                                     </div>
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">KKS Number</label>
-                                        <input type="text" name="kks_number" class="form-control" value="<?= $barang->kks_number ?>">
+                                        <input type="text" name="kks_number" readonly class="form-control" value="<?= $barang->kks_number ?>">
                                     </div>
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">MPI</label>
-                                        <input type="text" name="mpi" class="form-control">
+                                        <input type="text" name="mpi" value="<?= $barang->mpi ?>" readonly class="form-control">
                                     </div>
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">Spesifikasi A</label>
-                                        <input type="text" value="<?= $barang->spek_a ?>" class="form-control">
+                                        <input type="text" value="<?= $barang->spek_a ?>" readonly class="form-control">
                                     </div>
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">Spesifikasi B</label>
-                                        <input type="text" value="<?= $barang->spek_b ?>" class="form-control">
+                                        <input type="text" value="<?= $barang->spek_b ?>" readonly class="form-control">
                                     </div>
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">Spesifikasi C</label>
-                                        <input type="text" value="<?= $barang->spek_c ?>" class="form-control">
+                                        <input type="text" value="<?= $barang->spek_c ?>"readonly  class="form-control">
                                     </div>
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">Spesifikasi D</label>
-                                        <input type="text" value="<?= $barang->spek_d ?>" class="form-control">
+                                        <input type="text" value="<?= $barang->spek_d ?>" readonly class="form-control">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <b>Tanggal Ukur</b>
+                                        </div>
+                                        <input type="date" name="waktu" class="form-control col-md-3" placeholder="Tanggal Ukur">
+                                        <br>
                                     </div>
                                     <input type="hidden" name="id" value="<?= $barang->id_pengukuran ?>">
-                                    <!-- <div class="col-md-4">
-                                        <label for="">Gambar Peralatan</label>
-                                    <?= '<img class="img-thumbnail p-4" src="data:image/jpeg;base64,'.base64_encode($barang->gambar).'">' ?>
-                                    </div> -->
                                     <div class="form-group col-md-12 mb-3">
                                         <label for="">General Drawing Peralatan & Titik Pengukuran</label>
-                                        <textarea class="textarea" name="gen_dr" id="summernote" cols="30" rows="10"></textarea>
+                                        <textarea class="textarea"  name="gen_dr" id="summernote" cols="30" rows="10"><?= $barang->general_draw ?></textarea>
                                     </div>
                                     <div class="form-group col-md-12 mb-3">
                                         <label for="">Finding</label>

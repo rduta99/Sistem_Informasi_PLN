@@ -63,6 +63,8 @@ class Supervisor extends MY_Controller {
                 'spek_b' => $this->POST('spek_b'),
                 'spek_c' => $this->POST('spek_c'),
                 'spek_d' => $this->POST('spek_d'),
+                'mpi' => $this->POST('mpi'),
+                'general_draw' => $this->POST('general_draw'),
                 'gambar' => $gambar,
                 
             ];
@@ -92,8 +94,8 @@ class Supervisor extends MY_Controller {
                 'merk' => $this->POST('merk'),
                 'unit' => $id,
                 'teknologi' => $this->POST('teknologi'),
-                'tgl_kalibrasi' => $this->POST('tgl_kalibrasi'),
                 'gambar' => $datas['file_name']
+                
             ];
             $this->tools_m->insert($data);
             $this->flashmsg('Data berhasil ditambahkan');
@@ -137,6 +139,8 @@ class Supervisor extends MY_Controller {
             'spek_b' => $this->POST('spek_b'),
             'spek_c' => $this->POST('spek_c'),
             'spek_d' => $this->POST('spek_d'),
+            'mpi' => $this->POST('mpi'),
+            'general_draw' => $this->POST('general_draw')
         ];
         $this->data_barang_m->update($this->POST('asset_id'), $data);
         $this->flashmsg('Data berhasil diubah');
@@ -222,10 +226,11 @@ class Supervisor extends MY_Controller {
 			$this->upload->initialize($config);
 			$this->upload->do_upload('gambar');
             $data = $this->upload->data();
-            $id = $this->POST('equipment');
+            $id_equipment = $this->POST('equipment');
             $angka = $this->POST('angka');
             $kondisi = $this->POST('kondisi');
             $teknologi = $this->POST('teknologi');
+            $waktu = $this->POST('waktu');
             $max = $kondisi[0];
             for ($i=1; $i < count($kondisi); $i++) { 
                 if($max < $kondisi[$i]) {
@@ -233,15 +238,15 @@ class Supervisor extends MY_Controller {
                 }
             }
             $k = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
-            $this->his_pengukuran_m->insert(['id_equipment' => $id, 'gambar' => $data['file_name'], 'kondisi' => $max, 'waktu' => date('Y-m-d'), 'unit' => $k->unit]);
-            $id = $this->his_pengukuran_m->get_row(['id_equipment' => $id, 'kondisi' => $max, 'waktu' => date('Y-m-d')])->id_pengukuran;
+            $this->his_pengukuran_m->insert(['id_equipment' => $id_equipment, 'gambar' => $data['file_name'], 'kondisi' => $max, 'waktu' => $waktu, 'unit' => $k->unit]);
+            $id = $this->his_pengukuran_m->get_row(['id_equipment' => $id_equipment, 'gambar' => $data['file_name'], 'kondisi' => $max, 'waktu' => $waktu])->id_pengukuran;
             for ($i=0; $i < count($angka); $i++) { 
                 $data = [
                     'id_histori' => $id,
                     'id_tools' => $teknologi[$i],
                     'angka' => $angka[$i],
                     'kondisi' => $kondisi[$i],
-                    'waktu' => date('Y-m-d')
+                    'waktu' => $waktu
                 ];
                 $this->log_ukur_m->insert($data);
                 $this->flashmsg("Pengukuran berhasil disimpan");
@@ -325,7 +330,7 @@ class Supervisor extends MY_Controller {
                 'diagnose' => $this->POST('diagnose'),
                 'analysis' => $this->POST('analisis'),
                 'recommendation' => $this->POST('recommend'),
-                'waktu' => date('Y-m-d')
+                'waktu' => $this->POST('waktu')
             ];
             $this->analisis_m->insert($this->data['input']);
             $this->flashmsg('Analisis Telah Ditambahkan');
@@ -397,6 +402,7 @@ class Supervisor extends MY_Controller {
         $this->upload->initialize($config);
         $this->upload->do_upload('file_pdf');
         $data = $this->upload->data();
+        $waktu = $this->POST('waktu');
         $gambar = $data['full_path'];
         $data = [
             'id_equipment' => $this->POST('id')
@@ -412,9 +418,11 @@ class Supervisor extends MY_Controller {
         $data = [
             'id_equipment' => $this->POST('id'),
             'id_log' => $id->id_log,
-            'tgl' => date('Y-m-d'),
+            'tgl' => $waktu,
             'file' => $gambar,
         ];
+
+        $this->tools_m->update($this->POST('id'), ['tgl_kalibrasi' => $waktu]);
         $this->kalibrasi_m->insert($data);
         redirect('supervisor/detail_tools/'.$this->POST('id'));
         exit;

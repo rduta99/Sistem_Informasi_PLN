@@ -20,10 +20,13 @@
     }
 </style>
 
-<?php print_r($eq); ?>
-
 <div>
-    <?php $to = ''; foreach($tool as $k) { ?>
+    <?php 
+
+    $to = ''; foreach($tool as $k) { 
+    $db = $this->db->query('SELECT * FROM log_ukur WHERE id_tools = '.$k->id_tools.' AND MONTH(waktu) = '.$data[1].' AND YEAR(waktu) = '.$data[0]);
+
+    ?>
         <table>
             <tr style="text-align:center">
             <td rowspan="2">
@@ -52,20 +55,22 @@
             <td>
                 Standar
             </td>
+            <?php
+            foreach($eq as $b) {
+                $no = 0;
+                $ab = $this->db->query('SELECT * FROM log_ukur WHERE id_histori = '.$b->id_pengukuran)->result(); 
+                foreach ($ab as $n) {
+            ?>
             <td>
-                Titik 1
+                <?= "Titik ".++$no ?>
             </td>
-            <td>
-                Titik 2
-            </td>
-            <td>
-                Titik 3
-            </td>
-            <td>
-                Titik...
-            </td>
+            <?php } } ?>
         </tr>
-        <?php $no = 0; foreach($eq as $b) { ?>
+        <?php 
+
+            $no = 0; foreach($eq as $b) { 
+            
+        ?>
         <tr>
             <td>
                 <?= ++$no.'.'; ?> 
@@ -76,25 +81,29 @@
             <td>
                 <?= date('d M Y', strtotime($b->waktu)) ?>
             </td>
-            <?php $ab = $this->db->query('SELECT * FROM log_ukur WHERE id_histori = '.$b->id_pengukuran)->result(); print_r($ab); ?>
+            <td>
+            </td>
+            <?php 
+                $ab = $this->db->query('SELECT * FROM log_ukur WHERE id_histori = '.$b->id_pengukuran)->result(); 
+                foreach ($ab as $n) {
+            ?>
+            <td>
+                <?= $n->angka ?>
+            </td>
+            <?php } ?>
             <td>
             </td>
             <td>
             </td>
             <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
+
             </td>
             <td>
             </td>
             <td>
             </td>
         </tr>
-            <?php } ?>
+        <?php } ?>
         
     </table>
     <br>

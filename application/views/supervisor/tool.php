@@ -87,28 +87,6 @@
                                             <input type="text" name="type" class="form-control" placeholder="Type">
                                         </div>
 
-                                        <!-- <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-users"></i>
-                                                </span>
-                                            </div>
-                                            <select name="unit" class="custom-select">
-                                                <option disabled selected>Pilih unit</option>
-                                                <?php foreach ($unit as $k) { ?>
-                                                    <option value="<?= $k->id_unit ?>"><?= $k->nama_unit ?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div> -->
-
-                                        <div class="input-group mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-calendar-alt"></i>
-                                                </span>
-                                            </div>
-                                            <input type="date" name="tgl_kalibrasi" class="form-control" placeholder="Tanggal Kalibrasi">
-                                        </div>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">

@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">MPI</label>
-                                        <input type="text" name="mpi" class="form-control">
+                                        <input type="text" value="<?= $barang->mpi ?>" class="form-control">
                                     </div>
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">Spesifikasi A</label>
@@ -59,10 +59,7 @@
                                         <input type="text" value="<?= $barang->spek_d ?>" class="form-control">
                                     </div>
                                     <input type="hidden" name="id" value="<?= $barang->id_pengukuran ?>">
-                                    <!-- <div class="col-md-4">
-                                        <label for="">Gambar Peralatan</label>
-                                    <?= '<img class="img-thumbnail p-4" src="data:image/jpeg;base64,'.base64_encode($barang->gambar).'">' ?>
-                                    </div> -->
+                                    
                                     <div class="form-group col-md-12 mb-3">
                                         <label for="">General Drawing Peralatan & Titik Pengukuran</label>
                                         <textarea class="textarea" name="gen_dr" id="" cols="30" rows="10"></textarea>

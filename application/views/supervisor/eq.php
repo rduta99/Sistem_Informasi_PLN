@@ -71,6 +71,22 @@
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text">
+                                                    <i class="fas fa-pen"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" name="mpi" class="form-control" placeholder="MPI">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-pen"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" name="general_draw" class="form-control" placeholder="General Drawing Peralatan & Titik Pengukuran">
+                                        </div>      
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
                                                     <i class="fas fa-code"></i>
                                                 </span>
                                             </div>
@@ -190,19 +206,7 @@
                                                                 </div>
                                                                 <input type="text" name="kks_number" class="form-control" value="<?= $k->kks_number ?>">
                                                             </div>
-                                                            <!-- <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text">
-                                                                        <i class="fas fa-envelope"></i>
-                                                                    </span>
-                                                                </div>
-                                                                <select name="unit" class="custom-select">
-                                                                    <option disabled selected>Pilih Unit</option>
-                                                                    <?php foreach ($unit as $c) { ?>
-                                                                        <option <?php if($k->unit == $c->id_unit) echo "selected" ?> value="<?= $c->id_unit ?>"><?= $c->nama_unit ?></option>
-                                                                    <?php } ?>
-                                                                </select>
-                                                            </div> -->
+                                                            
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">
                                                                     <span class="input-group-text">
@@ -210,6 +214,22 @@
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="desk" class="form-control" value="<?= $k->desk ?>">
+                                                            </div>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-pen"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="text" name="mpi" class="form-control" value="<?= $k->mpi ?>">
+                                                            </div>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-pen"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="text" name="general_draw" class="form-control" value="<?= $k->general_draw ?>">
                                                             </div>
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">

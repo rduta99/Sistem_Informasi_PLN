@@ -118,7 +118,7 @@
                                         <th>Merk</th>
                                         <th>Unit</th>
                                         <th>Teknologi</th>
-                                        <th>Tanggal Kalibrasi</th>
+                                        <th>Tanggal Terakhir Kalibrasi</th>
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>

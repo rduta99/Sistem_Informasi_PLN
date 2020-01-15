@@ -445,6 +445,8 @@ class Supervisor extends MY_Controller {
             'tgl' => $waktu,
             'file' => $gambar,
         ];
+
+        $this->tools_m->update($this->POST('id'), ['tgl_kalibrasi' => $waktu]);
         $this->kalibrasi_m->insert($data);
         redirect('supervisor/detail_tools/'.$this->POST('id'));
         exit;

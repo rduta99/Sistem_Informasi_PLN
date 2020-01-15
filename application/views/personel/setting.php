@@ -43,12 +43,19 @@
                           </div>
                           </div>
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Jabatan</label>
-                            <input type="text" class="form-control" name="jabatan" readonly id="jabatan"  value="<?= $data_personil->jabatan ?>">
+                          <label for="">Unit</label>
+                            <select name="jabatan" readonly id="" class="custom-select">
+                            
+            
+                                                                    <?php foreach ($jabatan as $d) { ?>
+                                                                        <option <?php if($data_personil->jabatan == $d->id_jabatan) {echo "selected"; } ?> value="<?= $d->id_jabatan ?>"><?= $d->nama_jabatan ?></option>
+                                                                    <?php } ?>
+                          </select>
+                            
                           </div>
                           <div class="form-group">
                             <label for="">Unit</label>
-                            <select name="unit" id="" class="custom-select">
+                            <select name="unit" readonly id="" class="custom-select">
                             
             
                                                                     <?php foreach ($unit as $d) { ?>

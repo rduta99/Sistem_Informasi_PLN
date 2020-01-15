@@ -179,6 +179,7 @@ class Personel extends MY_Controller {
         $this->data['data_personil'] = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
         $this->data['pegawai'] = $this->user_m->getDataJoin(['role', 'data_personil', 'jabatan', 'unit'], ['user.id_role = role.id_role', 'user.nip = data_personil.nip', 'data_personil.jabatan = jabatan.id_jabatan', 'data_personil.unit = unit.id_unit']);
         $this->data['unit'] = $this->unit_m->get();
+        $this->data['jabatan'] = $this->jabatan_m->get();
         $this->data['active'] = 5;
         $this->data['content'] = 'setting';
         $this->data['title'] = 'Personel | ';
@@ -412,7 +413,7 @@ class Personel extends MY_Controller {
         {
             $this->data['tools'] = $this->tools_m->get_row(['id_tools' => $this->uri->segment(3)]);
         $this->data['list_kalibrasi'] = $this->kalibrasi_m->get(['id_equipment' => $this->uri->segment(3)]);
-        $this->data['active'] = 5;
+        $this->data['active'] = 2;
         $this->data['content'] = 'list_kalibrasi';
         $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);
@@ -436,6 +437,22 @@ class Personel extends MY_Controller {
         redirect('personel');
         exit;
     }
+
+    public function laporan_analisis()
+    {
+        $this->data['input'] = $this->analisis_m->get_join_where(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id'],['id_anal' => $this->uri->segment(3)]);
+        
+        $dompdf = new Dompdf\Dompdf();
+        $html = $this->load->view('supervisor/laporan_analisis', $this->data, true);
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'potrait');
+        $options = new Dompdf\Options();
+        $options->setIsRemoteEnabled(true);
+        $dompdf->setOptions($options);
+        $dompdf->render();
+        $dompdf->stream('Laporan.pdf', ['Attachment' => 0]);
+    }
+
 
 }
 

@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">MPI</label>
-                                        <input type="text" value="<?= $barang->mpi ?>" readonly class="form-control">
+                                        <input type="text" name="mpi" value="<?= $barang->mpi ?>" readonly class="form-control">
                                     </div>
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">Spesifikasi A</label>
@@ -57,6 +57,13 @@
                                     <div class="form-group col-md-3 mb-3">
                                         <label for="">Spesifikasi D</label>
                                         <input type="text" value="<?= $barang->spek_d ?>" readonly class="form-control">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <b>Tanggal Ukur</b>
+                                        </div>
+                                        <input type="date" name="waktu" class="form-control col-md-3" placeholder="Tanggal Ukur">
+                                        <br>
                                     </div>
                                     <input type="hidden" name="id" value="<?= $barang->id_pengukuran ?>">
                                     <div class="form-group col-md-12 mb-3">

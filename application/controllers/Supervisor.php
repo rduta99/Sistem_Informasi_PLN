@@ -329,7 +329,7 @@ class Supervisor extends MY_Controller {
                 'diagnose' => $this->POST('diagnose'),
                 'analysis' => $this->POST('analisis'),
                 'recommendation' => $this->POST('recommend'),
-                'waktu' => date('Y-m-d')
+                'waktu' => $this->POST('waktu')
             ];
             $this->analisis_m->insert($this->data['input']);
             $this->flashmsg('Analisis Telah Ditambahkan');

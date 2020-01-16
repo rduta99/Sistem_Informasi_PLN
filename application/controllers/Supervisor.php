@@ -231,6 +231,7 @@ class Supervisor extends MY_Controller {
             $kondisi = $this->POST('kondisi');
             $teknologi = $this->POST('teknologi');
             $waktu = $this->POST('waktu');
+            $parameter_op = $this->POST('parameter_op');
             $max = $kondisi[0];
             for ($i=1; $i < count($kondisi); $i++) { 
                 if($max < $kondisi[$i]) {
@@ -246,7 +247,8 @@ class Supervisor extends MY_Controller {
                     'id_tools' => $teknologi[$i],
                     'angka' => $angka[$i],
                     'kondisi' => $kondisi[$i],
-                    'waktu' => $waktu
+                    'waktu' => $waktu,
+                    'parameter_op' => $parameter_op
                 ];
                 $this->log_ukur_m->insert($data);
                 $this->flashmsg("Pengukuran berhasil disimpan");
@@ -340,7 +342,8 @@ class Supervisor extends MY_Controller {
                 'diagnose' => $this->POST('diagnose'),
                 'analysis' => $this->POST('analisis'),
                 'recommendation' => $this->POST('recommend'),
-                'waktu' => $this->POST('waktu')
+                'waktu' => $this->POST('waktu'),
+                'no_rekomen' => $this->POST('no_rekomen')
             ];
             $this->analisis_m->insert($this->data['input']);
             $this->flashmsg('Analisis Telah Ditambahkan');

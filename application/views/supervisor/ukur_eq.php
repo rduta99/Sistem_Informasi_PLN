@@ -45,6 +45,14 @@
                                         <input type="date" name="waktu" class="form-control col-md-3" placeholder="Tanggal Ukur">
                                         <br>
                                     </div>
+                                
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <b>Parameter Operasi</b>
+                                    </div>
+                                    <input type="text" name="parameter_op" class="form-control col-md-3" placeholder="Parameter Operasi">
+                                    <br>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-md-4">

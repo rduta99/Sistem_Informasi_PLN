@@ -59,10 +59,17 @@
                                         <input type="text" value="<?= $barang->spek_d ?>" readonly class="form-control">
                                     </div>
                                     <div class="col-md-8">
-                                        <div class="form-group">
+                                        <div class="form-group col-md-3 mb-3">
                                             <b>Tanggal Ukur</b>
                                         </div>
                                         <input type="date" name="waktu" class="form-control col-md-3" placeholder="Tanggal Ukur">
+                                        <br>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group col-md-3 mb-3">
+                                            <b>Nomor Rekonemdasi</b>
+                                        </div>
+                                        <input type="text" name="no_rekomen" class="form-control col-md-3" placeholder="Nomor Rekomendasi">
                                         <br>
                                     </div>
                                     <input type="hidden" name="id" value="<?= $barang->id_pengukuran ?>">

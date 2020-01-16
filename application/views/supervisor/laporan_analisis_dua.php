@@ -104,7 +104,8 @@
                 <?= $n->angka ?>
             </td>
             <?php }?>
-            <td></td>
+            <td>  
+            </td>
             <td>
                 <?php print_r($c); $con = ['', 'Good', 'Warning', 'Bad']; echo $con[$c->kondisi]; ?>
             </td>

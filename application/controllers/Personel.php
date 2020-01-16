@@ -297,7 +297,7 @@ class Personel extends MY_Controller {
     {
         $this->data['barang'] = $this->his_pengukuran_m->get_join_where(['data_barang'], ['histori_pengukuran.id_equipment = data_barang.asset_id'], ['id_pengukuran' => $id]);
         $this->data['tools'] = $this->log_ukur_m->get_join_all_where(['tools'], ['log_ukur.id_tools = tools.id_tools'], ['id_histori' => $id]);
-        $this->data['active'] = 6;
+        $this->data['active'] = 3;
         $this->data['content'] = 'anal';
         $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);
@@ -492,7 +492,6 @@ class Personel extends MY_Controller {
                 'file' => $gambar,
             ];
             $this->log_sertifikasi_m->update($id->id_sertif, $data);
-            // $this->kalibrasi_m->insert($data);
         }
         redirect('personel/detail_sertifikat/'.$this->POST('id'));
         exit;
@@ -507,6 +506,23 @@ class Personel extends MY_Controller {
         header('Content-Transfer-Encoding: binary');
         header('Accept-Ranges: bytes');
         @readfile($file);
+    }
+
+    public function laporan_analisis_dua()
+    {
+        // $dompdf = new Dompdf\Dompdf();
+        $this->data['data'] = [$this->POST('tahun'), $this->POST('bulan')];
+        $this->data['eq'] = $this->db->query("SELECT * FROM histori_pengukuran INNER JOIN data_barang ON histori_pengukuran.id_equipment = data_barang.asset_id WHERE MONTH(waktu) = ".$this->POST('bulan')." AND YEAR(waktu) = ".$this->POST('tahun')." ORDER BY waktu, id_equipment")->result();
+        $this->data['tool'] = $this->tools_m->getDataJoin(['teknologi'], ['tools.teknologi = teknologi.id_teknologi']);
+        // $html = 
+        $this->load->view('personel/laporan_analisis_dua', $this->data);
+        // $dompdf->loadHtml($html);
+        // $dompdf->setPaper('A4', 'landscape');
+        // $options = new Dompdf\Options();
+        // $options->setIsRemoteEnabled(true);
+        // $dompdf->setOptions($options);
+        // $dompdf->render();
+        // $dompdf->stream('Laporan Cok.pdf', array("Attachment" => 0));
     }
 
 }

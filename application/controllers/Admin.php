@@ -294,7 +294,7 @@ class Admin extends MY_Controller {
     {
         $this->jabatan_m->delete($id);
         $this->flashmsg('Data berhasil dihapus');
-        redirect('jab_unit');
+        redirect('admin/jab_unit');
         exit;
     }
 

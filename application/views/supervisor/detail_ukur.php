@@ -50,9 +50,9 @@
                                             <a href="<?= site_url('supervisor/detail_pengukuran/'.$k->id_pengukuran) ?>" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-cog"></i> Detail
                                             </a>
-                                            <!-- <a href="<?= site_url('supervisor/analisis_eq/'.$k->asset_id) ?>" class="btn btn-primary btn-sm">
+                                            <a href="<?= site_url('supervisor/analisis_eq/'.$k->id_pengukuran) ?>" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-cog"></i> Lakukan Analisis
-                                            </a> -->
+                                            </a>
                                         </td>
                                     </tr>
                                     <?php } ?>

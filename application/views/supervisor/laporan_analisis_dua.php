@@ -24,8 +24,9 @@
     <?php 
 
     $to = ''; foreach($tool as $k) { 
-    $db = $this->db->query('SELECT * FROM log_ukur WHERE id_tools = '.$k->id_tools.' AND MONTH(waktu) = '.$data[1].' AND YEAR(waktu) = '.$data[0]);
-
+    $db = $this->db->query('SELECT * FROM log_ukur WHERE id_tools = '.$k->id_tools.' AND MONTH(waktu) = '.$data[1].' AND YEAR(waktu) = '.$data[0])->result();
+        if($db != null) {
+            if($to == '' || $to != $k->id_tools) {
     ?>
         <table>
             <tr style="text-align:center">
@@ -55,58 +56,51 @@
             <td>
                 Standar
             </td>
-            <?php
-            foreach($eq as $b) {
-                $no = 0;
-                $ab = $this->db->query('SELECT * FROM log_ukur WHERE id_histori = '.$b->id_pengukuran)->result(); 
-                foreach ($ab as $n) {
-            ?>
             <td>
-                <?= "Titik ".++$no ?>
+                Titik Pengukuran
             </td>
-            <?php } } ?>
         </tr>
+        
         <?php 
 
-            $no = 0; foreach($eq as $b) { 
-            
+        $equipment = $this->db->query("SELECT * FROM histori_pengukuran INNER JOIN data_barang ON histori_pengukuran.id_equipment = data_barang.asset_id INNER JOIN log_ukur ON histori_pengukuran.id_pengukuran = log_ukur.id_histori WHERE log_ukur.id_tools = ".$k->id_tools." AND MONTH(histori_pengukuran.waktu) = ".$data[1]." AND YEAR(histori_pengukuran.waktu) = ".$data[0])->result();
+        $eq = '';
+        $no = 0;
+        foreach($equipment as $c) {
+            if($eq == '' || $eq != $c->id_pengukuran) {
+
         ?>
         <tr>
             <td>
-                <?= ++$no.'.'; ?> 
+                <?= ++$no ?>
             </td>
             <td>
-                <?= $b->desk ?>
+                <?= $c->desk." | ".$c->id_histori." | ".$c->id_log ?>
             </td>
             <td>
-                <?= date('d M Y', strtotime($b->waktu)) ?>
+                <?= date('d M Y', strtotime($c->waktu)) ?>
             </td>
-            <td>
-            </td>
-            <?php 
-                $ab = $this->db->query('SELECT * FROM log_ukur WHERE id_histori = '.$b->id_pengukuran)->result(); 
-                foreach ($ab as $n) {
-            ?>
-            <td>
-                <?= $n->angka ?>
-            </td>
-            <?php } ?>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
+            <td></td>
+            <?php $angka = $this->db->query("SELECT * FROM log_ukur WHERE id_histori = ".$c->id_pengukuran." AND id_tools = ".$k->id_tools." AND MONTH(waktu) = ".$data[1]." AND YEAR(waktu) = ".$data[0])->result();
 
+                foreach ($angka as $n) {
+            ?>
+            <td colspan="4">
+                <?= $n->angka." | ".$n->id_histori." | ".$n->id_log ?>
             </td>
+            <?php }?>
+            <td></td>
             <td>
+                <?php $con = ['', 'Good', 'Warning', 'Bad']; echo $con[$c->kondisi]; ?>
             </td>
-            <td>
-            </td>
+            <td></td>
+            
         </tr>
-        <?php } ?>
+        <?php } $eq = $c->id_pengukuran; } ?>
+        
         
     </table>
     <br>
-        <?php } ?>
+        <?php } } $to = $k->id_tools; } ?>
 </div>
 

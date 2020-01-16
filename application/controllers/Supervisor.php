@@ -278,6 +278,7 @@ class Supervisor extends MY_Controller {
     public function laporan_analisis_dua()
     {
         // $dompdf = new Dompdf\Dompdf();
+        $this->data['data'] = [$this->POST('tahun'), $this->POST('bulan')];
         $this->data['eq'] = $this->db->query("SELECT * FROM histori_pengukuran INNER JOIN data_barang ON histori_pengukuran.id_equipment = data_barang.asset_id WHERE MONTH(waktu) = ".$this->POST('bulan')." AND YEAR(waktu) = ".$this->POST('tahun')." ORDER BY waktu, id_equipment")->result();
         $this->data['tool'] = $this->tools_m->getDataJoin(['teknologi'], ['tools.teknologi = teknologi.id_teknologi']);
         // $html = 
@@ -350,31 +351,6 @@ class Supervisor extends MY_Controller {
         $this->data['title'] = 'Supervisor | ';
         $this->load->view('supervisor/template/template', $this->data);
     }
-
-    // public function up_img()
-    // {
-        
-    //     $config['upload_path'] = './assets/analisis/';
-    //     $config['allowed_types'] = 'jpg|png|jpeg';
-    //     $this->upload->initialize($config);
-        
-    //     if(!$this->upload->do_upload('image')) {
-            
-    //     } else {
-    //         $data = $this->upload->data();
-    //         $config['image_library']='gd2';
-    //         $config['source_image']='./assets/analisis/'.$data['file_name'];
-    //         $config['create_thumb']= FALSE;
-    //         $config['maintain_ratio']= TRUE;
-    //         $config['quality']= '60%';
-    //         $config['width']= 800;
-    //         $config['height']= 800;
-    //         $config['new_image']= './assets/analisis/'.$data['file_name'];
-    //         $this->load->library('image_lib', $config);
-    //         $this->image_lib->resize();
-    //         echo base_url().'assets/analisis/'.$data['file_name'];
-    //     }
-    // }
 
     public function detail_pengukuran($id)
     {

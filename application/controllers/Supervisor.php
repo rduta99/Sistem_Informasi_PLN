@@ -253,7 +253,6 @@ class Supervisor extends MY_Controller {
             }
             
         }
-        $this->data['pengukuran'] = $this->his_pengukuran_m->get_data_join_order(['data_barang', 'unit'], ['histori_pengukuran.id_equipment = data_barang.asset_id', 'data_barang.unit = unit.id_unit'], 'waktu', 'DESC');
         $this->data['ukur'] = $this->data_barang_m->get_data_join_order(['unit'], ['data_barang.unit = unit.id_unit'], 'asset_id', 'ASC');
         $this->data['content'] = 'histori_me';
         $this->data['active'] = 4;

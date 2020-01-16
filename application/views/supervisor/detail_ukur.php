@@ -19,79 +19,47 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="card">
-                        <div class="card-body">
-                            <div class="timeline">
-                                <?php foreach ($pengukuran as $k) { ?>
-                                    <div class="time-label">
-                                        <span><?= date('d M Y', strtotime($k->waktu)) ?></span>
-                                    </div>
-                                    <div>
-                                        <i class="fas fa-stop-circle bg-blue"></i>
-                                        <div class="timeline-item">
-                                            <div class="card collapsed-card" style="height: inherit; width: inherit; transition: all 0.15s ease 0s;">
-                                                <div class="card-header">
-                                                    <h3 class="card-title"><?= $k->desk ?></h3>
-
-                                                    <div class="card-tools">
-                                                        <a href="<?= site_url('supervisor/detail_pengukuran/'.$k->id_pengukuran) ?>" class="btn btn-primary btn-sm">Detail</a>
-                                                        <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-                                                    </div>
-                                                    
-                                                </div>
-                                                
-                                                <div class="card-body overflow-auto" style="display: none;">
-                                                    <div class="card">
-                                                        <div class="card-header border-0">
-                                                            <h3 class="card-title">General Drawing Peralatan & Titik Pengukuran</h3>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <?= $k->general_draw ?>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="card">
-                                                        <div class="card-header border-0">
-                                                            <h3 class="card-title">Finding</h3>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <?= $k->finding ?>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="card">
-                                                        <div class="card-header border-0">
-                                                            <h3 class="card-title">Diagnose</h3>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <?= $k->diagnose ?>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="card">
-                                                        <div class="card-header border-0">
-                                                            <h3 class="card-title">Analysis</h3>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <?= $k->analysis ?>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="card">
-                                                        <div class="card-header border-0">
-                                                            <h3 class="card-title">Recommendation</h3>
-                                                        </div>
-                                                        <div class="card-body">
-                                                            <?= $k->recommendation ?>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php } ?>
-                            </div>
+                        <div class="card-body table-responsive p-3">
+                            <table class="table table-striped table-valign-middle" id="example1">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Equipment</th>
+                                        <th>Waktu</th>
+                                        <th>Kondisi</th>
+                                        <th>Opsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php 
+                                    $cond = ['', 'Good', 'Warning', 'Bad'];
+                                    $class = ['', 'bg-success', 'bg-warning text-white', 'bg-danger'];
+                                    $no = 0; foreach ($pengukuran as $k) { 
+                                    
+                                    ?>
+                                    <tr>
+                                        <td><?= ++$no ?></td>
+                                        <td><?= $k->desk ?></td>
+                                        <td><?= date('d M Y', strtotime($k->waktu)) ?></td>
+                                        <td>
+                                            <span class="badge <?= $class[$k->kondisi] ?>">
+                                                <?= $cond[$k->kondisi] ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <a href="<?= site_url('supervisor/detail_pengukuran/'.$k->id_pengukuran) ?>" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-cog"></i> Detail
+                                            </a>
+                                            <!-- <a href="<?= site_url('supervisor/analisis_eq/'.$k->asset_id) ?>" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-cog"></i> Lakukan Analisis
+                                            </a> -->
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                         </div>
+                        
                     </div>
                 </div>
             </section>

@@ -473,7 +473,7 @@ class Personel extends MY_Controller {
         $this->upload->initialize($config);
         $this->upload->do_upload('file_pdf');
         $data = $this->upload->data();
-        $gambar = $data['file_name'];
+        $gambar = $data['full_path'];
 
         $id = $this->log_sertifikasi_m->get_row(['nip' => $this->data['username']]);
         if($id == null) {
@@ -492,6 +492,7 @@ class Personel extends MY_Controller {
                 'file' => $gambar,
             ];
             $this->log_sertifikasi_m->update($id->id_sertif, $data);
+            // $this->kalibrasi_m->insert($data);
         }
         redirect('personel/detail_sertifikat/'.$this->POST('id'));
         exit;

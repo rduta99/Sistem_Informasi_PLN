@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group col-md-3 mb-3">
-                                            <b>Nomor Rekonemdasi</b>
+                                            <b>Nomor Rekomendasi</b>
                                         </div>
                                         <input type="text" name="no_rekomen" class="form-control col-md-3" placeholder="Nomor Rekomendasi">
                                         <br>

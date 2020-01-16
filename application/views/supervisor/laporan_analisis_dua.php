@@ -69,11 +69,19 @@
             <td>
                 Standar
             </td>
-            <?php $cc = 0; foreach ($angka as $y) { ?>
-            <td>
-                Titik <?= ++$cc ?>
+            <?php 
+            
+                $cc = 1; foreach ($angka as $y) { 
+                if($num < 6) {
+                    if($cc == $num) {    
+            ?>
+            <td colspan="<?= 6 - $num ?>">
+            <?php } else { ?>
+                <td>
+            <?php } ?>
+                Titik <?= $cc ?>
             </td>
-        <?php }?>
+        <?php } ++$cc; }?>
         </tr>
         <?php } ?>
 
@@ -87,7 +95,9 @@
             <td>
                 <?= date('d M Y', strtotime($c->waktu)) ?>
             </td>
-            <td></td>
+            <td> 
+                <?= $c->standar ?>
+            </td>
             <?php 
 
             foreach ($angka as $n) {
@@ -104,12 +114,19 @@
                 <?= $n->angka ?>
             </td>
             <?php }?>
-            <td>  
+            <td>
+                <?= $c->parameter_op ?>  
             </td>
             <td>
-                <?php print_r($c); $con = ['', 'Good', 'Warning', 'Bad']; echo $con[$c->kondisi]; ?>
+                <?php $con = ['', 'Good', 'Warning', 'Bad']; echo $con[$c->kondisi]; ?>
             </td>
-            <td></td>
+            <td>
+                <?php 
+                
+                echo $this->db->query("SELECT no_rekomen FROM analisis_eq WHERE id_equipment = ".$c->asset_id." AND YEAR(waktu) = ".$data[0]." AND MONTH(waktu) = ".$data[1]." ORDER BY waktu DESC")->row()->no_rekomen;
+                
+                ?>
+            </td>
             
         </tr>
         <?php } $eq = $c->id_pengukuran; } ?>

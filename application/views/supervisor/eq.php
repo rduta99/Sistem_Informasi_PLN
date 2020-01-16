@@ -82,6 +82,14 @@
                                                     <i class="fas fa-pen"></i>
                                                 </span>
                                             </div>
+                                            <input type="text" name="standar" class="form-control" placeholder="Standar">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-pen"></i>
+                                                </span>
+                                            </div>
                                             <input type="text" name="general_draw" class="form-control" placeholder="General Drawing Peralatan & Titik Pengukuran">
                                         </div>      
                                         <div class="input-group mb-3">
@@ -222,6 +230,14 @@
                                                                     </span>
                                                                 </div>
                                                                 <input type="text" name="mpi" class="form-control" value="<?= $k->mpi ?>">
+                                                            </div>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">
+                                                                        <i class="fas fa-pen"></i>
+                                                                    </span>
+                                                                </div>
+                                                                <input type="text" name="standar" class="form-control" value="<?= $k->standar ?>">
                                                             </div>
                                                             <div class="input-group mb-3">
                                                                 <div class="input-group-prepend">

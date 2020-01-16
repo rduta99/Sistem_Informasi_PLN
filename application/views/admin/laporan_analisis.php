@@ -20,6 +20,8 @@
     }
 </style>
 
+<?php print_r($input) ?>
+
 <div>
     <table>
         <tr>
@@ -49,13 +51,13 @@
             <td>Kepada</td>
             <td colspan="8">: Pengelola Sistem</td>
             <td style="width: 10%">Nomor</td>
-            <td colspan="4">: 000.<?= date('m', strtotime($input->waktu)) ?> / TO / ENJ / UP .. / <?= date('Y', strtotime($input->waktu)) ?></td>
+            <td colspan="4">: <?= $input->no_rekomen ?></td>
         </tr>
         <tr>
             <td>Dari</td>
             <td colspan="8">: Technology Owner</td>
             <td>Tanggal</td>
-            <td colspan="4">: <?= date('d M Y', strtotime($input->waktu)) ?></td>
+            <td colspan="4">: </td>
         </tr>
         <tr>
             <td>Perihal</td>

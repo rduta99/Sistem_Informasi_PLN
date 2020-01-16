@@ -65,6 +65,7 @@ class Supervisor extends MY_Controller {
                 'spek_d' => $this->POST('spek_d'),
                 'mpi' => $this->POST('mpi'),
                 'general_draw' => $this->POST('general_draw'),
+                'standar' =>$this->POST('standar'),
                 'gambar' => $gambar,
                 
             ];
@@ -140,7 +141,8 @@ class Supervisor extends MY_Controller {
             'spek_c' => $this->POST('spek_c'),
             'spek_d' => $this->POST('spek_d'),
             'mpi' => $this->POST('mpi'),
-            'general_draw' => $this->POST('general_draw')
+            'general_draw' => $this->POST('general_draw'),
+            'standar' =>$this->POST('standar')
         ];
         $this->data_barang_m->update($this->POST('asset_id'), $data);
         $this->flashmsg('Data berhasil diubah');
@@ -239,7 +241,7 @@ class Supervisor extends MY_Controller {
                 }
             }
             $k = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
-            $this->his_pengukuran_m->insert(['id_equipment' => $id_equipment, 'gambar' => $data['file_name'], 'kondisi' => $max, 'waktu' => $waktu, 'unit' => $k->unit]);
+            $this->his_pengukuran_m->insert(['id_equipment' => $id_equipment, 'gambar' => $data['file_name'], 'kondisi' => $max, 'waktu' => $waktu, 'unit' => $k->unit, 'parameter_op' => $parameter_op]);
             $id = $this->his_pengukuran_m->get_row(['id_equipment' => $id_equipment, 'gambar' => $data['file_name'], 'kondisi' => $max, 'waktu' => $waktu])->id_pengukuran;
             for ($i=0; $i < count($angka); $i++) { 
                 $data = [
@@ -248,7 +250,7 @@ class Supervisor extends MY_Controller {
                     'angka' => $angka[$i],
                     'kondisi' => $kondisi[$i],
                     'waktu' => $waktu,
-                    'parameter_op' => $parameter_op
+                    
                 ];
                 $this->log_ukur_m->insert($data);
                 $this->flashmsg("Pengukuran berhasil disimpan");
@@ -307,7 +309,6 @@ class Supervisor extends MY_Controller {
     public function laporan_analisis()
     {
         $this->data['input'] = $this->analisis_m->get_join_where(['data_barang'], ['analisis_eq.id_equipment = data_barang.asset_id'],['id_anal' => $this->uri->segment(3)]);
-        
         $dompdf = new Dompdf\Dompdf();
         $html = $this->load->view('supervisor/laporan_analisis', $this->data, true);
         $dompdf->loadHtml($html);
@@ -333,6 +334,7 @@ class Supervisor extends MY_Controller {
                 $this->log_anal_m->update($id, ['id_equip' => $this->POST('asset_id')]);
             }
 
+            $unit = $this->data_personil_m->get_join_where(['unit'], ['data_personil.unit = unit.id_unit'], ['nip' => $this->data['username']])->nama_unit;
             $this->data['input'] = [
                 'id_equipment' => $this->POST('asset_id'),
                 'mpi' => $this->POST('mpi'),
@@ -343,7 +345,7 @@ class Supervisor extends MY_Controller {
                 'analysis' => $this->POST('analisis'),
                 'recommendation' => $this->POST('recommend'),
                 'waktu' => $this->POST('waktu'),
-                'no_rekomen' => $this->POST('no_rekomen')
+                'no_rekomen' => "000.".date('m')." / TO / ENJ / UP ".$unit." / ".date('Y')
             ];
             $this->analisis_m->insert($this->data['input']);
             $this->flashmsg('Analisis Telah Ditambahkan');

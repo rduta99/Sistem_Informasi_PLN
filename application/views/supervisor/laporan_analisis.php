@@ -49,7 +49,7 @@
             <td>Kepada</td>
             <td colspan="8">: Pengelola Sistem</td>
             <td style="width: 10%">Nomor</td>
-            <td colspan="4">: 000.<?= date('m', strtotime($input->waktu)) ?> / TO / ENJ / UP .. / <?= date('Y', strtotime($input->waktu)) ?></td>
+            <td colspan="4">: <?= $input->no_rekomen ?></td>
         </tr>
         <tr>
             <td>Dari</td>

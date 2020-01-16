@@ -39,6 +39,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
+
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     <div class="custom-file">
@@ -47,9 +48,17 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                <b>Tanggal Kalibrasi</b>
+                                                    <input type="date" name="waktu" class="form-control col-md-12" placeholder="Tanggal Ukur">
+                                                </div>
+                                            </div>
+
                                             <div class="modal-footer justify-content-between">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                <input type="submit" class="btn btn-primary" value="Tambah Equipment" name="simpan_tool">
+                                                <input type="submit" class="btn btn-primary" value="Upload Kalibrasi" name="simpan_tool">
                                             </div>
                                         </div>
 

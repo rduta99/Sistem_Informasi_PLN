@@ -39,7 +39,7 @@
             <td rowspan="2">
                 Tanggal Pengukuran
             </td>
-            <td colspan="5">
+            <td colspan="6">
                 <?= $k->nama_teknologi ?> <span style="color:red">(satuan)</span>
             </td>
             <td rowspan="2">
@@ -52,14 +52,6 @@
                 No. Rekomendasi
             </td>
         </tr>
-        <tr style="text-align:center">
-            <td>
-                Standar
-            </td>
-            <td colspan="4" id="cuk">
-                Titik Pengukuran
-            </td>
-        </tr>
         
         <?php 
 
@@ -68,8 +60,23 @@
         $no = 0;
         foreach($equipment as $c) {
             if($eq == '' || $eq != $c->id_pengukuran) {
-
+                $angka = $this->db->query("SELECT * FROM log_ukur WHERE id_histori = ".$c->id_pengukuran." AND id_tools = ".$k->id_tools." AND MONTH(waktu) = ".$data[1]." AND YEAR(waktu) = ".$data[0])->result(); 
+                $num = count($angka); 
+                $nn = 1; 
+                if($no == 0) {
         ?>
+        <tr style="text-align:center">
+            <td>
+                Standar
+            </td>
+            <?php $cc = 0; foreach ($angka as $y) { ?>
+            <td>
+                Titik <?= ++$cc ?>
+            </td>
+        <?php }?>
+        </tr>
+        <?php } ?>
+
         <tr>
             <td>
                 <?= ++$no ?>
@@ -81,13 +88,19 @@
                 <?= date('d M Y', strtotime($c->waktu)) ?>
             </td>
             <td></td>
-            <?php $angka = $this->db->query("SELECT * FROM log_ukur WHERE id_histori = ".$c->id_pengukuran." AND id_tools = ".$k->id_tools." AND MONTH(waktu) = ".$data[1]." AND YEAR(waktu) = ".$data[0])->result(); ?>
-            <script>
+            <?php 
 
-                document.getElementById("cuk").colSpan = "<?= count($angka) ?>";
-            </script>
-            <?php foreach ($angka as $n) { ?>
-            <td>
+            foreach ($angka as $n) {
+                if($num < 6) { 
+                    if($num == $nn) { ?>
+
+            <td colspan="<?= 6-$num ?>">
+            <?php
+                    } else {
+                        echo "<td>";
+                    } 
+                } ++$nn;
+            ?>
                 <?= $n->angka ?>
             </td>
             <?php }?>

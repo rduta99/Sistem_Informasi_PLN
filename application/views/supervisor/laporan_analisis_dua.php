@@ -106,7 +106,7 @@
             <?php }?>
             <td></td>
             <td>
-                <?php $con = ['', 'Good', 'Warning', 'Bad']; echo $con[$c->kondisi]; ?>
+                <?php print_r($c); $con = ['', 'Good', 'Warning', 'Bad']; echo $con[$c->kondisi]; ?>
             </td>
             <td></td>
             

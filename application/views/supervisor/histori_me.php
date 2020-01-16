@@ -64,34 +64,30 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Asset ID</th>
                                         <th>Equipment</th>
-                                        <th>Tanggal Pengukuran</th>
-                                        <th>Kondisi</th>
+                                        <th>KKS Number</th>
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php 
-                                    $cond = ['', 'Good', 'Warning', 'Bad'];
-                                    $class = ['', 'bg-success', 'bg-warning text-white', 'bg-danger'];
-                                    $no = 0; foreach ($pengukuran as $k) { 
+                                    // $cond = ['', 'Good', 'Warning', 'Bad'];
+                                    // $class = ['', 'bg-success', 'bg-warning text-white', 'bg-danger'];
+                                    $no = 0; foreach ($ukur as $k) { 
                                     
                                     ?>
                                     <tr>
                                         <td><?= ++$no ?></td>
+                                        <td><?= $k->asset_id ?></td>
                                         <td><?= $k->desk ?></td>
-                                        <td><?= $k->waktu ?></td>
+                                        <td><?= $k->kks_number ?></td>
                                         <td>
-                                            <span class="badge <?= $class[$k->kondisi] ?>">
-                                                <?= $cond[$k->kondisi] ?>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <a href="<?= site_url('supervisor/detail_pengukuran/'.$k->id_pengukuran) ?>" class="btn btn-primary btn-sm">
+                                            <a href="<?= site_url('supervisor/detail_ukur/'.$k->asset_id) ?>" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-cog"></i> Detail
                                             </a>
-                                            <a href="<?= site_url('supervisor/analisis_eq/'.$k->id_pengukuran) ?>" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-cog"></i> Lakukan Analasis
+                                            <a href="<?= site_url('supervisor/analisis_eq/'.$k->asset_id) ?>" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-cog"></i> Lakukan Analisis
                                             </a>
                                         </td>
                                     </tr>

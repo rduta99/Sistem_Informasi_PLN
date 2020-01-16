@@ -39,7 +39,7 @@
             <td rowspan="2">
                 Tanggal Pengukuran
             </td>
-            <td colspan="5" >
+            <td colspan="5">
                 <?= $k->nama_teknologi ?> <span style="color:red">(satuan)</span>
             </td>
             <td rowspan="2">
@@ -56,7 +56,7 @@
             <td>
                 Standar
             </td>
-            <td>
+            <td colspan="4" id="cuk">
                 Titik Pengukuran
             </td>
         </tr>
@@ -81,12 +81,14 @@
                 <?= date('d M Y', strtotime($c->waktu)) ?>
             </td>
             <td></td>
-            <?php $angka = $this->db->query("SELECT * FROM log_ukur WHERE id_histori = ".$c->id_pengukuran." AND id_tools = ".$k->id_tools." AND MONTH(waktu) = ".$data[1]." AND YEAR(waktu) = ".$data[0])->result();
+            <?php $angka = $this->db->query("SELECT * FROM log_ukur WHERE id_histori = ".$c->id_pengukuran." AND id_tools = ".$k->id_tools." AND MONTH(waktu) = ".$data[1]." AND YEAR(waktu) = ".$data[0])->result(); ?>
+            <script>
 
-                foreach ($angka as $n) {
-            ?>
-            <td colspan="4">
-                <?= $n->angka." | ".$n->id_histori." | ".$n->id_log ?>
+                document.getElementById("cuk").colSpan = "<?= count($angka) ?>";
+            </script>
+            <?php foreach ($angka as $n) { ?>
+            <td>
+                <?= $n->angka ?>
             </td>
             <?php }?>
             <td></td>

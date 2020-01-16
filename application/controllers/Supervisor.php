@@ -277,19 +277,20 @@ class Supervisor extends MY_Controller {
 
     public function laporan_analisis_dua()
     {
-        $dompdf = new Dompdf\Dompdf();
+        // $dompdf = new Dompdf\Dompdf();
         $this->data['data'] = [$this->POST('tahun'), $this->POST('bulan')];
         
         $this->data['tool'] = $this->tools_m->getDataJoin(['teknologi', 'log_ukur'], ['tools.teknologi = teknologi.id_teknologi', 'log_ukur.id_tools = tools.id_tools']);
         
-        $html = $this->load->view('supervisor/laporan_analisis_dua', $this->data, true);
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'landscape');
-        $options = new Dompdf\Options();
-        $options->setIsRemoteEnabled(true);
-        $dompdf->setOptions($options);
-        $dompdf->render();
-        $dompdf->stream('Laporan Cok.pdf', array("Attachment" => 0));
+        //$html = 
+        $this->load->view('supervisor/laporan_analisis_dua', $this->data);
+        // $dompdf->loadHtml($html);
+        // $dompdf->setPaper('A4', 'landscape');
+        // $options = new Dompdf\Options();
+        // $options->setIsRemoteEnabled(true);
+        // $dompdf->setOptions($options);
+        // $dompdf->render();
+        // $dompdf->stream('Laporan Cok.pdf', array("Attachment" => 0));
     }
 
     public function laporan_analisis()

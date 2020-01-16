@@ -42,6 +42,7 @@ class Personel extends MY_Controller {
         $this->load->model('analisis_m');
         $this->load->model('kalibrasi_m');
         $this->load->model('log_kalibrasi_m');
+        $this->load->model('log_sertifikasi_m');
         $this->data['user'] = $this->data_personil_m->get_row(['nip' => $this->data['username']]);
     }
     
@@ -296,7 +297,7 @@ class Personel extends MY_Controller {
     {
         $this->data['barang'] = $this->his_pengukuran_m->get_join_where(['data_barang'], ['histori_pengukuran.id_equipment = data_barang.asset_id'], ['id_pengukuran' => $id]);
         $this->data['tools'] = $this->log_ukur_m->get_join_all_where(['tools'], ['log_ukur.id_tools = tools.id_tools'], ['id_histori' => $id]);
-        $this->data['active'] = 6;
+        $this->data['active'] = 3;
         $this->data['content'] = 'anal';
         $this->data['title'] = 'Personel | ';
         $this->load->view('personel/template/template', $this->data);
@@ -336,7 +337,6 @@ class Personel extends MY_Controller {
                 $id = $cek->id_log;
                 $this->log_anal_m->update($id, ['id_equip' => $this->POST('asset_id')]);
             }
-            
             $this->data['input'] = [
                 'id_equipment' => $this->POST('asset_id'),
                 'id_log' => $id,
@@ -346,8 +346,12 @@ class Personel extends MY_Controller {
                 'diagnose' => $this->POST('diagnose'),
                 'analysis' => $this->POST('analisis'),
                 'recommendation' => $this->POST('recommend'),
-                'waktu' => date('Y-m-d')
+                'waktu' => date('Y-m-d'),
+                'username' => $this->data['username'],
+                // $username = mysql_real_escape_string($_POST[username]);
+                
             ];
+            
             $this->analisis_m->insert($this->data['input']);
             $this->flashmsg('Analisis Telah Ditambahkan');
         }
@@ -453,6 +457,73 @@ class Personel extends MY_Controller {
         $dompdf->stream('Laporan.pdf', ['Attachment' => 0]);
     }
 
+    public function detail_sertifikat()
+    {   
+        $this->data['list_sertifikasi'] = $this->log_sertifikasi_m->get(['nip' => $this->data['username']]);
+        $this->data['active'] = 6;
+        $this->data['content'] = 'sertifikasi';
+        $this->data['title'] = 'Personel | ';
+        $this->load->view('personel/template/template', $this->data);
+    }
+
+    public function upload_sertifikasi()
+    {
+        $config['upload_path'] = './assets/file_sertifikasi';
+        $config['allowed_types'] = 'pdf';
+        $this->upload->initialize($config);
+        $this->upload->do_upload('file_pdf');
+        $data = $this->upload->data();
+        $gambar = $data['full_path'];
+
+        $id = $this->log_sertifikasi_m->get_row(['nip' => $this->data['username']]);
+        if($id == null) {
+            $data = [
+                'nip' => $this->data['username'],
+                'tgl_sertif' => date('Y-m-d'),
+                'file' => $gambar,
+            ];
+            $this->log_sertifikasi_m->insert($data);
+            $id = $this->log_sertifikasi_m->get_row(['nip' => $this->data['username'], 'file' => $gambar, 'tgl_sertif' => date('Y-m-d ')])->id_sertif;
+            $this->data_personil_m->update($this->data['username'], ['sertifikasi' => $id]);
+        } else {
+            $data = [
+                'nip' => $this->data['username'],
+                'tgl_sertif' => date('Y-m-d'),
+                'file' => $gambar,
+            ];
+            $this->log_sertifikasi_m->update($id->id_sertif, $data);
+        }
+        redirect('personel/detail_sertifikat/'.$this->POST('id'));
+        exit;
+    }
+
+    public function detail_sertifikasi()
+    {
+        $file = $this->log_sertifikasi_m->get_row(['id_sertif' => $this->uri->segment(3)])->file;
+        $filename = 'filename.pdf';
+        header('Content-type: application/pdf');
+        header('Content-Disposition: inline; filename="' . $filename . '"');
+        header('Content-Transfer-Encoding: binary');
+        header('Accept-Ranges: bytes');
+        @readfile($file);
+    }
+
+    public function laporan_analisis_dua()
+    {
+        // $dompdf = new Dompdf\Dompdf();
+        $this->data['data'] = [$this->POST('tahun'), $this->POST('bulan')];
+        $this->data['eq'] = $this->db->query("SELECT * FROM histori_pengukuran INNER JOIN data_barang ON histori_pengukuran.id_equipment = data_barang.asset_id WHERE MONTH(waktu) = ".$this->POST('bulan')." AND YEAR(waktu) = ".$this->POST('tahun')." ORDER BY waktu, id_equipment")->result();
+        $this->data['tool'] = $this->tools_m->getDataJoin(['teknologi'], ['tools.teknologi = teknologi.id_teknologi']);
+        // $html = 
+        $this->load->view('personel/laporan_analisis_dua', $this->data);
+        // $dompdf->loadHtml($html);
+        // $dompdf->setPaper('A4', 'landscape');
+        // $options = new Dompdf\Options();
+        // $options->setIsRemoteEnabled(true);
+        // $dompdf->setOptions($options);
+        // $dompdf->render();
+        // $dompdf->stream('Laporan Cok.pdf', array("Attachment" => 0));
+    }
 
 }
 

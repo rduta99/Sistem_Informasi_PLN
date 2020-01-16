@@ -63,6 +63,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?= site_url('personel/detail_sertifikat') ?>" class="nav-link <?php if($active == 6) { echo "active"; } ?>">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Daftar Sertifikasi
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="<?= site_url('logout') ?>" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>
